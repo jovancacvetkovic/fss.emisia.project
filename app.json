@@ -1,11 +1,6 @@
 {
     "builds": {
-        "desktop": {
-            "theme": "fssmaterial"
-        },
-        "tablet": {
-            "theme": "fssmaterial"
-        },
+        "web": {"default": true},
         "android": {
             "packager": "cordova",
             "cordova" : {
