@@ -1,0 +1,45 @@
+@import "../../../../../var/FSS/Application";
+@import "../../../../../../../../../ext/classic/theme-base/sass/var/Component";
+
+.fssHeader {
+    height: $header-height;
+    
+    .fssLogo {
+        position: absolute;
+        height: 100%;
+        width: 75px;
+        clip: rect(0 100px 75px 0) !important;
+        
+        &::before {
+            content: '';
+            background-image: url(/build/development/FSS/resources/images/FSS_logo.svg);
+            background-repeat: no-repeat;
+            background-size: 95px;
+            
+            position: absolute;
+            top: -11px;
+            left: -11px;
+            width: 100px;
+            height: 100px;
+            
+            -webkit-transform: rotate(-15deg);
+            transform: rotate(-15deg);
+        }
+    }
+    
+    .fssHeaderActions {
+        position: absolute;
+        right: 0;
+        height: $header-height;
+    }
+}
+
+.fssDesktopMain {
+    .fssHeader {
+        .#{$prefix}tabbar-body-el {
+            justify-content: left;
+            padding-left: 215px;
+            padding-right: 250px;
+        }
+    }
+}

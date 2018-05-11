@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "939280745280",
+    "firebase_url": "https://fssmodern.firebaseio.com",
+    "project_id": "fssmodern",
+    "storage_bucket": "fssmodern.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:939280745280:android:685120c8fe4d2d01",
+        "android_client_info": {
+          "package_name": "com.emisia.fss"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "939280745280-abasov3a84l1bss73us8avplrffbft11.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCY1q8LRYURDR-2VJDZkkDNB_nGXUbtHEU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,22 @@
+.fssDesktopMain {
+    .#{$prefix}dock-vertical {
+        width: calc(100% - 470px);
+    
+        @media only screen and (min-width: 1366px) {
+            width: calc(100% - 470px) !important;
+        }
+        
+        @media only screen and (min-width: 768px) and (max-width: 1366px) {
+            width: calc(100% - 170px) !important;
+        }
+        
+        @media only screen and (max-width: 800px) {
+            width: calc(100%) !important;
+        }
+    
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    background-color: $base-background-color;
+}

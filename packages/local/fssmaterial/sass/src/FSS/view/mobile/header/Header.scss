@@ -1,0 +1,23 @@
+@import "../../../../../var/FSS/Application";
+@import "../../../../../../../../../ext/classic/theme-base/sass/var/Component";
+
+.fssHeader {
+    height: $header-mobile-height;
+    
+    .fssLogo {
+        width: $header-mobile-height;
+        height: $header-mobile-height;
+    }
+    
+    .fssHeaderActions {
+        height: $header-mobile-height;
+    }
+}
+
+.fssMobileMain {
+    .fssHeader {
+        .#{$prefix}tabbar-body-el {
+            justify-content: center;
+        }
+    }
+}

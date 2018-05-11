@@ -1,0 +1,10 @@
+**/build
+**/node_modules
+*.lock
+*lock.json
+.idea
+.sencha
+bootstrap.*
+classic.json*
+ext/
+modern.json*
