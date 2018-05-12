@@ -1,16 +1,18 @@
+@import "../../../../../var/FSS/Application";
+
 .fssDesktopMain {
     .#{$prefix}dock-vertical {
         width: calc(100% - 470px);
     
-        @media only screen and (min-width: 1366px) {
+        @media #{$is-desktop} {
             width: calc(100% - 470px) !important;
         }
-        
-        @media only screen and (min-width: 768px) and (max-width: 1366px) {
+    
+        @media #{$is_tablet} {
             width: calc(100% - 170px) !important;
         }
-        
-        @media only screen and (max-width: 800px) {
+    
+        @media #{$is-phone} {
             width: calc(100%) !important;
         }
     

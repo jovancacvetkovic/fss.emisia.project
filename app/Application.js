@@ -40,6 +40,9 @@ Ext.define('FSS.Application', {
         // Init firebase
         FSS.firebase = firebase; // jshint ignore:line
         
+        var pulseLogo = Ext.getBody().down('#pulse-logo');
+        Ext.Function.defer(pulseLogo.hide, 1000, pulseLogo);
+        
         Ext.Ajax.request({
             url: 'resources/config',
             success: this.initMessaging.bind(this)

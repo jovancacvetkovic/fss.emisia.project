@@ -1,0 +1,81 @@
+@import "../../../../../../../ext/modern/theme-base/sass/var/Component";
+@import "../../../../../../../ext/classic/theme-base/sass/var/Component.scss";
+@import "../../../var/FSS/Application";
+@import "../../../var/Ext/Component";
+
+body {
+    background-color: #A9ACB1;
+    margin: 0;
+}
+
+.fss-login-body {
+    margin: 0 auto;
+    height: 100vh;
+    width: calc(100% - 470px);
+    
+    @media #{$is-desktop} {
+        width: calc(100% - 470px) !important;
+    }
+    
+    @media #{$is_tablet} {
+        width: calc(100% - 170px) !important;
+    }
+    
+    @media #{$is-phone} {
+        width: calc(100%) !important;
+    }
+    
+    .fss-login-logo {
+        background-size: 55px;
+        background-position: 45px 45px;
+    }
+    
+    .fss-login-image {
+        &.x-img {
+            background-position: right;
+            min-width: 750px;
+        }
+    }
+    
+    .fss-login-form {
+        margin: 0 auto;
+        width: 100%;
+        
+        .#{$prefix}container {
+            width: 70%;
+            margin: 0 auto;
+        }
+        
+        .#{$prefix}textfield {
+            margin: 60px auto;
+    
+            .#{$prefix}input-wrap-el {
+                padding: 10px 15px;
+                
+                .#{$prefix}input-el {
+                    color: $fss-text-input-color;
+                    font: 18px $font-family;
+                }
+            }
+        }
+        
+        .#{$prefix}label {
+            padding: 10px 15px;
+            font: 14px $font-family;
+            
+            .#{$prefix}innerhtml {
+                color: rgba(17, 17, 17, 0.54) !important;
+            }
+        }
+    }
+    
+    .#{$prefix}button {
+        color: #fff;
+        background-color: $base-light-color !important;
+        font: 18px $font-family;
+        
+        .#{$prefix}inner-el {
+            padding: 15px 45px;
+        }
+    }
+}

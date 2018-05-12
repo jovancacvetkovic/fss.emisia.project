@@ -1,6 +1,8 @@
-/* colors */
-$base-background-color: dynamic(#A9ACB1);
-
 /* size */
 $header-height: 75px;
 $header-mobile-height: 25px;
+
+/* profiles */
+$is-desktop: "only screen and (min-width: 1366px)";
+$is-tablet: "only screen and (min-width: 768px) and (max-width: 1366px)";
+$is-phone: "only screen and (max-width: 800px)";

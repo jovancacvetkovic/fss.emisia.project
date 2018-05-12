@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<!--suppress ALL -->
+<html manifest="">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=10, user-scalable=yes">
+    
+    <script src="resources/ext-modern-all.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="resources/theme-material-all.css" />
+    <link rel="stylesheet" href="resources/FSS-all.css" />
+    <link rel="stylesheet" href="resources/login.css" />
+    
+    <title>FSS Login</title>
+    
+    <script>
+        Ext.onReady(function(){
+            let body = Ext.getBody();
+            var pageConfig = {
+                xtype: 'container',
+                cls: 'fss-login-body',
+                layout: {
+                    type: 'fit'
+                },
+                items: [{
+                    xtype: 'container',
+                    layout: 'vbox',
+                    items: [{
+                        xtype: 'image',
+                        cls: 'fss-login-logo',
+                        src: '/resources/images/FSS_logo.svg',
+                        flex: 0.3
+                    }, {
+                        xtype: 'formpanel',
+                        cls: 'fss-login-form',
+                        items: [{
+                            items: [{
+                                xtype: 'textfield',
+                                placeholder: 'Username'
+                            }, {
+                                xtype: 'passwordfield',
+                                placeholder: 'Password'
+                            }]
+                        }, {
+                            layout: 'hbox',
+                            items: [{
+                                xtype: 'label',
+                                html: 'Forgot password?',
+                                flex: 1
+                            }, {
+                                xtype: 'button',
+                                ui: 'round',
+                                text: 'LOG IN',
+                                handler: function(){
+                                    window.location = '/';
+                                }
+                            }]
+                        }],
+                        flex: 0.7
+                    }],
+                    flex: 1
+                }, {
+                    xtype: 'image',
+                    cls: 'fss-login-image',
+                    src: '/resources/images/FSS_loginImg.jpg',
+                    flex: 1
+                }],
+                
+                renderTo: body
+            };
+            
+            Ext.create('Ext.panel.Panel', pageConfig);
+        });
+    </script>
+
+</head>
+<body></body>
+</html>
