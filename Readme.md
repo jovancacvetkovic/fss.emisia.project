@@ -2,17 +2,20 @@
 
 Creating, managing and runnig FSS application manual.
 
+
 ## Project Creation
 
-Project FSS was created following next commands:
-`sencha -sdk path/to/extjs/framework generate app FSS path/to/project/folder --modern`. This step will generate basic ExtJS application
+Project FSS was created following next command:
+	`sencha -sdk path/to/extjs/framework generate app FSS path/to/project/folder --modern` - This step generated basic ExtJS application.
 
-Adding cordova support via `sencha cordova init com.emisia.fss FSS`. This step will add support for cordova project so that we can build mobile application. 
-By doing this the `app.json` file is updated to add platform support, this config is added to build profiles:
+Added cordova support via 
+	`sencha cordova init com.emisia.fss FSS` - This step added support for cordova project so that mobile application can be created (eg APK). 
 	
-		"android": {
-               "packager": "cordova",
-               "cordova": {
+By doing this the `app.json` file is updated with platform support, this config is added to build profiles:
+	
+	"android": {
+           "packager": "cordova",
+           "cordova": {
                "config": {
                       "platforms": "android",
                       "id": "com.emisia.fss",
@@ -23,17 +26,20 @@ By doing this the `app.json` file is updated to add platform support, this confi
            "theme": "theme-material"
         }
 
-If cordova is not install, please install cordova via npm: `sudo npm install -g cordova`
+Cordova is installed via npm: `sudo npm install -g cordova`
+
 
 ## Adding a theme
 
-To a theme run next command: `sencha generate theme my-theme`. This will add a new folder named my-theme in packages/local folder.
+Theme was genreated by running next command: 
+	`sencha generate theme fssmaterial` - This added a new folder named fssmaterial in packages/local folder.
 
 
 ## Firebase support
 
-Firebase is Google solution for Cloud Messaging (Push Notifications) also called GCM. We have added cordova plugin for firebase messaging
-`cordova plugin add cordova-plugin-firebase --save`
+Firebase is Google solution for Cloud Messaging (Push Notifications) also called GCM. Cordova plugin is added for firebase messaging via 
+	`cordova plugin add cordova-plugin-firebase --save`
+
 
 ## Build & Run
 
@@ -47,9 +53,8 @@ If you want to run application on an emulator, you need to create AVD emulator w
 
 ## Debugging
 
-Debugging web application is as always done via Developer tools. Debugging android devices is also done via Developer tools by navigating to `chrome://inspect/#devices` 
-and choosing your device from the list of attached devices. Note that both devices and emulators will be listed and both can be inspected. 
-Debugging devices will have to activate USB Debugging option located under Developer options, which can be activated if you tap 7 times on the Build number.
+Debugging web application is as always done via Developer tools. Debugging android devices is also done via Developer tools by navigating to `chrome://inspect/#devices` and choosing your device from the list of attached devices. Note that devices and emulators will be listed and can be inspected. 
+Debugging devices you have to activate USB Debugging option located under Developer options, which can be activated if you tap 7 times on the Build number.
 
 
 ## Checkout / Clone project
@@ -60,7 +65,7 @@ Checking-out project:
  - Add remote origin: `git remote add origin http://git.emisia.lan/jcvetkovic/fss-emisia-project.git`
  - Download all source code: `git pull origin master`
  - Navigate into cordova folder
- - Run command: `cordova platform rm .idea`. This command will help idea run cordova app
+ - Run command: `cordova platform rm .idea` - This command will help idea run cordova app
  - And finally you can run `sencha app run android` or watch `sencha app watch android` application
     
 
