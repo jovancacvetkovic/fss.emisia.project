@@ -6,3 +6,15 @@ $header-mobile-height: 25px;
 $is-desktop: "only screen and (min-width: 1366px)";
 $is-tablet: "only screen and (min-width: 768px) and (max-width: 1366px)";
 $is-phone: "only screen and (max-width: 800px)";
+
+/* button */
+$fss-flat-button-background-color: dynamic(#9A1C36);
+
+/* menu */
+$fss-menu-border: 1px solid #DCE1E2;
+
+/* input */
+$fss-text-input-color: dynamic(#4978C7);
+
+/* page */
+$fss-page-background: dynamic(#F1F4F5);

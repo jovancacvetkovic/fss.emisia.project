@@ -3,12 +3,11 @@
  */
 Ext.define('FSS.view.desktop.header.HeaderController', {
     extend: 'Ext.app.ViewController',
-    alias: 'controller.header',
+    alias: 'controller.fssHeaderController',
 
     /**
      * Called when the view is created
      */
     init: function() {
-
     }
 });

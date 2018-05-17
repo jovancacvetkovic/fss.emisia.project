@@ -31,12 +31,31 @@
         position: absolute;
         right: 0;
         height: $header-height;
+        width: 250px;
+        
+        .fssHeaderActionsBar {
+            width: 100%;
+            height: 100%;
+            
+            .fssHeaderActionsBarItem {
+                .#{$prefix}icon-el {
+                    width: 30px;
+                    height: 30px;
+                    padding: 0 25px;
+                }
+            }
+            
+            .pictos::before {
+                font-size: 30px !important;
+                color: $fss-flat-button-background-color;
+            }
+        }
     }
 }
 
 .fssDesktopMain {
     .fssHeader {
-        .#{$prefix}tabbar-body-el {
+        >.#{$prefix}tabbar-body-el {
             justify-content: left;
             padding-left: 215px;
             padding-right: 250px;

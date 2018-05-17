@@ -3,7 +3,7 @@
  */
 Ext.define('FSS.view.desktop.browser.BrowserModel', {
     extend: 'Ext.app.ViewModel',
-    alias: 'viewmodel.browser',
+    alias: 'viewmodel.browserModel',
 
     stores: {
         /*

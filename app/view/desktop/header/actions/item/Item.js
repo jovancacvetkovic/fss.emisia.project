@@ -2,7 +2,7 @@
  * Created by emisia on 5/8/18.
  */
 Ext.define('FSS.view.desktop.header.actions.item.Item', {
-    extend: 'Ext.Component',
+    extend: 'Ext.Button',
 
     requires: [
         'FSS.view.desktop.header.actions.item.ItemModel',
@@ -15,11 +15,9 @@ Ext.define('FSS.view.desktop.header.actions.item.Item', {
         type: 'fssHeaderActionItemModel'
     },
 
+    cls: 'fssHeaderActionsBarItem',
+    
     controller: 'fssHeaderActionItemController',
-
-    tpl: [
-        '<div class="fssHeaderActionItem">',
-            '<',
-        '</div>'
-    ]
+    
+    ui: 'plain round'
 });

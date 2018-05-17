@@ -35,11 +35,13 @@ Ext.define('FSS.Application', {
      * Initializes firebase sub-application
      * Initializes messaging for push notifications
      * Requests user to allow push notifications
+     *
+     * NOTE: This will stop app initialization and continue after firebase iz initialized
      */
-    launch: function(){
+    onProfilesReady: function(){
         // Init firebase
         FSS.firebase = firebase; // jshint ignore:line
-        
+    
         var pulseLogo = Ext.getBody().down('#pulse-logo');
         Ext.Function.defer(pulseLogo.hide, 1000, pulseLogo);
         
@@ -51,6 +53,8 @@ Ext.define('FSS.Application', {
     
     /**
      * Initialize firebase push notifications
+     *
+     * NOTE: After firebase initialization app startup will be continued
      * @param {FSS.type.ajax.Response} response
      * @param {FSS.type.ajax.Options} options
      */
@@ -60,8 +64,12 @@ Ext.define('FSS.Application', {
         
         //noinspection JSUnresolvedFunction
         var firebase = config.firebase;
+        
         //noinspection JSUnresolvedFunction
-        FSS.firebase.initializeApp(firebase);
+        FSS.firebase.initializeApp(firebase); // Init firebase app
+        
+        // Initialize firebase database
+        FSS.database = FSS.firebase.database().ref(); // jshint ignore:line
         
         // Init messaging
         FSS.messaging = FSS.firebase.messaging();
@@ -86,6 +94,9 @@ Ext.define('FSS.Application', {
         else {
             console.error('Push Notifications are not supported by browser.');
         }
+        
+        // Continue with app startup
+        this.superclass.superclass.onProfilesReady.call(this);
     },
     
     /**

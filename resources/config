@@ -4,6 +4,7 @@
         "authDomain": "fssmodern.firebaseapp.com",
         "projectId": "fssmodern",
         "messagingSenderId": "939280745280",
-        "vapidKey": "BJx3maNMrM5NOJyJlmojvtJ_35mDgr6C1ZSOnwcSTeZgiOuJQDtFgnLGi_oJBAh0ipKjPOldhbFaYP6MMxz4lMc"
+        "vapidKey": "BJx3maNMrM5NOJyJlmojvtJ_35mDgr6C1ZSOnwcSTeZgiOuJQDtFgnLGi_oJBAh0ipKjPOldhbFaYP6MMxz4lMc",
+        "databaseURL": "https://fssmodern.firebaseio.com/"
     }
 }

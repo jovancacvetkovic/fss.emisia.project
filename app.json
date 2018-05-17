@@ -32,7 +32,8 @@
      *      ]
      */
     "requires": [
-        "font-awesome"
+        "font-awesome",
+        "font-pictos"
     ],
 
     /**

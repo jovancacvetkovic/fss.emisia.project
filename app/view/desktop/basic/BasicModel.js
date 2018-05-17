@@ -1,9 +1,9 @@
 /**
- * Created by emisia on 5/7/18.
+ * Created by emisia on 5/13/18.
  */
-Ext.define('FSS.view.desktop.header.HeaderModel', {
+Ext.define('FSS.view.desktop.basic.BasicModel', {
     extend: 'Ext.app.ViewModel',
-    alias: 'viewmodel.fssHeaderModel',
+    alias: 'viewmodel.basicModel',
 
     stores: {
         /*
@@ -11,7 +11,7 @@ Ext.define('FSS.view.desktop.header.HeaderModel', {
         store configuration. For example:
 
         users: {
-            model: 'Header',
+            model: 'Basic',
             autoLoad: true
         }
         */

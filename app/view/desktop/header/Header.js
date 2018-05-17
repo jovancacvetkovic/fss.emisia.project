@@ -13,29 +13,45 @@ Ext.define('FSS.view.desktop.header.Header', {
     xtype: 'fssHeader',
     
     viewModel: {
-        type: 'header'
+        type: 'fssHeaderModel'
     },
     
     cls: 'fssHeader',
     
-    controller: 'header',
+    controller: 'fssHeaderController',
     
     template: [{
         xtype: 'container',
-        cls: 'x-body-el fssLogo',
+        cls: Ext.baseCSSPrefix + 'body-el fssLogo',
         reference: 'fssLogo',
         uiCls: 'body-el'
     }, {
-        cls: 'x-body-el',
+        cls: Ext.baseCSSPrefix + 'body-el',
         reference: 'bodyElement',
         uiCls: 'body-el'
     }, {
         xtype: 'fssHeaderActions',
-        cls: 'fssHeaderActions',
         reference: 'fssHeaderActions',
         uiCls: 'body-el'
-    }, {
-        cls: 'x-strip-el',
-        reference: 'stripElement'
-    }]
+    }],
+    
+    initElement: function(){
+        var me = this;
+        me.callParent();
+        
+        if (me.fssHeaderActions) {
+            var headerActionsConfig = Ext.Array.findBy(me.getTemplate(), me.getActionsConfig, me);
+            if (headerActionsConfig){
+                // Render to actions holder el
+                headerActionsConfig.renderTo = me.fssHeaderActions;
+                Ext.factory(headerActionsConfig); // Create actions bar
+            }
+            
+            me.fssHeaderActions.addCls('fssHeaderActions');
+        }
+    },
+    
+    getActionsConfig: function(item){
+        return item.xtype == 'fssHeaderActions'
+    }
 });

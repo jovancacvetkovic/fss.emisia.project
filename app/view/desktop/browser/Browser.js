@@ -2,7 +2,7 @@
  * Created by emisia on 5/7/18.
  */
 Ext.define('FSS.view.desktop.browser.Browser', {
-    extend: 'Ext.Container',
+    extend: 'FSS.view.desktop.basic.Basic',
 
     requires: [
         'FSS.view.desktop.browser.BrowserModel',
@@ -12,12 +12,8 @@ Ext.define('FSS.view.desktop.browser.Browser', {
     xtype: 'fssBrowser',
 
     viewModel: {
-        type: 'browser'
+        type: 'browserModel'
     },
 
-    controller: 'browser',
-
-    items: [
-        /* include child components here */
-    ]
+    controller: 'browserController'
 });
