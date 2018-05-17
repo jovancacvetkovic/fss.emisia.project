@@ -1,5 +1,8 @@
 /* colors */
 $base-color: dynamic(#BF2242);
-$base-light-color: dynamic(#C5404E);
+$base-light-color1: dynamic(#C5404E);
 $background-color: dynamic(#FFFFFF);
 $base-background-color: dynamic(#A9ACB1);
+
+$dataview-item-hovered-background-color: mix(#fff, $base-light-color1, 65%);
+$dataview-item-selected-background-color : mix(#fff, $base-light-color1, 25%);
