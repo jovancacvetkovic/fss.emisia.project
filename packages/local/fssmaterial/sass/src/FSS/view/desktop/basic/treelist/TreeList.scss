@@ -1,0 +1,43 @@
+.fssTreeList {
+    width: 220px;
+    height: 100%;
+    
+    .fssTreeListMain {
+        width: 100%;
+        height: 100%;
+    
+        background-color: $fss-header-background-color;
+        padding-top: 20px;
+        
+        .#{$prefix}itemheader-body-el, .#{$prefix}listitem-inner-el {
+            padding-left: 20px;
+        }
+        
+        .#{$prefix}listitem-inner-el {
+            padding: 5px 12px 5px 20px;
+        }
+    
+        .#{$prefix}listitem {
+            background-color: transparent;
+            border-left: 6px solid transparent;
+            
+            &.#{$prefix}selected {
+                background-color: transparent;
+                border-left: 6px solid $base-color;
+    
+                .#{$prefix}listitem-inner-el {
+                    background-color: $fss-selected-background-color;
+                }
+            }
+        }
+        
+        .#{$prefix}itemheader {
+            background-color: transparent;
+            
+            &~ .#{$prefix}itemheader {
+                padding-top: 10px;
+                border-top: $fss-menu-border $fss-menu-border-color;
+            }
+        }
+    }
+}

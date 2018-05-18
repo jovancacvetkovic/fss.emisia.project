@@ -1,3 +1,4 @@
+
 /* size */
 $header-height: 75px;
 $header-mobile-height: 25px;
@@ -11,10 +12,14 @@ $is-phone: "only screen and (max-width: 800px)";
 $fss-flat-button-background-color: dynamic(#9A1C36);
 
 /* menu */
-$fss-menu-border: 1px solid #DCE1E2;
+$fss-menu-border: 1px solid;
+$fss-menu-border-color: dynamic(material-color($accent-color-name, '100'));
 
 /* input */
 $fss-text-input-color: dynamic(#4978C7);
 
 /* page */
-$fss-page-background: dynamic(#F1F4F5);
+$fss-page-background: dynamic(material-color($accent-color-name, '500'));
+$fss-header-background-color: dynamic(material-color($accent-color-name, '100'));
+$fss-selected-background-color: dynamic(material-color($accent-color-name, 'a100'));
+

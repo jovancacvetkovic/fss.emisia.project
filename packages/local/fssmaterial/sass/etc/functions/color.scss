@@ -1,0 +1,100 @@
+$material-colors: dynamic((
+    'red': (
+        '50': #f7e4e8,
+        '100': #ecbdc6,
+        '200': #df91a1,
+        '300': #d2647b,
+        '400': #c9435e,
+        '500': #bf2242,
+        '600': #b91e3c,
+        '700': #b11933,
+        '800': #a9142b,
+        '900': #9b0c1d,
+        'A100': #ffc9ce,
+        'A200': #ff96a0,
+        'A400': #ff6372,
+        'A700': #ff4a5b
+    ),
+    'blue': (
+        '50': #e2e7ed,
+        '100': #b7c4d3,
+        '200': #879cb6,
+        '300': #577498,
+        '400': #335782,
+        '500': #0f396c,
+        '600': #0d3364,
+        '700': #0b2c59,
+        '800': #08244f,
+        '900': #04173d,
+        'a100': #7398ff,
+        'a200': #4073ff,
+        'a400': #0d4dff,
+        'a700': #0041f2
+    ),
+    'green': (
+        '50': #e6f6ee,
+        '100': #bfe9d5,
+        '200': #95dbb9,
+        '300': #6bcc9d,
+        '400': #4bc188,
+        '500': #2bb673,
+        '600': #26af6b,
+        '700': #20a660,
+        '800': #1a9e56,
+        '900': #108e43,
+        'a100': #c0ffd7,
+        'a200': #8dffb6,
+        'a400': #5aff96,
+        'a700': #41ff85
+    ),
+    'grey': (
+        '50': #f5f5f6,
+        '100': #f1f4f5,
+        '200': #d4d6d8,
+        '300': #c3c5c8,
+        '400': #b6b8bd,
+        '500': #a9acb1,
+        '600': #a2a5aa,
+        '700': #989ba1,
+        '800': #8f9298,
+        '900': #7e8288,
+        'a100': #ffffff,
+        'a200': #e3edfd,
+        'a400': #adceff,
+        'a700': #94bfff
+    )
+));
+
+$material-foreground-colors: dynamic((
+    'red': #fff,
+    'blue': #fff,
+    'green': #fff,
+    'grey': #222
+));
+
+@function material-color($color-name, $color-variant: '500') {
+    $colorLookup: map-get($material-colors, $color-name);
+    @if $colorLookup {
+        $color: map-get($colorLookup, $color-variant);
+        @if $color {
+            @return $color;
+        } @else {
+            @warn "=> ERROR: COLOR NOT FOUND! <= | " + $color-name+ "," + $color-variant + " combination did not match any of the material design colors.";
+        }
+    } @else {
+        @warn "=> ERROR: COLOR NOT FOUND! <= | " + $color-name + " did not match any of the material design colors.";
+    }
+    // Return red, hopefully calling attention to the wrong color?
+    @return #ff0000;
+}
+
+@function material-foreground-color($color-name) {
+    $color: map-get($material-foreground-colors, $color-name);
+    @if $color {
+        @return $color;
+    } @else {
+        @warn "=> ERROR: COLOR NOT FOUND! <= | " + $color-name + " did not match any of the material design colors.";
+    }
+    // Return red, hopefully calling attention to the wrong color?
+    @return #ff0000;
+}
