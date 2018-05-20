@@ -5,11 +5,12 @@ Ext.define('FSS.view.desktop.basic.treelist.TreeList', {
     extend: 'Ext.Panel',
     
     requires: [
-        'Ext.dataview.ItemHeader',
-        'Ext.dataview.List',
+        'Ext.Panel',
         'Ext.layout.HBox',
         'FSS.view.desktop.basic.treelist.TreeListController',
-        'FSS.view.desktop.basic.treelist.TreeListModel'
+        'FSS.view.desktop.basic.treelist.TreeListModel',
+        'FSS.view.desktop.basic.treelist.list.CollapsiblePanel',
+        'FSS.view.desktop.basic.treelist.list.List'
     ],
     
     xtype: 'fssTreeList',
@@ -22,46 +23,37 @@ Ext.define('FSS.view.desktop.basic.treelist.TreeList', {
     
     controller: 'fssTreeListController',
     
-    layout: 'hbox',
+    layout:{
+        type: 'hbox',
+        align: 'stretch'
+    },
     
     items: [{
-        xtype: 'list',
+        xtype: 'fssList',
         reference: 'mainList',
-        cls: 'fssTreeListMain',
-        
-        grouped: true,
-        
-        groupHeader: {
-            tpl: '{name}'
-        },
-        
-        store: {
-            grouper: {
-                property: 'group'
-            },
-            sorters: [
-                {
-                    // Sort by first letter of second word of spirit animal, in
-                    // descending order
-                    sorterFn: function(record1, record2) {
-                        let data = record1.data;
-                        return data.root || data.group === 'UNION';
-                    },
-                    direction: 'ASC'
-                }
-            ]
-        },
-        
-        itemTpl: '{name}'
+        ui: 'normal'
     }, {
-        xtype: 'list',
-        reference: 'subList',
-        collapsible: true,
-        collapsed: true
+        xtype: 'fssCollapsiblePanel',
+        reference: 'subListPanel',
+        header: false,
+        items: [{
+            xtype: 'fssList',
+            reference: 'subList',
+            ui: 'reverted'
+        }]
     }, {
-        xtype: 'list',
-        reference: 'detailsList',
-        collapsible: true,
-        collapsed: true
+        xtype: 'fssCollapsiblePanel',
+        reference: 'detailsListPanel',
+        header: false,
+        items: [{
+            xtype: 'fssList',
+            reference: 'detailsList',
+            ui: 'reverted last'
+        }],
+        collapsible:{
+            direction: 'left',
+            dynamic: true,
+            collapsed: true
+        }
     }]
 });

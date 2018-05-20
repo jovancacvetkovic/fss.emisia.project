@@ -1,43 +1,25 @@
+@import "../../../../../../var/FSS/Application";
+@import "../../../../../../etc/functions/color";
+@import "../../../../../../var/Ext/Component";
+@import "../../../../../../var/FSS/view/desktop/basic/treelist/TreeList";
+
 .fssTreeList {
-    width: 220px;
+    min-width: 220px;
     height: 100%;
     
-    .fssTreeListMain {
-        width: 100%;
-        height: 100%;
+    @if $fss-list-ui {
+        @include fss-list-ui
+    }
     
-        background-color: $fss-header-background-color;
-        padding-top: 20px;
-        
-        .#{$prefix}itemheader-body-el, .#{$prefix}listitem-inner-el {
-            padding-left: 20px;
-        }
-        
-        .#{$prefix}listitem-inner-el {
-            padding: 5px 12px 5px 20px;
-        }
+    @if $fss-list-reverted-ui {
+        @include fss-list-reverted-ui
+    }
     
-        .#{$prefix}listitem {
-            background-color: transparent;
-            border-left: 6px solid transparent;
-            
-            &.#{$prefix}selected {
-                background-color: transparent;
-                border-left: 6px solid $base-color;
+    @if $fss-list-base-ui {
+        @include fss-list-base-ui
+    }
     
-                .#{$prefix}listitem-inner-el {
-                    background-color: $fss-selected-background-color;
-                }
-            }
-        }
-        
-        .#{$prefix}itemheader {
-            background-color: transparent;
-            
-            &~ .#{$prefix}itemheader {
-                padding-top: 10px;
-                border-top: $fss-menu-border $fss-menu-border-color;
-            }
-        }
+    @if $fss-list-last-ui {
+        @include fss-list-last-ui
     }
 }

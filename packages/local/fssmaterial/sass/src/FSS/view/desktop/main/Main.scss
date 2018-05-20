@@ -5,6 +5,7 @@
         width: calc(100% - 470px);
     
         @media #{$is-desktop} {
+            padding-bottom: 15px;
             width: calc(100% - 470px) !important;
         }
     

@@ -1,3 +1,22 @@
+/* font */
+@font-face {
+    font-family: helveticaNeueBd;
+    src: url(../../../../../../resources/font/HelveticaNeueLTStd-Bd.otf);
+}
+@font-face {
+    font-family: helveticaNeueMd;
+    src: url(../../../../../../resources/font/HelveticaNeueLTStd-Md.otf);
+}
+
+@font-face {
+    font-family: helveticaNeueLt;
+    src: url(../../../../../../resources/font/HelveticaNeueLTStd-Lt.otf);
+}
+
+@font-face {
+    font-family: helveticaNeueRoman;
+    src: url(../../../../../../resources/font/HelveticaNeueLTStd-Roman.otf);
+}
 
 /* size */
 $header-height: 75px;
@@ -13,13 +32,15 @@ $fss-flat-button-background-color: dynamic(#9A1C36);
 
 /* menu */
 $fss-menu-border: 1px solid;
-$fss-menu-border-color: dynamic(material-color($accent-color-name, '100'));
+$fss-menu-no-border: 0px solid;
+$fss-menu-border-color: dynamic(material-color($accent-color-name, '200'));
 
 /* input */
 $fss-text-input-color: dynamic(#4978C7);
 
 /* page */
 $fss-page-background: dynamic(material-color($accent-color-name, '500'));
+$fss-page-light-background: dynamic(material-color($accent-color-name, 'a100'));
 $fss-header-background-color: dynamic(material-color($accent-color-name, '100'));
 $fss-selected-background-color: dynamic(material-color($accent-color-name, 'a100'));
 

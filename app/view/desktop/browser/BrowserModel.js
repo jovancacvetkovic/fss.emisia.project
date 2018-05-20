@@ -4,7 +4,7 @@
 Ext.define('FSS.view.desktop.browser.BrowserModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.browserModel',
-
+    
     stores: {
         /*
         A declaration of Ext.data.Store configurations that are first processed as binds to produce an effective
@@ -16,8 +16,10 @@ Ext.define('FSS.view.desktop.browser.BrowserModel', {
         }
         */
     },
-
+    
     data: {
-        /* This object holds the arbitrary data that populates the ViewModel and is then available for binding. */
+        appLocale: {
+            title: 'Pretraživač'
+        }
     }
 });

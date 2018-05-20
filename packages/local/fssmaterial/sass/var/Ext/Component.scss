@@ -1,5 +1,7 @@
-/* colors */
+@import "../../../../../../ext/classic/theme-base/sass/var/Component";
+@import "../../../../../../ext/modern/theme-material/sass/var/Component";
 
+/* colors */
 $base-color-name: dynamic('red');
 $accent-color-name: dynamic('grey');
 

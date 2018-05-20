@@ -50,7 +50,7 @@ $material-colors: dynamic((
     'grey': (
         '50': #f5f5f6,
         '100': #f1f4f5,
-        '200': #d4d6d8,
+        '200': #dce1e2,
         '300': #c3c5c8,
         '400': #b6b8bd,
         '500': #a9acb1,
@@ -66,10 +66,13 @@ $material-colors: dynamic((
 ));
 
 $material-foreground-colors: dynamic((
-    'red': #fff,
-    'blue': #fff,
-    'green': #fff,
-    'grey': #222
+    'red': #ffffff,
+    'dark-red': #d47c8c,
+    'blue': #ffffff,
+    'green': #ffffff,
+    'white-grey': #ffffff,
+    'light-grey': #838894,
+    'grey': #000000
 ));
 
 @function material-color($color-name, $color-variant: '500') {

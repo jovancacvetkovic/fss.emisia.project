@@ -4,6 +4,15 @@
 .fssHeader {
     height: $header-height;
     
+    .#{$prefix}tabbar-body-el .#{$prefix}tab {
+        font: 500 15px Ubuntu;
+        color: map-get($material-foreground-colors, 'dark-red');
+        
+        &.#{$prefix}active {
+            color: map-get($material-foreground-colors, 'white-grey');
+        }
+    }
+    
     .fssLogo {
         position: absolute;
         height: 100%;

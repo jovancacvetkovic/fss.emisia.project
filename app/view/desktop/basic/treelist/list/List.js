@@ -9,18 +9,47 @@ Ext.define('FSS.view.desktop.basic.treelist.list.List', {
 		'FSS.view.desktop.basic.treelist.list.ListController'
     ],
 
-    /*
-    Uncomment to give this component an xtype
-    xtype: 'list',
-    */
+    xtype: 'fssList',
 
     viewModel: {
         type: 'list'
     },
+    
+    config: {
+        rootId: ''
+    },
 
     controller: 'list',
-
-    items: [
-        /* include child components here */
-    ]
+    
+    cls: 'fssTreeListMain',
+    
+    grouped: true,
+    
+    groupHeader: {
+        tpl: '{name}'
+    },
+    
+    selectable: {
+        mode: 'single',
+        deselectable: false
+    },
+    
+    store: {
+        grouper: {
+            property: 'group'
+        },
+        sorters: [
+            {
+                // Sort by first letter of second word of spirit animal, in
+                // descending order
+                sorterFn: function(record1, record2) {
+                    let data = record1.data;
+                    return data.root || data.group === 'UNION';
+                },
+                direction: 'ASC'
+            }
+        ]
+    },
+    
+    itemTpl: '{name}'
 });
