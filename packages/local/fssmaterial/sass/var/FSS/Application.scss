@@ -40,7 +40,8 @@ $fss-text-input-color: dynamic(#4978C7);
 
 /* page */
 $fss-page-background: dynamic(material-color($accent-color-name, '500'));
-$fss-page-light-background: dynamic(material-color($accent-color-name, 'a100'));
+$fss-page-light-background: dynamic(material-color($accent-color-name, '100'));
+$fss-page-lighter-background: dynamic(material-color($accent-color-name, 'a100'));
 $fss-header-background-color: dynamic(material-color($accent-color-name, '100'));
 $fss-selected-background-color: dynamic(material-color($accent-color-name, 'a100'));
 

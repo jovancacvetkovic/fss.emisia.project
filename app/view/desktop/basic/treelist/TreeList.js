@@ -31,7 +31,7 @@ Ext.define('FSS.view.desktop.basic.treelist.TreeList', {
     items: [{
         xtype: 'fssList',
         reference: 'mainList',
-        ui: 'normal'
+        csl: 'fssListUiBase'
     }, {
         xtype: 'fssCollapsiblePanel',
         reference: 'subListPanel',
@@ -39,7 +39,7 @@ Ext.define('FSS.view.desktop.basic.treelist.TreeList', {
         items: [{
             xtype: 'fssList',
             reference: 'subList',
-            ui: 'reverted'
+            cls: 'fssListUiReverted'
         }]
     }, {
         xtype: 'fssCollapsiblePanel',
@@ -48,7 +48,7 @@ Ext.define('FSS.view.desktop.basic.treelist.TreeList', {
         items: [{
             xtype: 'fssList',
             reference: 'detailsList',
-            ui: 'reverted last'
+            cls: 'fssListUiReverted fssListUiLast'
         }],
         collapsible:{
             direction: 'left',

@@ -1,0 +1,12 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "1.0.0",
+    "tasks": [
+        {
+            "label": "sencha watch",
+            "type": "shell",
+            "command": "/home/yeya/bin/Sencha/Cmd/6.5.3.6/sencha app watch -fashion"
+        }
+    ]
+}

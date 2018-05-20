@@ -7,19 +7,68 @@
     min-width: 220px;
     height: 100%;
     
-    @if $fss-list-ui {
-        @include fss-list-ui
+    
+    .#{$prefix}dataview {
+        min-width: 215px;
+        height: 100%;
+        padding-top: 20px;
+        border-left: $fss-menu-no-border transparent;
+        border-right: $fss-menu-no-border transparent;
+        background-color: $fss-page-light-background;
+
+        .#{$prefix}selected {
+            background-color: $fss-page-lighter-background;
+        }
+    }
+
+    .fssListUiReverted {
+        &.#{$prefix}dataview {
+            border-left: $fss-menu-border $fss-menu-border-color;
+            border-right: $fss-menu-border $fss-menu-border-color;
+            background-color: $fss-page-lighter-background;
+
+            .#{$prefix}selected {
+                background-color: $fss-page-light-background;
+            }
+
+            &.fssListUiLast {
+                border-left: $fss-menu-no-border transparent;
+                border-right: $fss-menu-border $fss-menu-border-color;
+            }
+        }
     }
     
-    @if $fss-list-reverted-ui {
-        @include fss-list-reverted-ui
+    .#{$prefix}listitem-inner-el {
+        padding: 5px 12px 2px 20px;
+        line-height: 18px;
     }
     
-    @if $fss-list-base-ui {
-        @include fss-list-base-ui
+    .#{$prefix}listitem {
+        margin: 8px 0 6px;
+        font: 300 14px Ubuntu;
+        color: map-get($material-foreground-colors, 'grey');
+        
+        background-color: transparent;
+        border-left: 6px solid transparent;
+        
+        &.#{$prefix}selected {
+            border-left: 6px solid $base-color;
+        }
     }
     
-    @if $fss-list-last-ui {
-        @include fss-list-last-ui
+    .#{$prefix}itemheader {
+        background-color: transparent;
+        font: 500 13px Ubuntu;
+        color: map-get($material-foreground-colors, 'light-grey');
+        
+        & ~ .#{$prefix}itemheader {
+            margin-top: 40px;
+            padding-top: 10px;
+            border-top: $fss-menu-border $fss-menu-border-color;
+        } 
+        
+        .#{$prefix}itemheader-body-el {
+            padding-left: 26px;
+        }
     }
 }

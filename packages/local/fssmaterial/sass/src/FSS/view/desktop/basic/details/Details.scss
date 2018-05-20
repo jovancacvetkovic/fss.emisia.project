@@ -1,3 +1,24 @@
 .fssDetails {
-    background-color: $fss-header-background-color;
+    width: 765px;
+    padding: 15px;
+    background-color: $fss-page-light-background;
+
+    .#{$prefix}body-el {
+        background-color: $fss-page-lighter-background;
+
+        .fssDetailsHeader {
+            border: 1px solid red;
+            height: 335px;
+            padding-bottom: 35px;
+
+            .banner {
+                height: 90px;
+                border: 1px solid green;
+            }
+        }
+
+        .fssDetailsBody {
+
+        }
+    }
 }

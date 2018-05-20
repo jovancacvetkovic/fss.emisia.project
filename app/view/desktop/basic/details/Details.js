@@ -18,6 +18,10 @@ Ext.define('FSS.view.desktop.basic.details.Details', {
     cls: 'fssDetails',
     
     controller: 'details',
-    
-    items: []
+
+    items: [{
+        cls: 'fssDetailsHeader'
+    }, {
+        cls: 'fssDetailsBody'
+    }]
 });
