@@ -11,6 +11,10 @@
         &.#{$prefix}active {
             color: map-get($material-foreground-colors, 'white-grey');
         }
+    
+        .#{$prefix}active-indicator-el {
+            display: none;
+        }
     }
     
     .fssLogo {

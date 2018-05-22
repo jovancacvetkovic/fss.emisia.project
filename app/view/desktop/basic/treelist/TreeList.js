@@ -31,7 +31,7 @@ Ext.define('FSS.view.desktop.basic.treelist.TreeList', {
     items: [{
         xtype: 'fssList',
         reference: 'mainList',
-        csl: 'fssListUiBase'
+        cls: 'fssListUiBase'
     }, {
         xtype: 'fssCollapsiblePanel',
         reference: 'subListPanel',

@@ -26,12 +26,17 @@ Ext.define('FSS.view.desktop.basic.treelist.TreeListController', {
         nodeName = nodeName ? nodeName : 'mainList';
         
         let store = this.lookup(nodeName).getStore(nodeName);
+        store.on('load', this.onLoadHandler.bind(this, nodeName), this);
         store.loadRawData(data);
     },
     
+    onLoadHandler: function(nodeName){
+        this.lookup(nodeName).getSelectable().select(0);
+    },
+    
     onMainListSelectHandler: function(list, listItem){
-        var itemData = listItem.getData();
-        var subId = itemData.id;
+        let itemData = listItem.getData();
+        let subId = itemData.id;
     
         this.collapseDetailsList();
         this.collapseSubList();
@@ -39,21 +44,21 @@ Ext.define('FSS.view.desktop.basic.treelist.TreeListController', {
         let dbQueryUrl = Ext.String.format(this.rootUrlTpl, subId);
     
         this.fireEvent('e_loadDetails', dbQueryUrl);
-        var leagues = FSS.firebase.database().ref(dbQueryUrl);
+        let leagues = FSS.firebase.database().ref(dbQueryUrl);
         leagues.once('value').then(this.loadSubList.bind(this));
     },
     
     onSubListSelectHandler: function(list, listItem){
         this.collapseDetailsList();
-        
-        var itemData = listItem.getData();
-        var subId = itemData.id;
-        var rootId = this.lookup('subList').getRootId();
+    
+        let itemData = listItem.getData();
+        let subId = itemData.id;
+        let rootId = this.lookup('subList').getRootId();
         
         let dbQueryUrl = Ext.String.format(this.subUrlTpl, rootId, subId);
     
         this.fireEvent('e_loadDetails', dbQueryUrl);
-        var leagues = FSS.firebase.database().ref(dbQueryUrl);
+        let leagues = FSS.firebase.database().ref(dbQueryUrl);
         leagues.once('value').then(this.loadDetailsList.bind(this));
     },
     
@@ -69,7 +74,7 @@ Ext.define('FSS.view.desktop.basic.treelist.TreeListController', {
     
     loadDetailsList: function(snapshot){
         //noinspection JSUnresolvedFunction
-        var league = snapshot.val();
+        let league = snapshot.val();
         let subLeagues = league['SUB_LEAGUE'];
         if (subLeagues) {
             subLeagues = this.mixins.prepare.prepareLeaguesData(subLeagues);
@@ -83,7 +88,7 @@ Ext.define('FSS.view.desktop.basic.treelist.TreeListController', {
     
     loadSubList: function(snapshot){
         //noinspection JSUnresolvedFunction
-        var league = snapshot.val();
+        let league = snapshot.val();
         let subLeagues = league['SUB_LEAGUE'];
         if (subLeagues) {
             subLeagues = this.mixins.prepare.prepareLeaguesData(subLeagues);

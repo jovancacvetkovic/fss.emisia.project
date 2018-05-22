@@ -3,14 +3,14 @@
  */
 Ext.define('FSS.view.desktop.basic.treelist.list.List', {
     extend: 'Ext.dataview.List',
-
+    
     requires: [
         'FSS.view.desktop.basic.treelist.list.ListModel',
-		'FSS.view.desktop.basic.treelist.list.ListController'
+        'FSS.view.desktop.basic.treelist.list.ListController'
     ],
-
+    
     xtype: 'fssList',
-
+    
     viewModel: {
         type: 'list'
     },
@@ -18,7 +18,7 @@ Ext.define('FSS.view.desktop.basic.treelist.list.List', {
     config: {
         rootId: ''
     },
-
+    
     controller: 'list',
     
     cls: 'fssTreeListMain',
@@ -36,20 +36,16 @@ Ext.define('FSS.view.desktop.basic.treelist.list.List', {
     
     store: {
         grouper: {
-            property: 'group'
+            property: 'group',
+            direction: 'DESC'
         },
-        sorters: [
-            {
-                // Sort by first letter of second word of spirit animal, in
-                // descending order
-                sorterFn: function(record1, record2) {
-                    let data = record1.data;
-                    return data.root || data.group === 'UNION';
-                },
-                direction: 'ASC'
-            }
-        ]
+        sorters: [{
+            sorterFn: function(record1, record2){
+                return record2.data.root;
+            },
+            direction: 'ASC'
+        }]
     },
     
-    itemTpl: '{name}'
+    itemTpl: '{name:htmlEncode}'
 });

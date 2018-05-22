@@ -7,7 +7,7 @@
     min-width: 220px;
     height: 100%;
     
-    .#{$prefix}panel-body-el{
+    .#{$prefix}panel-body-el {
         background-color: $fss-page-light-background;
     }
     
@@ -18,22 +18,22 @@
         border-left: $fss-menu-no-border transparent;
         border-right: $fss-menu-no-border transparent;
         background-color: $fss-page-light-background;
-
+        
         .#{$prefix}selected {
             background-color: $fss-page-lighter-background;
         }
     }
-
+    
     .fssListUiReverted {
         &.#{$prefix}dataview {
             border-left: $fss-menu-border $fss-menu-border-color;
             border-right: $fss-menu-border $fss-menu-border-color;
             background-color: $fss-page-lighter-background;
-
+            
             .#{$prefix}selected {
                 background-color: $fss-page-light-background;
             }
-
+            
             &.fssListUiLast {
                 border-left: $fss-menu-no-border transparent;
                 border-right: $fss-menu-border $fss-menu-border-color;
@@ -59,6 +59,33 @@
         }
     }
     
+    .fssListUiBase {
+        .#{$prefix}listitem {
+            
+            &.#{$prefix}first {
+                padding-left: 20px;
+                
+                &.#{$prefix}selected {
+                    background-color: transparent;
+                    border-left: 6px solid transparent;
+                    color: map-get($material-foreground-colors, 'darker-red');
+                }
+                
+                &::before {
+                    content: '';
+                    background: url(images/fssmodern/small-logo.png) no-repeat;
+                    background-size: 13px;
+                    
+                    position: absolute;
+                    width: 15px;
+                    height: 25px;
+                    
+                    top: 5px;
+                }
+            }
+        }
+    }
+    
     .#{$prefix}itemheader {
         background-color: transparent;
         font: 500 13px Ubuntu;
@@ -68,7 +95,7 @@
             margin-top: 40px;
             padding-top: 10px;
             border-top: $fss-menu-border $fss-menu-border-color;
-        } 
+        }
         
         .#{$prefix}itemheader-body-el {
             padding-left: 26px;
