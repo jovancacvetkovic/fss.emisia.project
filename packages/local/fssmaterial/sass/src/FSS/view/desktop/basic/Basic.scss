@@ -2,4 +2,8 @@
 
 .fssBasic {
     background-color: $fss-page-light-background;
+    
+    .#{$prefix}panel-body-el{
+        background-color: $fss-page-light-background;
+    }
 }

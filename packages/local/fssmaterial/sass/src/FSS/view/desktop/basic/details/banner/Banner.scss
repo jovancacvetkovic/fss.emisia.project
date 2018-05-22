@@ -1,0 +1,66 @@
+@import "../../../../../../../etc/functions/color";
+
+.fssDetailsBanner {
+    padding-right: 20px;
+    
+    .bannerLogo, .bannerText {
+        display: inline-table;
+    }
+    
+    .bannerLogo {
+        position: absolute;
+        left: 25px;
+        top: 0;
+        width: 135px;
+        height: 135px;
+        border-radius: 100%;
+        z-index: 1;
+        background-color: $fss-page-lighter-background;
+        background-size: 77px 110px;
+        background-position-y: 20px;
+        box-shadow: 0 4px 5px $fss-page-light-background;
+    }
+    
+    .bannerBody {
+        padding-top: 22px;
+        width: calc(100% - 150px);
+        height: 155px;
+        
+        &::after {
+            position: absolute;
+            content: '';
+            height: 135px;
+            border-top: 90px solid $base-color;
+            border-right: 50px solid transparent;
+            width: 100%;
+        }
+        
+        .bannerText {
+            height: 80px;
+            z-index: 1;
+            color: map-get($material-foreground-colors, 'blue');
+            left: 180px;
+            top: 5px;
+            line-height: 35px;
+            
+            .bannerFullName {
+                font-family: dynamic(Ubuntu);
+                font-size: 18px;
+            }
+            
+            .bannerName {
+                font-family: dynamic(Ubuntu);
+                font-size: 34px;
+            }
+        }
+    }
+    
+    .bannerRightSide {
+        width: 125px;
+        height: 75px;
+        transform: skew(-29deg);
+        background-color: $fss-blue-page-background;
+        left: -30px;
+        top: 37px;
+    }
+}

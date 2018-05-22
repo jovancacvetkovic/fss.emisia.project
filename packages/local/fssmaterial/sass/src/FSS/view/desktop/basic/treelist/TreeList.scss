@@ -7,6 +7,9 @@
     min-width: 220px;
     height: 100%;
     
+    .#{$prefix}panel-body-el{
+        background-color: $fss-page-light-background;
+    }
     
     .#{$prefix}dataview {
         min-width: 215px;

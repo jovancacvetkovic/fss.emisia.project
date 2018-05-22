@@ -221,7 +221,7 @@
      */
     "js": [
         {
-            "path": "https://www.gstatic.com/firebasejs/4.13.0/firebase.js"
+            "path": "resources/3rdparty/firebase/firebase.js"
         },
         {
             "path": "${framework.dir}/build/ext-modern-all-debug.js"

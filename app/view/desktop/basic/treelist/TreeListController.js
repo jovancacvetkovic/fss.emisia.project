@@ -36,8 +36,9 @@ Ext.define('FSS.view.desktop.basic.treelist.TreeListController', {
         this.collapseDetailsList();
         this.collapseSubList();
         
-        
         let dbQueryUrl = Ext.String.format(this.rootUrlTpl, subId);
+    
+        this.fireEvent('e_loadDetails', dbQueryUrl);
         var leagues = FSS.firebase.database().ref(dbQueryUrl);
         leagues.once('value').then(this.loadSubList.bind(this));
     },
@@ -48,8 +49,10 @@ Ext.define('FSS.view.desktop.basic.treelist.TreeListController', {
         var itemData = listItem.getData();
         var subId = itemData.id;
         var rootId = this.lookup('subList').getRootId();
-    
+        
         let dbQueryUrl = Ext.String.format(this.subUrlTpl, rootId, subId);
+    
+        this.fireEvent('e_loadDetails', dbQueryUrl);
         var leagues = FSS.firebase.database().ref(dbQueryUrl);
         leagues.once('value').then(this.loadDetailsList.bind(this));
     },

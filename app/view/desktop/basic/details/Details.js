@@ -6,7 +6,8 @@ Ext.define('FSS.view.desktop.basic.details.Details', {
 
     requires: [
         'FSS.view.desktop.basic.details.DetailsController',
-        'FSS.view.desktop.basic.details.DetailsModel'
+        'FSS.view.desktop.basic.details.DetailsModel',
+        'FSS.view.desktop.basic.details.banner.Banner'
     ],
 
     xtype: 'fssDetails',
@@ -20,7 +21,16 @@ Ext.define('FSS.view.desktop.basic.details.Details', {
     controller: 'details',
 
     items: [{
-        cls: 'fssDetailsHeader'
+        cls: 'fssDetailsHeader',
+        
+        items: [{
+            cls: 'flexer'
+        }, {
+            xtype: 'fssDetailsBanner',
+            bind: {
+                details: '{leagueDetails}'
+            }
+        }]
     }, {
         cls: 'fssDetailsBody'
     }]
