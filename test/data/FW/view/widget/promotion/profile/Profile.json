@@ -1,0 +1,26 @@
+{
+  "clubDataProfile": {
+    "clubData": "",
+    "profileId": "",
+    "profileType": ""
+  },
+  "clubDataProfileAvatar": {
+    "avatarTicket": "test"
+  },
+  "clubData": {
+    "fullName": "test",
+    "avatarTicket":  "test",
+    "currentTeam": {
+      "clubId": 1
+    }
+  },
+  "clubDataWithoutCurrentTeamId": {
+    "fullName": "test",
+    "avatarTicket": "test",
+    "currentTeam": {
+      "offlineClubCity": "test",
+      "offlineClubCountry": "test",
+      "offlineClubName": "test"
+    }
+  }
+}

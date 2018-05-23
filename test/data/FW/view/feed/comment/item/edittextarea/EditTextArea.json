@@ -1,0 +1,14 @@
+{
+  "endpoints": [
+    {
+      "app": "fwire",
+      "body": {
+        "version": 2,
+        "id": 2,
+        "exist": true
+      },
+      "name": "editComment",
+      "path": "editComment.fwire"
+    }
+  ]
+}

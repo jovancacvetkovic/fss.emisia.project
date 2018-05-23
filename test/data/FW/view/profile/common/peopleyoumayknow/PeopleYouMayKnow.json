@@ -1,0 +1,50 @@
+{
+  "endpoints": [
+    {
+      "app": "fwire",
+      "body": {
+        "id": 2
+      },
+      "name": "addConnection",
+      "path": "addConnection.fwire"
+    },
+    {
+      "app": "fwire",
+      "body": {
+        "profiles": []
+      },
+      "name": "peopleYouMayKnow",
+      "path": "peopleYouMayKnow.fwire"
+    }
+  ],
+  "userProfileData": {
+    "city": "London",
+    "country": "Syria",
+    "incompleteProfile": false,
+    "name": "Chelsea",
+    "profileAvatar": {
+      "repositoryTicket": "1193922403/A478D3B2/1106A505/72D37459/2D584941/6870b68c-1d2c-464d-b644-32882eb5ed06/1521802324516.png"
+    },
+    "profileId": 123,
+    "teams": [
+      {
+        "id": 3,
+        "name": "Junior"
+      }
+    ],
+    "trophiesCount": 0,
+    "profileType": "COACH",
+    "verificationStatus": "VERIFIED",
+    "profileAvatarUrl": "http://localhost:1841/facme/repository/1193922403/A478D3B2/1106A505/72D37459/2D584941/6870b68c-1d2c-464d-b644-32882eb5ed06/1521802324516.png",
+    "numberOfFollowers": 0,
+    "numberOfFollowing": 4
+  },
+  "userProfilePlayerData": {
+    "profileId": 123,
+    "profileType": "PLAYER"
+  },
+  "userProfileCoachData": {
+    "profileId": 123,
+    "profileType": "COACH"
+  }
+}

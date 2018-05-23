@@ -1,0 +1,61 @@
+{
+  "skills": {
+    "skills": [
+      {
+        "date": {},
+        "description": "",
+        "id": undefined,
+        "logo": {},
+        "name": "",
+        "points": undefined,
+        "status": "",
+        "video": {}
+      }
+    ]
+  },
+  "headerData": [
+    {
+      "logo": {
+        "mediaURL": ""
+      },
+      "id": 1,
+      "bonus": false,
+      "bonusText": "",
+      "name": "",
+      "skills": [
+        {
+          "date": {},
+          "description": "",
+          "id": undefined,
+          "logo": {
+            "mediaURL": ""
+          },
+          "name": "",
+          "points": undefined,
+          "status": "",
+          "video": {
+            "mediaURL": ""
+          }
+        }
+      ]
+    }
+  ],
+  "skill": {
+    "skills": [
+      {
+        "date": {},
+        "description": "",
+        "id": undefined,
+        "logo": {
+          "mediaURL": ""
+        },
+        "name": "",
+        "points": undefined,
+        "status": "",
+        "video": {
+          "mediaURL": ""
+        }
+      }
+    ]
+  }
+}

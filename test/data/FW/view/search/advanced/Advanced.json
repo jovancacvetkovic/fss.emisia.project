@@ -1,0 +1,17 @@
+{
+
+  "endpoints": [
+      {
+        "app": "fwire",
+        "body": {},
+        "name": "getFeedByCategory",
+        "path": "getFeedByCategory.fwire"
+      },
+      {
+        "app": "fwire",
+        "body": {},
+        "name": "getFeedByText",
+        "path": "getFeedByText.fwire"
+      }
+    ]
+}

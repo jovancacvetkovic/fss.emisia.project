@@ -1,0 +1,10 @@
+{
+    "endpoints": [
+        {
+            "app": "facme",
+            "body": {},
+            "name": "getTeams",
+            "path": "getTeams.acme"
+        }
+    ]
+}

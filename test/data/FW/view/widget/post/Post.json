@@ -1,0 +1,30 @@
+{
+  "endpoints": [
+    {
+      "app": "fwire",
+      "body": {
+        "version": 2,
+        "id": 2,
+        "exist": true
+      },
+      "name": "addPost",
+      "path": "addPost.fwire"
+    },
+    {
+      "app": "fwire",
+      "body": {
+        "version": 2,
+        "id": 2,
+        "exist": true
+      },
+      "name": "editPost",
+      "path": "editPost.fwire"
+    },
+    {
+      "app": "facme",
+      "body": {},
+      "name": "search",
+      "path": "search.acme"
+    }
+  ]
+}

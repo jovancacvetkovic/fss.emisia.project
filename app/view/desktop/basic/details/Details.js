@@ -5,7 +5,7 @@ Ext.define('FSS.view.desktop.basic.details.Details', {
     extend: 'Ext.Container',
 
     requires: [
-        'FSS.view.desktop.basic.containerimage.ContainerImage',
+        'FSS.view.desktop.basic.ContainerImage',
         'FSS.view.desktop.basic.details.DetailsController',
         'FSS.view.desktop.basic.details.DetailsModel',
         'FSS.view.desktop.basic.details.banner.Banner',

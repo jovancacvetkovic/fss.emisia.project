@@ -1,0 +1,12 @@
+{
+  "endpoints": [
+    {
+      "app": "fwire",
+      "body": {
+        "profiles": []
+      },
+      "name": "peopleYouMayKnow",
+      "path": "peopleYouMayKnow.fwire"
+    }
+  ]
+}

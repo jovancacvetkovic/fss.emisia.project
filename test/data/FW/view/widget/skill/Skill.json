@@ -1,0 +1,21 @@
+{
+    "skillGroup": {
+        "bonus": false,
+        "description": "This is your description for Ball control in air",
+        "fwProfile": false,
+        "logo": "some/logo/url",
+        "name": "Beginner",
+        "skillGroupId": 1,
+        "totalPoints": 70,
+        "skills": [{
+            "description": "Ball control in air",
+            "hashtag": "#dribblingC2",
+            "logo": "some/logo/url",
+            "name": "",
+            "points": 4,
+            "skillId": 11,
+            "status": "NEUTRAL",
+            "video": "some/video/url"
+        }]
+    }
+}

@@ -1,11 +1,18 @@
 /**
- * Created by emisia on 5/19/18.
+ * FSS Prepare Mixin
+ * Prepare data eg mapping, sorting
  */
 Ext.define('FSS.mixin.Prepare', {
+    
+    /**
+     *
+     * @param leagues
+     * @return {Array}
+     */
     prepareLeaguesData: function(leagues){
-        var mappedItems = [];
+        let mappedItems = [];
         
-        for (var key in leagues){
+        for (let key in leagues){
             if (leagues.hasOwnProperty(key)){
                 let league = leagues[key];
                 mappedItems.push({

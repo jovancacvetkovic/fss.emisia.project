@@ -1,0 +1,19 @@
+{
+  "endpoints": [
+    {
+      "app": "fwire",
+      "body": {
+        "version": 2,
+        "id": 2,
+        "exist": true
+      },
+      "name": "addComment",
+      "path": "addComment.fwire"
+    }
+  ],
+  "commentResponse": {
+    "text": "",
+    "timeAgo": 0,
+    "parentComponentId": 0
+  }
+}

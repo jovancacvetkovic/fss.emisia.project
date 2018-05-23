@@ -1,0 +1,85 @@
+{
+    "nextCursor": null,
+    "items": [
+        {
+            "from": "fwirePLAYER1",
+            "timestamp": 1508421195000,
+            "messageType": "FOLLOWED",
+            "actioned": false,
+            "messageId": 1,
+            "context": {
+                "type": "",
+                "entityId": ""
+            },
+            "read": false
+        }
+    ],
+    "notificationResposne": {
+        "messages": [],
+        "items": []
+    },
+    "messageData": {
+        "sender": {},
+        "context": {
+            "entityId": 1,
+            "profileType": "PLAYER"
+        }
+    },
+    "messageDataAbstract": {
+        "context": {},
+        "from": "text",
+        "timestamp": 0
+    },
+    "senderProfilePlayerData": {
+        "sender": {
+            "profileType": "PLAYER",
+            "profileId": 12
+        }
+    },
+    "listRecordData": {
+        "from": "facme-qaCLUB2",
+        "timestamp": "Mar 27, 10:07",
+        "context": {
+            "name": "Chelsea",
+            "entityId": "3",
+            "position": "SW",
+            "profileType": "PLAYER"
+        },
+        "messageType": "PROFILE_ADDED",
+        "actioned": true,
+        "messageId": 10,
+        "read": true,
+        "id": "FW.model.notifications.List-1",
+        "sender": {
+            "profileType": "CLUB",
+            "profileId": "2"
+        },
+        "userProfile": {
+            "city": "London",
+            "country": "Syria",
+            "incompleteProfile": false,
+            "name": "Chelsea",
+            "profileAvatar": {
+                "repositoryTicket": "1193922403/A478D3B2/1106A505/72D37459/2D584941/6870b68c-1d2c-464d-b644-32882eb5ed06/1521802324516.png"
+            },
+            "profileId": 2,
+            "teams": [
+                {
+                    "id": 3,
+                    "name": "Junior"
+                }
+            ],
+            "trophiesCount": 0,
+            "profileType": "CLUB",
+            "verificationStatus": "VERIFIED",
+            "profileAvatarUrl": "http://localhost:1841/facme/repository/1193922403/A478D3B2/1106A505/72D37459/2D584941/6870b68c-1d2c-464d-b644-32882eb5ed06/1521802324516.png",
+            "numberOfFollowers": 0,
+            "numberOfFollowing": 4
+        },
+        "message": "<span class=\"fw-notifications-sender\">Chelsea</span> has set you as Sweeper. Is that information correct?",
+        "actions": [
+            "fw-notifications-action-remove",
+            "fw-notifications-action-unread icon fw-eye"
+        ]
+    }
+}

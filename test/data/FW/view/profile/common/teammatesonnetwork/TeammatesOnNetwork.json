@@ -1,0 +1,20 @@
+{
+  "profileTooltipData": {
+    "name": "Francesco",
+    "profileAvatar": "profileAvatar",
+    "coverImg": "coverImg",
+    "profileType": "DOCTOR"
+  },
+  "mouseOverTeammate": {
+    "coverImg": "",
+    "profileAvatar": "",
+    "fullName": "",
+    "position": "",
+    "followers": "",
+    "following": ""
+  },
+  "matchPositionData": {
+    "name": "test",
+    "value": "GK"
+  }
+}

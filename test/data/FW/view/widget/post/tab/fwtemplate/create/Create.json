@@ -1,0 +1,15 @@
+{
+  "parseTemplateData": {
+    "path": "test",
+    "componentType": "test",
+    "thumbnails": [
+      "test"
+    ]
+  },
+  "parseTemplateDataAllConditions": {
+    "path": "test",
+    "thumbnails": [
+      "test"
+    ]
+  }
+}

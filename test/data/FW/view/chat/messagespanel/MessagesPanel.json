@@ -1,0 +1,65 @@
+{
+  "messagesPanel": {
+    "position": null
+  },
+  "chatHeads": [
+    {
+      "userProfile": {
+        "profileType": "",
+        "profileId": 0
+      },
+      "position": null
+    }
+  ],
+  "showMoreCfg": {
+    "position": null,
+    "count": 0
+  },
+  "chatHeadAppDataTypeDoctor": {
+    "appData": {
+      "profileId": 3,
+      "profileType": "DOCTOR",
+      "profileAvatarUrl": "something",
+      "unreadCount": 2
+    }
+  },
+  "chatHeadAppDataTypePlayer": {
+    "appData": {
+      "profileId": 1,
+      "profileType": "PLAYER",
+      "profileAvatarUrl": "test",
+      "unreadCount": 0
+    }
+  },
+  "fromUserTypePlayer": {
+    "fromUser": {
+      "profileId": 1,
+      "profileType": "PLAYER"
+    }
+  },
+  "chatDataCoach": {
+    "appData": {
+      "profileId": 3,
+      "profileType": "DOCTOR",
+      "profileAvatarUrl": "something",
+      "unreadCount": 2
+    }
+  },
+  "chatDataPlayer": {
+    "data": {
+      "appData": {
+        "profileType": "PLAYER",
+        "profileId": "123",
+        "fullName": "Seamus Coleman"
+      }
+    }
+  },
+  "profileTypePlayer": {
+    "profileType": "PLAYER",
+    "profileId": 1
+  },
+  "userProfileTypePlayer": {
+    "profileId": 1,
+    "profileType": "PLAYER"
+  }
+}

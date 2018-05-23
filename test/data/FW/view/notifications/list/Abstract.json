@@ -1,0 +1,17 @@
+{
+  "nextCursor": null,
+  "items": [
+    {
+      "from": "fwirePLAYER1",
+      "timestamp": 1508421195000,
+      "messageType": "FOLLOWED",
+      "actioned": false,
+      "messageId": 1,
+      "context": {
+        "type": "",
+        "entityId": ""
+      },
+      "read": false
+    }
+  ]
+}

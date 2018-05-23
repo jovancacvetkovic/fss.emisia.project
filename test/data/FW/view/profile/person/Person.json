@@ -1,0 +1,22 @@
+{
+  "endpoints": [
+    {
+      "app": "facme",
+      "body": {},
+      "name": "getProfileCareer",
+      "path": "getProfileCareer.acme"
+    },
+    {
+      "app": "facme",
+      "body": {},
+      "name": "viewClubProfile",
+      "path": "viewClubProfile.acme"
+    }
+  ],
+  "personClubData": {
+    "name": "",
+    "city": "",
+    "country": "",
+    "profileAvatar": ""
+  }
+}

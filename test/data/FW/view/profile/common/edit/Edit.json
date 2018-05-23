@@ -1,0 +1,22 @@
+{
+  "endpoints": [
+    {
+      "app": "facme",
+      "body": {},
+      "name": "editPlayerProfile",
+      "path": "editPlayerProfile.acme"
+    },
+    {
+      "app": "facme",
+      "body": {},
+      "name": "editCoachProfile",
+      "path": "editCoachProfile.acme"
+    },
+    {
+      "app": "facme",
+      "body": {},
+      "name": "editDoctorProfile",
+      "path": "editDoctorProfile.acme"
+    }
+  ]
+}

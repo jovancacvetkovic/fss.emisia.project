@@ -1,0 +1,12 @@
+{
+  "endpoints": [
+    {
+      "app": "fwire",
+      "body": {
+        "id": 2
+      },
+      "name": "addConnection",
+      "path": "addConnection.fwire"
+    }
+  ]
+}

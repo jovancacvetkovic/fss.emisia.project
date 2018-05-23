@@ -1,0 +1,11 @@
+{
+  "chatHistoryData": {
+    "fromUser": {
+      "profileId": 1,
+      "profileType": "PLAYER"
+    },
+    "lastMessage": "",
+    "timestamp": 1,
+    "chatId": 1
+  }
+}

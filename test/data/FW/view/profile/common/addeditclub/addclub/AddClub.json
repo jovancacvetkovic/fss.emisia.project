@@ -1,0 +1,20 @@
+{
+  "endpoints": [
+    {
+      "app": "facme",
+      "body": {},
+      "name": "addTeamToProfile",
+      "path": "addTeamToProfile.acme"
+    },
+    {
+      "app": "facme",
+      "body": {},
+      "name": "getTeams",
+      "path": "getTeams.acme"
+    }
+  ],
+  "clubData": {
+    "clubId": 123,
+    "toYear": 2008
+  }
+}

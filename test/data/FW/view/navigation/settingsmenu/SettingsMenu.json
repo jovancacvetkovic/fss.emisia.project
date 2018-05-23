@@ -1,0 +1,22 @@
+{
+  "userProfileDataPlayer": {
+    "profileId": 1,
+    "profileType": "PLAYER"
+  },
+  "userProfileDataClub": {
+    "profileId": 1,
+    "profileType": "CLUB"
+  },
+  "userProfileDataCoach": {
+    "profileId": 1,
+    "profileType": "COACH"
+  },
+  "userProfileDataDoctor": {
+    "profileId": 1,
+    "profileType": "DOCTOR"
+  },
+  "aboutDialogData": {
+    "timestamp": "2018-03-16T08:16:57Z",
+    "version": "1.1.0_RC1-SNAPSHOT"
+  }
+}

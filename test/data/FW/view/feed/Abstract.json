@@ -1,0 +1,164 @@
+{
+  "endpoints": [
+    {
+      "app": "fwire",
+      "body": {
+        "incremented": true
+      },
+      "name": "addView",
+      "path": "addView.fwire"
+    },
+    {
+      "app": "fwire",
+      "body": {
+        "items": [],
+        "nextCursor": null
+      },
+      "name": "getProfilesWhoLikes",
+      "path": "getProfilesWhoLikes.fwire"
+    },
+    {
+      "app": "fwire",
+      "body": {
+        "items": [],
+        "nextCursor": null
+      },
+      "name": "getProfilesWhoShares",
+      "path": "getProfilesWhoShares.fwire"
+    },
+    {
+      "app": "fwire",
+      "body": {
+        "version": 2,
+        "id": 2,
+        "exist": true
+      },
+      "name": "like",
+      "path": "like.fwire"
+    }
+  ],
+  "postData": {
+    "actionCount": "",
+    "actionType": "",
+    "contentMediaTokenUrl": "",
+    "feedMediaTokenUrl": "",
+    "originalPostInfo": {
+      "postInfo": {}
+    },
+    "originalPostInfoUserProfile": {},
+    "postInfo": {},
+    "type": "",
+    "title": ""
+  },
+  "postDataInfo": {
+    "postInfo": {
+      "postId": 1
+    }
+  },
+  "postDataSettings": {
+    "postInfo": {
+      "profileId": 1,
+      "id": 1
+    }
+  },
+  "postDataTypeCoach": {
+    "postInfo": {
+      "userProfile": {
+        "profileId": 123,
+        "profileType": "COACH",
+        "id": 231
+      }
+    }
+  },
+  "postDataTypeCoachWithId": {
+    "postInfo": {
+      "userProfile": {
+        "profileId": 123,
+        "profileType": "COACH",
+        "id": 231
+      },
+      "id": 123
+    }
+  },
+  "postDataActionProfile": {
+    "postInfo": {
+      "userProfile": {
+        "profileId": 123,
+        "profileType": "PLAYER"
+      }
+    },
+    "actionUserProfile": {
+      "profileId": 123
+    }
+  },
+  "postDataShowComments": {
+    "postInfo": {
+      "postId": 1
+    },
+    "showComments": true
+  },
+  "postDataTypePlayer": {
+    "postInfo": {
+      "userProfile": {
+        "profileType": "PLAYER",
+        "profileId": 1
+      }
+    }
+  },
+  "likeResponse": {
+    "likeId": "test",
+    "likeVersion": 1,
+    "id": 0
+  },
+  "likedPostInfo": {
+    "postInfo": {
+      "postId": 1,
+      "id": 12
+    },
+    "like": {
+      "id": 2
+    }
+  },
+  "sharePostData": {
+    "actionType": "SHARE",
+    "originalPostInfo": {
+      "feedMediaTokenUrl": "",
+      "postInfo": "",
+      "title": "",
+      "type": ""
+    }
+  },
+  "taggedUsers": {
+    "taggedUsers": [
+      {
+        "profileId": 1234,
+        "profileType": "",
+        "fullName": ""
+      }
+    ]
+  },
+  "userProfileTypePlayer": {
+    "profileType": "PLAYER",
+    "profileId": 1
+  },
+  "userProfile": {
+    "dateOfBirth": {
+      "day": 0,
+      "month": 0,
+      "year": 0
+    },
+    "fullName": "",
+    "name": "",
+    "incompleteProfile": false,
+    "nationality": "",
+    "numberOfFollowers": "",
+    "numberOfFollowing": "",
+    "position": "",
+    "avatarTicket": "",
+    "profileAvatarUrl": "",
+    "coverTicket": "",
+    "profileCoverUrl": "",
+    "profileId": 0,
+    "profileType": ""
+  }
+}

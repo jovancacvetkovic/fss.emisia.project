@@ -1,0 +1,34 @@
+{
+  "trophies": [
+    {
+      "name": "Trophy 1",
+      "season": "2016-2017",
+      "trophyId": 1
+    },
+    {
+      "name": "Trophy 2",
+      "season": "2016-2017"
+    }
+  ],
+  "trophiesData": [
+    {
+      "name": "Trophy 1",
+      "season": "2016-2017",
+      "trophyId": 1,
+      "operation": "UPDATE"
+    },
+    {
+      "name": "Trophy 2",
+      "season": "2016-2017",
+      "trophyId": undefined,
+      "operation": "ADD"
+    }
+  ],
+  "trophyData": [
+    {
+      "name": "Trophy 1",
+      "season": "2016-2017",
+      "trophyId": 1
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "endpoints": [
+    {
+      "app": "facme",
+      "body": {},
+      "name": "editAccountPreference",
+      "path": "editAccountPreference.acme"
+    }
+  ],
+  "responseData": {
+    "defaultLocale": "en",
+    "locale": "en_US",
+    "value": "English (United States)"
+  },
+  "languageResponseData": {
+    "languages": [
+      {
+        "defaultLocale": "en",
+        "locale": "en_US",
+        "value": "English"
+      }
+    ]
+  },
+  "languageArrayMapData": [
+    {
+      "iconCls": "x-fa fa-check",
+      "text": "English",
+      "value": "en_US",
+      "handler": "changeLanguage"
+    },
+    {
+      "iconCls": "fw-noIcon",
+      "text": "Srpski",
+      "value": "sr_RS",
+      "handler": "changeLanguage"
+    },
+    {
+      "iconCls": "fw-noIcon",
+      "text": "Hrvatski",
+      "value": "hr_HR",
+      "handler": "changeLanguage"
+    }
+  ]
+}

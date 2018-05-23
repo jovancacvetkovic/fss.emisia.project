@@ -1,0 +1,24 @@
+{
+  "promotionsData": [
+    {
+      "promoType": "promotedProfile",
+      "id": "1",
+      "type": "FWIRE"
+    },
+    {
+      "promoType": "trends",
+      "global": [
+        "globalTrend1",
+        "globalTrend2"
+      ],
+      "serbia": [
+        "serbiaTrend1",
+        "serbiaTrend2"
+      ],
+      "croatia": [
+        "croatiaTrend1",
+        "croatiaTrend2"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "uploadResponseData": {
+    "uploadedFiles": [
+      {
+        "fileName": "test",
+        "repositoryTicket": "test",
+        "path": "test"
+      }
+    ]
+  }
+}

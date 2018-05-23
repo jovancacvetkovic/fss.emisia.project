@@ -1,0 +1,11 @@
+{
+  "postDataInfo": {
+    "postInfo": {
+      "postId": 1
+    }
+  },
+  "userProfileDataTypeDoctor": {
+    "profileId": 789,
+    "profileType": "DOCTOR"
+  }
+}

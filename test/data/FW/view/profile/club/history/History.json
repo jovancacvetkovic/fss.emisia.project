@@ -1,0 +1,30 @@
+{
+  "endpoints": [
+    {
+      "app": "facme",
+      "body": {},
+      "name": "viewClubHistory",
+      "path": "viewClubHistory.acme"
+    },
+    {
+      "app": "facme",
+      "body": {},
+      "name": "viewClubMembersHistory",
+      "path": "viewClubMembersHistory.acme"
+    }
+  ],
+  "clubHistoryData": [
+    {
+      "name": "Zlatan Ibrahimovic",
+      "position": "GK",
+      "season": "2010-2012",
+      "teamProfileId": 1
+    }
+  ],
+  "availableLettersResponseData": {
+    "availableLetters": [
+      "c",
+      "d"
+    ]
+  }
+}

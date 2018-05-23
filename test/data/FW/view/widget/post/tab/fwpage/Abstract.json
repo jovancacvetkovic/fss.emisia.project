@@ -1,0 +1,13 @@
+{
+  "endpoints": [
+    {
+      "app": "fwire",
+      "body": {
+        "hashTagItems": [],
+        "categoryTagItems": []
+      },
+      "name": "suggest",
+      "path": "suggest.fwire"
+    }
+  ]
+}
