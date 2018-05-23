@@ -16,9 +16,9 @@
         border-radius: 100%;
         z-index: 1;
         background-color: $fss-page-lighter-background;
-        background-size: 77px 110px;
-        background-position-y: 20px;
-        box-shadow: 0 4px 5px $fss-page-light-background;
+        background-size: 90px 112px;
+        background-position-y: 18px;
+        box-shadow: 0 4px 0px $fss-page-light-background;
     }
     
     .bannerBody {
@@ -40,17 +40,21 @@
             z-index: 1;
             color: map-get($material-foreground-colors, 'blue');
             left: 180px;
-            top: 5px;
-            line-height: 35px;
+            top: 15px;
+            line-height: 45px;
             
             .bannerFullName {
-                font-family: dynamic(Ubuntu);
+                font-family: Ubuntu, sans-serif;
+                font-weight: 500;
                 font-size: 18px;
+                line-height: 25px;
             }
             
             .bannerName {
-                font-family: dynamic(Ubuntu);
+                font-family: Ubuntu, sans-serif;
+                font-weight: 700;
                 font-size: 34px;
+                text-transform: uppercase;
             }
         }
     }

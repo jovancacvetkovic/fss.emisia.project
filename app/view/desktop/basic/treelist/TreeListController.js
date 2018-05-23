@@ -43,7 +43,7 @@ Ext.define('FSS.view.desktop.basic.treelist.TreeListController', {
         
         let dbQueryUrl = Ext.String.format(this.rootUrlTpl, subId);
     
-        this.fireEvent('e_loadDetails', dbQueryUrl);
+        this.fireEvent('e_loadDetails', subId);
         let leagues = FSS.firebase.database().ref(dbQueryUrl);
         leagues.once('value').then(this.loadSubList.bind(this));
     },

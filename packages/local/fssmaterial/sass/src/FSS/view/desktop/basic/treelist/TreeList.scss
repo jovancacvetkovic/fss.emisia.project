@@ -48,7 +48,11 @@
     
     .#{$prefix}listitem {
         margin: 8px 0 6px;
-        font: 300 14px Ubuntu;
+
+        font-family: helveticaNeueMd, sans-serif;
+        font-weight: 500;
+        font-size: 14px;
+        
         color: map-get($material-foreground-colors, 'grey');
         
         background-color: transparent;
@@ -88,7 +92,11 @@
     
     .#{$prefix}itemheader {
         background-color: transparent;
-        font: 500 13px Ubuntu;
+    
+        font-family: helveticaNeueMd, sans-serif;
+        font-weight: 700;
+        font-size: 13px;
+        
         color: map-get($material-foreground-colors, 'light-grey');
         
         & ~ .#{$prefix}itemheader {

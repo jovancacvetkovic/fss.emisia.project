@@ -5,7 +5,9 @@
     height: $header-height;
     
     .#{$prefix}tabbar-body-el .#{$prefix}tab {
-        font: 500 15px Ubuntu;
+        font-family: Ubuntu, sans-serif;
+        font-weight: 700;
+        font-size: 15px;
         color: map-get($material-foreground-colors, 'dark-red');
         
         &.#{$prefix}active {

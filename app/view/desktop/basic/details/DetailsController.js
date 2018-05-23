@@ -13,8 +13,10 @@ Ext.define('FSS.view.desktop.basic.details.DetailsController', {
         }
     },
     
-    onLoadDetails: function(url){
-        let dbDetailsUrl = Ext.String.format('{0}/details', url);
+    detailsUrlTpl: 'DETAILS/{0}',
+    
+    onLoadDetails: function(id){
+        let dbDetailsUrl = Ext.String.format(this.detailsUrlTpl, id);
         let leagues = FSS.firebase.database().ref(dbDetailsUrl);
         leagues.once('value').then(this.loadDetails.bind(this));
     },
@@ -33,5 +35,10 @@ Ext.define('FSS.view.desktop.basic.details.DetailsController', {
             logoUrl: logoUrl,
             bannerUrl: bannerUrl
         });
+        
+        this.lookup('fssGeneralStats').getController().loadDetails(details);
+        this.lookup('fssActivityStats').getController().loadDetails(details);
+        this.lookup('fssPersonnelStats').getController().loadDetails(details);
+        this.lookup('fssPersonnelOtherStats').getController().loadDetails(details);
     }
 });
