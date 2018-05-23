@@ -7,10 +7,8 @@
  */
 Ext.define('TEST.Abstract', {
     requires: [
-        'Common.util.Util',
         'Ext.layout.container.Fit',
         'Ext.window.Window',
-        'FW.overrides.ComponentQuery',
         'TEST.Ajax'
     ],
 

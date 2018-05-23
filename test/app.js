@@ -5,16 +5,10 @@ Ext.Loader.setConfig({
         'Ext': '../ext/src',
         'Ext.ux': '../ext/packages/ux/classic/src',
         'Ext.ux.ajax': '../ext/packages/ux/src/ajax',
-        'Common': '../packages/remote/Common/src',
-        'Common.overrides': '../packages/remote/Common/overrides',
-        'FW': '../classic/src',
-        'FW.overrides': '../overrides',
-        'TEST': 'unit',
-        'TEST.Common': '../packages/remote/Common/test/unit/Common'
+        'TEST': 'unit'
     }
 });
 
-Ext.require(['FW.overrides.Util', 'FW.overrides.NumberField', 'FW.overrides.String']);
 
 //PHANTOMJS RETURNS STATUS 0 FOR SUCESSFUL REQUESTS
 Ext.define('TEST.AjaxOverride', {
@@ -39,17 +33,6 @@ Ext.define('TEST.AjaxOverride', {
     }
 });
 
-//PREVENTING RELOADS
-Ext.define('TEST.UF_Override', {
-    override: 'Common.util.UF',
-    m_windowLocationReload: function(){
-        console.log('RELOAD PAGE REQUESTED');
-    },
-    m_windowLocationReplace: function(url){
-        console.log('PAGE LOCATION CHANGED TO: ' + url);
-    }
-});
-
 //Overriding jasmin method to provide better readability
 jasmine.Suite.prototype.getFullName = function(){
     var fullName = this.description;
@@ -69,11 +52,10 @@ jasmine.Suite.prototype.getFullName = function(){
 };
 
 Ext.application({
-    name: 'FootballWire',
+    name: 'FSS',
     //appFolder: '../classic/src',
     requires: [],
     launch: function(){
-        Ext.syncRequire(['Common.util.Util', 'TEST.Ajax', 'Common.FeatureAware', 'FW.Ziggeo']);
         // Ext.Loader.setPath('FW', '../classic');
         var test = window.location.search.slice(6);
         if (test) {
