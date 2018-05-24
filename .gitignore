@@ -3,6 +3,7 @@
 *.lock
 *lock.json
 .idea
+.vscode
 .sencha
 bootstrap.*
 classic.json*
