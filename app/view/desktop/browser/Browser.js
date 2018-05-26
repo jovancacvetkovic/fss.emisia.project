@@ -14,6 +14,13 @@ Ext.define('FSS.view.desktop.browser.Browser', {
     viewModel: {
         type: 'browserModel'
     },
+    
+    tab: {
+        viewModel: 'browserModel',
+        bind: {
+            title: '{browser}'
+        }
+    },
 
     controller: 'browserController'
 });

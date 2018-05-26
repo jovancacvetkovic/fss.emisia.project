@@ -2,7 +2,7 @@
  * Created by emisia on 5/13/18.
  */
 Ext.define('FSS.view.desktop.basic.Basic', {
-    extend: 'Ext.Container',
+    extend: 'Ext.Panel',
 
     requires: [
         'Ext.layout.HBox',
@@ -26,8 +26,10 @@ Ext.define('FSS.view.desktop.basic.Basic', {
     
     items: [{
         xtype: 'fssTreeList',
-        reference: 'leagueList'
+        reference: 'leagueList',
+        minWidth: 220
     }, {
-        xtype: 'fssDetails'
+        xtype: 'fssDetails',
+        flex: 1
     }]
 });

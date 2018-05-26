@@ -1,8 +1,9 @@
-/* colors */
-$base-color: dynamic(#BF2242);
-$base-light-color1: dynamic(#C5404E);
-$background-color: dynamic(#FFFFFF);
-$base-background-color: dynamic(#A9ACB1);
+@import "../../../../../../ext/classic/theme-base/sass/var/Component";
+@import "../../../../../../ext/modern/theme-material/sass/var/Component";
 
-$dataview-item-hovered-background-color: mix(#fff, $base-light-color1, 65%);
-$dataview-item-selected-background-color : mix(#fff, $base-light-color1, 30%);
+/* colors */
+$base-color-name: dynamic('red');
+$accent-color-name: dynamic('grey');
+$blue-color-name: dynamic('blue');
+
+$confirm-color: dynamic(material-color('green', '600'));

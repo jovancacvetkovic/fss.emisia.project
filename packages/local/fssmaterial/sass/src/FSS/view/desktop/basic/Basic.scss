@@ -1,20 +1,9 @@
+@import "../../../../../var/FSS/Application";
+
 .fssBasic {
-    div {
-        background-color: $fss-page-background;
-    }
+    background-color: $fss-page-light-background;
     
-    .fssTreeList {
-        width: 200px;
-        height: 100%;
-        
-        .fssTreeListMain {
-            width: 100%;
-            height: 100%;
-            border-right: $fss-menu-border;
-            
-            .#{$prefix}itemheader {
-                border-top: $fss-menu-border;
-            }
-        }
+    .#{$prefix}panel-body-el{
+        background-color: $fss-page-light-background;
     }
 }

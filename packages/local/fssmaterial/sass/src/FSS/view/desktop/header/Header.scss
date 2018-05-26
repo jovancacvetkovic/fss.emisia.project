@@ -4,6 +4,21 @@
 .fssHeader {
     height: $header-height;
     
+    .#{$prefix}tabbar-body-el .#{$prefix}tab {
+        font-family: Ubuntu, sans-serif;
+        font-weight: 700;
+        font-size: 15px;
+        color: map-get($material-foreground-colors, 'dark-red');
+        
+        &.#{$prefix}active {
+            color: map-get($material-foreground-colors, 'white-grey');
+        }
+    
+        .#{$prefix}active-indicator-el {
+            display: none;
+        }
+    }
+    
     .fssLogo {
         position: absolute;
         height: 100%;
@@ -12,7 +27,7 @@
         
         &::before {
             content: '';
-            background-image: url(/resources/images/FSS_logo.svg);
+            background-image: url(images/fssmodern/fss-srbije-logo.svg);
             background-repeat: no-repeat;
             background-size: 95px;
             
@@ -57,7 +72,7 @@
     .fssHeader {
         >.#{$prefix}tabbar-body-el {
             justify-content: left;
-            padding-left: 215px;
+            padding-left: 165px;
             padding-right: 250px;
         }
     }

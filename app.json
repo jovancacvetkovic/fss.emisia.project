@@ -16,7 +16,7 @@
 
                 
     "name": "FSS",
-    "namespace": "FSS",
+    "namespace": "",
     "version": "1.0.0.0",
     "framework": "ext",
     "toolkit": "modern",
@@ -87,7 +87,7 @@
          * root namespace, change this to "". Doing so would change the mapping of
          * "FSS.view.Foo" to "sass/src/FSS/view/Foo.scss".
          */
-        "namespace": "FSS",
+        "namespace": "",
 
         /**
          * Generated sass source settings
@@ -221,7 +221,7 @@
      */
     "js": [
         {
-            "path": "https://www.gstatic.com/firebasejs/4.13.0/firebase.js"
+            "path": "resources/3rdparty/firebase/firebase.js"
         },
         {
             "path": "${framework.dir}/build/ext-modern-all-debug.js"

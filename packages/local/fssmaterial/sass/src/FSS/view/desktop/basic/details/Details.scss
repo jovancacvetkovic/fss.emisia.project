@@ -1,0 +1,73 @@
+.fssDetails {
+    max-width: 765px;
+    padding: 15px;
+    background-color: $fss-page-light-background;
+    
+    > .#{$prefix}body-el {
+        background-color: $fss-page-lighter-background;
+        
+        .fssDetailsHeader {
+            height: 370px;
+            
+            &.fss-container-img {
+                background-position-x: -15px;
+            }
+            
+            .flexer {
+                height: 225px;
+                background: transparent;
+            }
+        }
+        
+        .fssDetailsStats {
+            width: 100%;
+            padding: 10px 40px;
+            background-color: transparent;
+            
+            > .#{$prefix}panel-body-wrap-el {
+                > .#{$prefix}panel-body-el {
+                    background-color: transparent;
+                }
+            }
+            
+            .#{$prefix}panelheader {
+                background-color: transparent;
+                
+                > .#{$prefix}body-el {
+                    padding: 0;
+                }
+                
+                .#{$prefix}paneltitle {
+                    color: map-get($material-foreground-colors, 'darker-red');
+                    font-family: helveticaNeueLt, sans-serif;
+                    font-weight: 500;
+                    font-size: 18px;
+                }
+            }
+            
+            .#{$prefix}displayfield {
+                .#{$prefix}label-el {
+                    padding: 0;
+                    
+                    .#{$prefix}label-text-el {
+                        color: map-get($material-foreground-colors, 'light-grey');
+                        font-family: helveticaNeueLt, sans-serif;
+                        font-weight: 500;
+                        font-size: 13px;
+                    }
+                }
+                
+                .#{$prefix}body-el {
+                    display: block;
+                    .#{$prefix}input-el {
+                        padding: 6px 0;
+                        color: map-get($material-foreground-colors, 'grey');
+                        font-family: helveticaNeueLt, sans-serif;
+                        font-weight: 500;
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+    }
+}

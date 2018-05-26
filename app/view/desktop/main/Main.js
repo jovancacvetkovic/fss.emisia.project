@@ -32,7 +32,7 @@ Ext.define('FSS.view.desktop.main.Main', {
     items: [{
         xtype: 'fssBrowser',
         reference: 'fssBrowser',
-        title: 'Pretrazivac'
+        title: '&nbsp;'
     }, {
         xtype: 'fssMessages',
         reference: 'fssMessages',

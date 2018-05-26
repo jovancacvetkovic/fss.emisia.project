@@ -1,0 +1,19 @@
+{
+  "name": "karma-seed",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "karma start --single-run --browsers ChromeHeadless karma.conf.js",
+    "web-test": "karma start --single-run --browsers Chrome karma.conf.js",
+    "full-test": "NODE_ENV=test karma start --browsers ChromeHeadless karma.conf.js",
+    "full-web-test": "NODE_ENV=test karma start --browsers Chrome karma.conf.js"
+  },
+  "devDependencies": {
+    "jasmine-core": "3.1.0",
+    "karma": "2.0.2",
+    "karma-chrome-launcher": "2.2.0",
+    "karma-cli": "1.0.1",
+    "karma-jasmine": "1.1.2",
+    "karma-spec-reporter": "0.0.32"
+  }
+}

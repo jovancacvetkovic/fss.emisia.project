@@ -42,11 +42,11 @@ Ext.define('FSS.Application', {
         // Init firebase
         FSS.firebase = firebase; // jshint ignore:line
     
-        var pulseLogo = Ext.getBody().down('#pulse-logo');
+        let pulseLogo = Ext.getBody().down('#pulse-logo');
         Ext.Function.defer(pulseLogo.hide, 1000, pulseLogo);
         
         Ext.Ajax.request({
-            url: 'resources/config',
+            url: 'firebase-config.json',
             success: this.initMessaging.bind(this)
         });
     },
@@ -59,11 +59,11 @@ Ext.define('FSS.Application', {
      * @param {FSS.type.ajax.Options} options
      */
     initMessaging: function(response, options){ // jshint ignore:line
-        var responseText = response.responseText;
-        var config = Ext.JSON.decode(responseText);
+        let responseText = response.responseText;
+        let config = Ext.JSON.decode(responseText);
         
         //noinspection JSUnresolvedFunction
-        var firebase = config.firebase;
+        let firebase = config.firebase;
         
         //noinspection JSUnresolvedFunction
         FSS.firebase.initializeApp(firebase); // Init firebase app

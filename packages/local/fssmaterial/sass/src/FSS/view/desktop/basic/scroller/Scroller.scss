@@ -1,0 +1,24 @@
+.fss-scroller {
+    top: 0;
+    
+    background: transparent;
+    left: auto !important;
+    position: fixed !important;
+    right: -1px !important;
+    
+    div {
+        padding: 0;
+        margin: 0;
+    }
+}
+
+.#{$prefix}gecko {
+    .fss-scroller {
+        right: 0 !important;
+    }
+}
+
+.fss-scroll-modifier {
+    overflow-x: hidden !important;
+    overflow-y: hidden !important;
+}
