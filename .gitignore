@@ -9,3 +9,5 @@ bootstrap.*
 classic.json*
 ext/
 modern.json*
+gen
+karma_html
