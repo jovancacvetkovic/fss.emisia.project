@@ -1,5 +1,53 @@
 'use strict';
 
+module.exports = function (config) {
+    config.set({
+        frameworks: ['jasmine'],
+        
+        browsers: ['Chrome', 'ChromeHeadless'],
+        
+        basePath: '../',
+        
+        logLevel: config.LOG_INFO,
+        
+        crossOriginAttribute: false,
+        
+        files: [
+            {pattern: './build/testing/FSS/app.json', included: false, served: true, watched: false, nocache: true},
+            {pattern: './build/testing/FSS/app.js', included: false, served: true, watched: true, nocache: true},
+            
+            './tests/bootstrap.js',
+            './tests/index.js',
+            './tests/tests/**/*.spec.js'
+        ],
+        
+        proxies: {
+            '/app.js': '/base/build/testing/FSS/app.js'
+        },
+        
+        // you can define custom flags
+        customLaunchers: {
+            'PhantomJS_custom': {
+                base: 'PhantomJS',
+                options: {
+                    windowName: 'my-window',
+                    settings: {
+                        webSecurityEnabled: false
+                    },
+                },
+                flags: ['--load-images=true'],
+                debug: true
+            }
+        },
+        
+        phantomjsLauncher: {
+            // Have phantomjs exit if a ResourceError is encountered (useful if karma exits without killing phantom)
+            exitOnResourceError: true
+        }
+    })
+};
+
+/*
 module.exports = {
     getOptions: function(config){
         return {
@@ -15,9 +63,9 @@ module.exports = {
             
             // list of files / patterns to exclude
             exclude: [
-                'build/*',
-                'node_modules/*',
-                'cordova/*'
+                'build/!*',
+                'node_modules/!*',
+                'cordova/!*'
             ],
             
             // Context html file
@@ -108,4 +156,4 @@ module.exports = {
             }
         };
     }
-};
+};*/
