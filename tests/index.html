@@ -184,12 +184,10 @@
     //noinspection JSUnresolvedVariable
     function isExtReady(){
         if (typeof Ext !== 'undefined') {
-            debugger;
             let body = Ext.getBody();
             if (body) {
                 let pulseLogo = body.down('#pulse-logo');
                 if (pulseLogo) {
-                    debugger;
                     isReady = true;
                 }
             }
@@ -199,7 +197,6 @@
     function runTests(){
         // Wait for Ext to get ready
         if (isReady) {
-            debugger;
             window.__karma__.loaded = onKarmaLoaded;
             window.__karma__.loaded();
         }

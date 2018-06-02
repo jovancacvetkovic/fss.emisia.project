@@ -38,6 +38,8 @@ Ext.define('FSS.view.desktop.basic.ContainerImage', {
      */
     baseCls: 'fss-container-img',
     
+    items: [],
+    
     /**
      * @inheritDoc
      */
@@ -101,9 +103,7 @@ Ext.define('FSS.view.desktop.basic.ContainerImage', {
         //noinspection JSUnresolvedFunction
         let backgroundCls = this.getBackgroundCls();
         
-        if (this.imageElement) {
-            this.imageElement.destroy();
-            delete this.imageElement;
+        if (this.imageObject) {
             //noinspection JSUnresolvedFunction
             this.updateSrc(this.getSrc());
         }
@@ -144,10 +144,8 @@ Ext.define('FSS.view.desktop.basic.ContainerImage', {
      * @private
      */
     updateSrc: function(newSrc){
-        let dom;
-        
         // Create image dom
-        dom = this.imageObject || new Image();
+        let dom = this.imageObject || new Image();
         this.imageObject = dom;
         
         dom.setAttribute('src', Ext.isString(newSrc) ? newSrc : '');
@@ -228,7 +226,7 @@ Ext.define('FSS.view.desktop.basic.ContainerImage', {
     doDestroy: function(){
         this.detachListeners();
         
-        this.imageObject = this.imageElement = Ext.destroy(this.imageObject, this.imageElement);
+        this.imageObject = Ext.destroy(this.imageObject);
         
         //noinspection JSAccessibilityCheck
         this.callParent();

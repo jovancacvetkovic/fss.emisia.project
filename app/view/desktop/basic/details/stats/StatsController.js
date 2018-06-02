@@ -22,7 +22,7 @@ Ext.define('FSS.view.desktop.basic.details.stats.StatsController', {
                     itemConfig = this.getItemsConfig(item);
                 }
                 else {
-                    itemConfig = this.getItemConfig(label, generalInfo[label]);
+                    itemConfig = this.getItemConfig(label, item);
                 }
                 items.push(itemConfig);
             }
@@ -40,7 +40,7 @@ Ext.define('FSS.view.desktop.basic.details.stats.StatsController', {
         if (reference.indexOf('.')){
             let refs = reference.split('.');
             let index = 0;
-            while (index < refs.length){
+            while (index < refs.length && details){
                 details = details[refs[index]];
                 index++;
             }
