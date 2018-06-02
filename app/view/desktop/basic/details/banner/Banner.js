@@ -5,6 +5,7 @@ Ext.define('FSS.view.desktop.basic.details.banner.Banner', {
     extend: 'Ext.Container',
     
     requires: [
+        'Ext.Img',
         'Ext.layout.HBox',
         'FSS.view.desktop.basic.details.banner.BannerController',
         'FSS.view.desktop.basic.details.banner.BannerModel'

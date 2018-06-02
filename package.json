@@ -1,8 +1,0 @@
-{
-    "name": "FSS",
-    "version": "1.0.0",
-    "description": "FSS",
-    "devDependencies": {
-        "karma-extjs-jasmine-tester": "1.1.8"
-    }
-}

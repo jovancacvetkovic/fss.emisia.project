@@ -1,0 +1,1 @@
+console.log('Live browser tests at http://localhost:5060');
