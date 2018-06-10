@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+DEBUG=false;
+KARMA_TEST=false;
+
+ARG_INDEX=1;
+while [[ "$ARG_INDEX" -le "$#" ]]; do
+    key="${!ARG_INDEX}"
+    case "$key" in
+        -D|--DEBUG)
+        DEBUG=true
+        ;;
+
+        -T=*|--KARMA_TEST=*)
+        KARMA_TEST="${key#*=}"
+        ;;
+        *)
+
+        # case end
+        ;;
+    esac
+    ARG_INDEX=$[$ARG_INDEX+1]
+done
+
+if [ "$KARMA_TEST" ] ; then
+    if [[ $KARMA_TEST =~ "app" ]]; then
+        KARMA_TEST=${KARMA_TEST/app/"tests/unit/FSS"};
+        KARMA_TEST=${KARMA_TEST/js/"spec.js"};
+
+        if [[ $KARMA_TEST =~ "Controller" ]]; then
+            sleep 0;
+        else
+            KARMA_TEST=${KARMA_TEST/.spec.js/"Controller.spec.js"};
+        fi;
+    fi;
+fi;
+
+env KARMA_TEST="$KARMA_TEST" node_modules/karma/bin/karma start karma.conf.js

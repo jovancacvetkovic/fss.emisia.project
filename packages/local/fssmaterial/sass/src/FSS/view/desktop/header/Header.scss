@@ -27,8 +27,7 @@
         
         &::before {
             content: '';
-            background-image: url(images/fssmodern/fss-srbije-logo.svg);
-            background-repeat: no-repeat;
+            background: url(images/fssmodern/fss-srbije-logo.svg) no-repeat;
             background-size: 95px;
             
             position: absolute;

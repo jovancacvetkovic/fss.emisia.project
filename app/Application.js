@@ -41,9 +41,9 @@ Ext.define('FSS.Application', {
     onProfilesReady: function(){
         // Init firebase
         FSS.firebase = firebase; // jshint ignore:line
-    
-        let pulseLogo = Ext.getBody().down('#pulse-logo');
-        Ext.Function.defer(pulseLogo.hide, 1000, pulseLogo);
+        
+        // Hide loading logo
+        Ext.getBody().down('#pulse-logo').hide();
         
         Ext.Ajax.request({
             url: 'firebase-config.json',

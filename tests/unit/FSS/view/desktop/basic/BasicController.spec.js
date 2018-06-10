@@ -15,7 +15,7 @@ describe('FSS.view.desktop.basic.BasicController', function(){
     
     afterEach(function(){
         //destroy the grid after every test so we don't pollute the environment
-        BasicController.destroy();
+        Basic.destroy();
     });
     
     it('should not fail on init', function(){
@@ -24,9 +24,9 @@ describe('FSS.view.desktop.basic.BasicController', function(){
         }).not.toThrow();
     });
     
-    it('init should be function', function(){
-        expect(function(){
-            BasicController.init();
-        }).not.toThrow();
+    it('should destroy Ext.Msg', function(){
+        if (Ext.Msg){
+            Ext.Msg.destroy();
+        }
     });
 });

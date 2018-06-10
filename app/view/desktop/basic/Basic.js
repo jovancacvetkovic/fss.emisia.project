@@ -9,7 +9,8 @@ Ext.define('FSS.view.desktop.basic.Basic', {
         'FSS.view.desktop.basic.BasicController',
         'FSS.view.desktop.basic.BasicModel',
         'FSS.view.desktop.basic.details.Details',
-        'FSS.view.desktop.basic.treelist.TreeList'
+        'FSS.view.desktop.basic.treelist.TreeList',
+        'FSS.view.desktop.scroller.Scroller'
     ],
 
     viewModel: {
@@ -30,6 +31,10 @@ Ext.define('FSS.view.desktop.basic.Basic', {
         minWidth: 220
     }, {
         xtype: 'fssDetails',
+        reference: 'fssDetails',
         flex: 1
+    }, {
+        xtype: 'fssScroller',
+        reference: 'scroller'
     }]
 });

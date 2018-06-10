@@ -2,13 +2,13 @@
  * View scroller component. Used to control multiple views and scrolling
  * @author Jovan Cvetkovic
  */
-Ext.define('FSS.view.desktop.basic.scroller.Scroller', {
+Ext.define('FSS.view.desktop.scroller.Scroller', {
     extend: 'Ext.container.Container',
     xtype: 'fssScroller',
     
     requires: [
         'Ext.Component',
-        'FSS.view.desktop.basic.scroller.ScrollerController'
+        'FSS.view.desktop.scroller.ScrollerController'
     ],
     
     cls: 'fss-scroller',
@@ -33,7 +33,7 @@ Ext.define('FSS.view.desktop.basic.scroller.Scroller', {
      */
     scroller: undefined,
     
-    initComponent: function(){
+    initialize: function(){
         if (Ext.getBody()) {
             Ext.apply(this, {
                 // This should be rendered into body

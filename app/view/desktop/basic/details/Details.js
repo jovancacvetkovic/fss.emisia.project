@@ -21,7 +21,9 @@ Ext.define('FSS.view.desktop.basic.details.Details', {
     cls: 'fssDetails',
     
     controller: 'details',
-
+    
+    scrollable: 'y',
+    
     items: [{
         xtype: 'fssContainerImage',
         cls: 'fssDetailsHeader',

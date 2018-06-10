@@ -37,12 +37,12 @@ Ext.define('FSS.view.desktop.basic.treelist.TreeListController', {
     onMainListSelectHandler: function(list, listItem){
         let itemData = listItem.getData();
         let subId = itemData.id;
-    
+        
         this.collapseDetailsList();
         this.collapseSubList();
         
         let dbQueryUrl = Ext.String.format(this.rootUrlTpl, subId);
-    
+        
         this.fireEvent('e_loadDetails', subId);
         let leagues = FSS.firebase.database().ref(dbQueryUrl);
         leagues.once('value').then(this.loadSubList.bind(this));
@@ -50,13 +50,13 @@ Ext.define('FSS.view.desktop.basic.treelist.TreeListController', {
     
     onSubListSelectHandler: function(list, listItem){
         this.collapseDetailsList();
-    
+        
         let itemData = listItem.getData();
         let subId = itemData.id;
         let rootId = this.lookup('subList').getRootId();
         
         let dbQueryUrl = Ext.String.format(this.subUrlTpl, rootId, subId);
-    
+        
         this.fireEvent('e_loadDetails', dbQueryUrl);
         let leagues = FSS.firebase.database().ref(dbQueryUrl);
         leagues.once('value').then(this.loadDetailsList.bind(this));
@@ -64,12 +64,16 @@ Ext.define('FSS.view.desktop.basic.treelist.TreeListController', {
     
     collapseDetailsList: function(){
         this.lookup('detailsList').getSelectable().deselectAll();
-        this.lookup('detailsListPanel').collapse();
+        if (this.lookup('detailsListPanel').collapse) {
+            this.lookup('detailsListPanel').collapse();
+        }
     },
     
     collapseSubList: function(){
         this.lookup('subList').getSelectable().deselectAll();
-        this.lookup('subListPanel').collapse();
+        if (this.lookup('subListPanel').collapse) {
+            this.lookup('subListPanel').collapse();
+        }
     },
     
     loadDetailsList: function(snapshot){

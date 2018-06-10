@@ -5,7 +5,7 @@ describe('FSS.view.desktop.basic.ContainerImage', function(){
     
     //setup/teardown
     beforeEach(function(){
-        if (image){
+        if (image) {
             image.destroy();
         }
         //create a fresh grid for every test to avoid test pollution
@@ -13,8 +13,6 @@ describe('FSS.view.desktop.basic.ContainerImage', function(){
             items: [],
             renderTo: 'test' //see spec-runner.html to see where this is defined
         });
-    
-        Ext.Msg.hide();
     });
     
     afterEach(function(){
@@ -91,7 +89,7 @@ describe('FSS.view.desktop.basic.ContainerImage', function(){
         });
         
         it('when function is called with expected params', function(){
-            spyOn(image, 'updateImageCls').and.callFake(function(oldCls, newCls) {
+            spyOn(image, 'updateImageCls').and.callFake(function(oldCls, newCls){
                 expect(typeof arguments[0]).toEqual('string');
                 expect(typeof arguments[1]).toEqual('string');
             });
@@ -106,7 +104,7 @@ describe('FSS.view.desktop.basic.ContainerImage', function(){
         });
         
         it(' not throw when function is called with expected params', function(){
-            spyOn(image, 'updateBackgroundCls').and.callFake(function(oldCls, newCls) {
+            spyOn(image, 'updateBackgroundCls').and.callFake(function(oldCls, newCls){
                 expect(typeof arguments[0]).toEqual('string');
                 expect(typeof arguments[1]).toEqual('string');
             });
@@ -123,7 +121,7 @@ describe('FSS.view.desktop.basic.ContainerImage', function(){
         });
         
         it('when function is called with expected params', function(){
-            spyOn(image, 'onTap').and.callFake(function(e) {
+            spyOn(image, 'onTap').and.callFake(function(e){
                 expect(arguments[0].$className).toEqual('Ext.event.Event');
             });
             
@@ -144,14 +142,13 @@ describe('FSS.view.desktop.basic.ContainerImage', function(){
         });
         
         it('when function is called with expected params', function(){
-            spyOn(image, 'onLoad').and.callFake(function(e) {
+            spyOn(image, 'onLoad').and.callFake(function(e){
                 expect(arguments[0].$className).toEqual('Ext.event.Event');
             });
             
             image.onLoad(new Ext.event.Event({}));
         });
     });
-    
     
     describe('function `onError` will not throw', function(){
         beforeEach(function(){
@@ -166,7 +163,7 @@ describe('FSS.view.desktop.basic.ContainerImage', function(){
         });
         
         it('when function is called with expected params', function(){
-            spyOn(image, 'onError').and.callFake(function(e) {
+            spyOn(image, 'onError').and.callFake(function(e){
                 expect(arguments[0].$className).toEqual('Ext.event.Event');
             });
             
@@ -177,12 +174,12 @@ describe('FSS.view.desktop.basic.ContainerImage', function(){
     describe('function `applySrc` will not throw', function(){
         it('when function is called', function(){
             expect(function(){
-                image.applySrc('src-url');
+                image.applySrc('http://google.com');
             }).not.toThrow();
         });
         
         it('when function is called with expected params', function(){
-            spyOn(image, 'applySrc').and.callFake(function(src) {
+            spyOn(image, 'applySrc').and.callFake(function(src){
                 expect(typeof arguments[0]).toEqual('string');
             });
             
@@ -198,12 +195,12 @@ describe('FSS.view.desktop.basic.ContainerImage', function(){
     describe('function `updateSrc` will not throw', function(){
         it('when function is called', function(){
             expect(function(){
-                image.updateSrc('src-url');
+                image.updateSrc('http://google.com');
             }).not.toThrow();
         });
         
         it('when function is called with expected params', function(){
-            spyOn(image, 'updateSrc').and.callFake(function(src) {
+            spyOn(image, 'updateSrc').and.callFake(function(src){
                 expect(typeof arguments[0]).toEqual('string');
             });
             
@@ -219,7 +216,7 @@ describe('FSS.view.desktop.basic.ContainerImage', function(){
         });
         
         it('when function is called with expected params', function(){
-            spyOn(image, 'updateWidth').and.callFake(function(src) {
+            spyOn(image, 'updateWidth').and.callFake(function(src){
                 expect(typeof arguments[0]).toEqual('number');
             });
             
@@ -235,7 +232,7 @@ describe('FSS.view.desktop.basic.ContainerImage', function(){
         });
         
         it('when function is called with expected params', function(){
-            spyOn(image, 'updateHeight').and.callFake(function(src) {
+            spyOn(image, 'updateHeight').and.callFake(function(src){
                 expect(typeof arguments[0]).toEqual('number');
             });
             
@@ -256,5 +253,11 @@ describe('FSS.view.desktop.basic.ContainerImage', function(){
                 image.detachListeners();
             }).not.toThrow();
         });
+    });
+    
+    it('should destroy Ext.Msg', function(){
+        if (Ext.Msg){
+            Ext.Msg.destroy();
+        }
     });
 });

@@ -193,7 +193,7 @@ Ext.define('FSS.view.desktop.basic.ContainerImage', {
         this.element.dom.style.backgroundImage = 'url("' + this.imageObject.src + '")';
         
         //noinspection JSUnresolvedFunction
-        this.fireEvent('error', this, e);
+        //this.fireEvent('error', this, e);
     },
     
     /**

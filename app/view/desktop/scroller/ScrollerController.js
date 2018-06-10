@@ -2,12 +2,12 @@
  * View scroller controller. Used to control multiple views and scrolling
  * @author Jovan Cvetkovic
  */
-Ext.define('FSS.view.desktop.basic.scroller.ScrollerController', {
+Ext.define('FSS.view.desktop.scroller.ScrollerController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.fssScrollerController',
     
     requires: [
-        'Ext.util.KeyMap',
+//        'Ext.util.KeyMap',
         'Ext.util.TaskRunner'
     ],
     
@@ -44,12 +44,20 @@ Ext.define('FSS.view.desktop.basic.scroller.ScrollerController', {
         scrollIntoViewBottomMargin: 20,
         
         /**
-         * @cfg {Number} scrollMargin
+         * @cfg {Number} scrollTopMargin
          * Scroll margin will be added to total scroll height.
          * It is used if scroll container height is not same as synced container height.
          * Example: if container has header that is not included into scroll then header height will be used to update scroll height accordingly
          */
-        scrollMargin: 0,
+        scrollTopMargin: 90,
+        
+        /**
+         * @cfg {Number} scrollBottomMargin
+         * Scroll margin will be added to total scroll height.
+         * It is used if scroll container height is not same as synced container height.
+         * Example: if container has header that is not included into scroll then header height will be used to update scroll height accordingly
+         */
+        scrollBottomMargin: 40,
         
         /**
          * @cfg {Number} scrollDefaultStep
@@ -161,7 +169,7 @@ Ext.define('FSS.view.desktop.basic.scroller.ScrollerController', {
     
     control: {
         '#': {
-            afterrender: 'setScrollWidth'
+            painted: 'setScrollWidth'
         }
     },
     
@@ -179,13 +187,18 @@ Ext.define('FSS.view.desktop.basic.scroller.ScrollerController', {
             interval: 100,
             run: this.scrollAllTo.bind(this)
         });
-        
-        Ext.create('Ext.util.KeyMap', Ext.get(document), {
-            target: document,
-            key: [33, 34],
-            fn: this.onPageMove,
-            scope: this
-        });
+
+//        Ext.create('Ext.util.KeyMap', Ext.get(document), {
+//            target: document,
+//            scope: this,
+//            binding: [{
+//                key: 33,
+//                handler: this.onPageMove
+//            }, {
+//                key: 34,
+//                handler: this.onPageMove
+//            }]
+//        });
     },
     
     /**
@@ -276,13 +289,13 @@ Ext.define('FSS.view.desktop.basic.scroller.ScrollerController', {
      * @return {Boolean}
      */
     isBodyMasked: function(){
-        let isMasked = Ext.getBody().isMasked(true);
-        if (!isMasked) {
-            let active = Ext.WindowManager.getActive();
-            isMasked = active && active.modal;
-        }
+//        let isMasked = Ext.getBody().isMasked(true);
+//        if (!isMasked) {
+//            let active = Ext.WindowManager.getActive();
+//            isMasked = active && active.modal;
+//        }
         
-        return isMasked;
+        return false; //isMasked;
     },
     
     /**
@@ -292,7 +305,7 @@ Ext.define('FSS.view.desktop.basic.scroller.ScrollerController', {
      * @return {Boolean}
      */
     isElementInView: function(el, e){
-        let pageTop = this.getScrollMargin();
+        let pageTop = this.getScrollTopMargin();
         let pageBottom = this.getView().getHeight();
         //noinspection JSCheckFunctionSignatures
         let elementTop = Ext.fly(el).getY() + pageTop;
@@ -410,7 +423,7 @@ Ext.define('FSS.view.desktop.basic.scroller.ScrollerController', {
     getInnerHeight: function(container){
         let height = 0;
         if (container) {
-            let containerEl = container.getEl();
+            let containerEl = container.el;
             if (containerEl) {
                 let firstEl = containerEl.first();
                 if (firstEl) {
@@ -427,7 +440,7 @@ Ext.define('FSS.view.desktop.basic.scroller.ScrollerController', {
      */
     getScrollHeight: function(){
         let syncList = this.getSyncList();
-        
+        debugger;
         //noinspection JSUnresolvedVariable
         let offsetEl = Ext.Array.max(syncList, this.getMaxHeight.bind(this));
         let height = 0;
@@ -579,7 +592,7 @@ Ext.define('FSS.view.desktop.basic.scroller.ScrollerController', {
     /**
      * On spotlight event listener
      *
-     * @param {FSS.view.desktop.basic.scroller.Scroller} view
+     * @param {FSS.view.desktop.scroller.Scroller} view
      */
     onSpotlight: function(view){
         let scrollStep = this.getScrollDefaultStep();
@@ -619,15 +632,18 @@ Ext.define('FSS.view.desktop.basic.scroller.ScrollerController', {
     
     /**
      * Register all containers to sync its scrolls with scroller
-     * @param {FSS.view.desktop.basic.scroller.Scroller} config
+     * @param {FSS.view.desktop.scroller.Scroller} config
      */
     register: function(config){
         if (!this.registered) {
+            debugger;
             //noinspection JSUnresolvedVariable
             this.setScrollEl(config.scrollEl);
             
             //noinspection JSUnresolvedVariable
-            this.setScrollMargin(config.scrollMargin);
+            if (Ext.isNumber(config.scrollTopMargin)) {
+                this.setScrollTopMargin(config.scrollTopMargin);
+            }
             
             //noinspection JSUnresolvedVariable
             this.setSyncList(config.syncList);
@@ -797,13 +813,13 @@ Ext.define('FSS.view.desktop.basic.scroller.ScrollerController', {
         let view = this.getView();
         this.syncLayouts();
         
-        if (this.registered && view.rendered) {
+        if (this.registered /*&& view.rendered*/) {
             let offsetHeight = this.getScrollHeight();
             let scrollHeight = this.getScrollEl().getHeight();
             view.setHeight(scrollHeight);
             
             let scroller = view.lookup('scroller');
-            scroller.setHeight(offsetHeight + this.getScrollMargin());
+            scroller.setHeight(offsetHeight + this.getScrollTopMargin() + this.getScrollBottomMargin());
             
             this.fixLayoutScroll();
             
@@ -818,11 +834,24 @@ Ext.define('FSS.view.desktop.basic.scroller.ScrollerController', {
      * Example if sync el has header that is not included in scroll then header height should be passed as margin
      * @param {Number} margin
      */
-    setScrollMargin: function(margin){
+    setScrollTopMargin: function(margin){
         margin = margin ? margin : 0;
         
         //noinspection JSUnusedGlobalSymbols
-        this._scrollMargin = margin;
+        this._scrollTopMargin = margin;
+    },
+    
+    /**
+     * Set scroll margin value
+     * Margin is used to fix difference in heights between scroll el and synced container
+     * Example if sync el has header that is not included in scroll then header height should be passed as margin
+     * @param {Number} margin
+     */
+    setScrollBottomMargin: function(margin){
+        margin = margin ? margin : 0;
+        
+        //noinspection JSUnusedGlobalSymbols
+        this._scrollBottomMargin = margin;
     },
     
     /**
@@ -860,17 +889,17 @@ Ext.define('FSS.view.desktop.basic.scroller.ScrollerController', {
         this._syncList = syncList;
         
         this.syncLayouts();
-        
-        let index = syncList.length;
-        let container;
-        while (index) {
-            index--;
-            container = syncList[index];
-            let pagingComponents = container.query(':plugin(fssListPaging)');
-            if (pagingComponents) {
-                this.syncListPagingEvents(container, pagingComponents);
-            }
-        }
+
+//        let index = syncList.length;
+//        let container;
+//        while (index) {
+//            index--;
+//            container = syncList[index];
+//            let pagingComponents = container.query(':plugin(fssListPaging)');
+//            if (pagingComponents) {
+//                this.syncListPagingEvents(container, pagingComponents);
+//            }
+//        }
     },
     
     /**
@@ -882,7 +911,7 @@ Ext.define('FSS.view.desktop.basic.scroller.ScrollerController', {
         let scrollEl = this.getScrollEl();
         if (scrollEl) {
             let scrollHeight = scrollEl.getHeight();
-            scrollHeight -= this.getScrollMargin();
+            scrollHeight -= this.getScrollTopMargin();
             
             let cls = this.getClsModifier();
             let index = syncList.length;
@@ -915,4 +944,15 @@ Ext.define('FSS.view.desktop.basic.scroller.ScrollerController', {
             }
         }
     }
+}, function(){
+    Ext.apply(this, {
+        mocks: {
+            getDefaultDelta: {
+                args: {
+                    0: 'number'
+                },
+                returns: 'number'
+            }
+        }
+    });
 });

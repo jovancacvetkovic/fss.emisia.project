@@ -19,6 +19,8 @@
 }
 
 .fss-scroll-modifier {
-    overflow-x: hidden !important;
-    overflow-y: hidden !important;
+    > div {
+        overflow-x: hidden !important;
+        overflow-y: hidden !important;
+    }
 }
