@@ -11,3 +11,4 @@ ext/
 modern.json*
 gen
 karma_html
+**/coverage

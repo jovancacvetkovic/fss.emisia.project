@@ -17,13 +17,13 @@ module.exports = function(config){
     };
     
     // Set debugging via Chrome or run ChromeHeadless in intelliJ
-    let isDebug = process.env.DEBUG === 'true';
-    console.log('DEBUG ', isDebug);
+    let isDebug = !!process.env.DEBUG;
+    console.log('\nDEBUG mode is', isDebug ? 'ON' : 'OFF');
     let browsers = [isDebug ? 'Chrome' : 'ChromeHeadless'];
     
     // @formatter:off, application file list
     let files = [
-        'tests/messages.js',
+        'tests/jasmine.override.js',
         './build/testing/FSS/resources/FSS-all.css',
         
         { pattern: './build/testing/FSS/app.json', watched: false, included: false, served: true, nocache: false },
@@ -55,8 +55,10 @@ module.exports = function(config){
         './tests/unit/FSS/**/*.spec.js'
     ];
     
-    if (process.env.KARMA_TEST) {
-        console.log('Running single test ', process.env.KARMA_TEST);
+    if (process.env.KARMA_TEST !== 'false' && process.env.KARMA_TEST !== undefined) {
+        let file = process.env.KARMA_TEST.toString();
+        let className = file.split('unit')[1].replace('.spec.js', '').replace('/', '').replace(new RegExp('/', 'g'), '.');
+        console.log('SINGLE test mode', className);
         tests = [process.env.KARMA_TEST];
     }
     
@@ -65,28 +67,34 @@ module.exports = function(config){
     files = files.concat(tests);
     
     let reports = [];
+    let plugins = [];
+    let preprocessors = {
+        './build/testing/FSS/resources/3rdparty/**/*.js': ['sourcemap']
+    };
     if (!isDebug) {
-        console.log('Running with reports at coverage/index.html');
+        console.log('Running with reports at coverage/index.html\n');
         reports = [
+            'spec',
+            'live-html',
             'progress',
             'coverage-istanbul'
         ];
-    }
+        
+        plugins = [
+            'karma-coverage',
+            'karma-spec-reporter',
+            'karma-html-live-reporter',
+            'karma-coverage-istanbul-reporter'
+        ];
     
-    let singleRun = true;
-    if (isDebug) {
-        singleRun = false;
+        preprocessors['./app/**/*.js'] = ['coverage'];
     }
     
     config.set({
         // base path that will be used to resolve all patterns (eg. files, exclude)
         basePath: '../',
         
-        // karma base url
-        //urlRoot: '/',
-        
         // frameworks to use
-        // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
         frameworks: ['jasmine'],
         
         // start these browsers
@@ -114,7 +122,7 @@ module.exports = function(config){
         
         // Continuous Integration mode
         // if true, Karma captures browsers, runs the tests and exits
-        singleRun: singleRun,
+        singleRun: !isDebug,
         
         // Browser re-try test if browser fails
         retryLimit: 0,
@@ -144,30 +152,20 @@ module.exports = function(config){
         
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-        preprocessors: {
-            './build/testing/FSS/resources/3rdparty/**/*.js': ['sourcemap'],
-            './app/**/*.js': ['coverage']
-        },
+        preprocessors: preprocessors,
         
         // test results reporter to use
         // possible values: 'dots', 'progress'
         // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-        reporters: [
-            'spec',
-            'live-html'
-        ].concat(reports),
+        reporters: reports,
         
         // Karma plugins
         // only plugins in this list will be required by karma
         plugins: [
             'karma-chrome-launcher',
             'karma-jasmine',
-            'karma-coverage',
-            'karma-spec-reporter',
-            'karma-html-live-reporter',
-            'karma-sourcemap-loader',
-            'karma-coverage-istanbul-reporter'
-        ],
+            'karma-sourcemap-loader'
+        ].concat(plugins),
         
         // Spec reporter config
         specReporter: {

@@ -440,7 +440,7 @@ Ext.define('FSS.view.desktop.scroller.ScrollerController', {
      */
     getScrollHeight: function(){
         let syncList = this.getSyncList();
-        debugger;
+        
         //noinspection JSUnresolvedVariable
         let offsetEl = Ext.Array.max(syncList, this.getMaxHeight.bind(this));
         let height = 0;
@@ -518,6 +518,7 @@ Ext.define('FSS.view.desktop.scroller.ScrollerController', {
     
     /**
      * Restart tasker on each layout call so only last layout is triggered by tasker
+     * @param {Ext.container.Container} cmp Container that triggered layout
      */
     onLayout: function(cmp){
         this.lastLayoutCmp = cmp;
@@ -636,7 +637,7 @@ Ext.define('FSS.view.desktop.scroller.ScrollerController', {
      */
     register: function(config){
         if (!this.registered) {
-            debugger;
+            
             //noinspection JSUnresolvedVariable
             this.setScrollEl(config.scrollEl);
             
@@ -779,6 +780,7 @@ Ext.define('FSS.view.desktop.scroller.ScrollerController', {
     
     /**
      * Scroll to bottom
+     * @param {Boolean} animate
      */
     scrollToBottom: function(animate){
         this.animate = animate;
@@ -944,15 +946,162 @@ Ext.define('FSS.view.desktop.scroller.ScrollerController', {
             }
         }
     }
-}, function(){
-    Ext.apply(this, {
-        mocks: {
-            getDefaultDelta: {
-                args: {
-                    0: 'number'
-                },
-                returns: 'number'
+}, function(Cls){
+    Cls.mocks = {
+        syncListPagingEvents: {
+            args: {
+                0: 'Ext.container.Container',
+                1: 'Ext.Component[]'
+            }
+        },
+        syncLayouts: {},
+        setSyncList: {
+            args: {
+                0: 'Ext.container.Container[]'
+            }
+        },
+        setScrollWidth: {},
+        setLayout: {},
+        scrollToTop: {
+            args: {
+                0: 'boolean'
+            }
+        },
+        scrollToBottom: {
+            args: {
+                0: 'boolean'
+            }
+        },
+        scrollAllTo: {},
+        scrollTo: {
+            args: {
+                0: 'number',
+                1: 'number'
+            }
+        },
+        scrollBy: {
+            args: {
+                0: 'number'
+            }
+        },
+        scrollIntoView: {
+            args: {
+                0: 'Ext.dom.Element'
+            },
+            returns: 'number'
+        },
+        registerScrollEvents: {},
+        register: {
+            args: {
+                0: 'FSS.view.desktop.scroller.Scroller'
+            }
+        },
+        preventScroll: {
+            args: {
+                0: 'Ext.event.Event'
+            },
+            returns: 'boolean'
+        },
+        preventNativeScroll: {
+            args: {
+                0: 'Ext.event.Event'
+            },
+            returns: 'boolean'
+        },
+        onSpotlight: {
+            args: {
+                0: 'FSS.view.desktop.scroller.Scroller',
+                1: 'number'
+            }
+        },
+        onScroll: {
+            args: {
+                0: 'Ext.scroller.Scroller',
+                1: 'number',
+                2: 'number'
+            }
+        },
+        onRealScroll: {
+            args: {
+                0: 'Ext.scroller.Scroller',
+                1: 'number'
+            }
+        },
+        onPageMove: {
+            args: {
+                0: 'number',
+                1: 'Ext.event.Event'
+            }
+        },
+        onLayout: {
+            args: {
+                0: 'Ext.container.Container'
+            }
+        },
+        onMouseWheel: {
+            args: {
+                0: 'Event'
+            }
+        },
+        getScrollHeight: {
+            returns: 'number'
+        },
+        getInnerHeight: {
+            args: {
+                0: 'Ext.container.Container'
+            },
+            returns: 'number'
+        },
+        getMaxHeight: {
+            args: {
+                0: 'Ext.container.Container',
+                1: 'Ext.container.Container'
+            },
+            returns: 'boolean'
+        },
+        isScrollAllowed: {
+            returns: 'boolean'
+        },
+        isHoverElScrollable: {
+            args: {
+                0: 'Ext.dom.Element'
+            },
+            returns: 'boolean'
+        },
+        isElementInView: {
+            args: {
+                0: 'Ext.dom.Element',
+                1: 'Ext.event.Event'
+            },
+            returns: 'boolean'
+        },
+        isBodyMasked: {
+            returns: 'boolean'
+        },
+        fixLayoutScroll: {
+        },
+        doScroll: {
+            args: {
+                0: 'number',
+                1: 'number',
+                2: 'Ext.container.Container'
+            }
+        },
+        getDefaultDelta: {
+            args: {
+                0: 'number'
+            },
+            returns: 'number'
+        },
+        setScrollTopMargin: {
+            args: {
+                0: 'number'
+            }
+        },
+        setScrollBottomMargin: {
+            args: {
+                0: 'number'
             }
         }
-    });
+    };
 });

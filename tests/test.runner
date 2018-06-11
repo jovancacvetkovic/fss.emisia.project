@@ -35,4 +35,4 @@ if [ "$KARMA_TEST" ] ; then
     fi;
 fi;
 
-env KARMA_TEST="$KARMA_TEST" node_modules/karma/bin/karma start karma.conf.js
+env KARMA_TEST="${KARMA_TEST}" node_modules/karma/bin/karma start karma.conf.js

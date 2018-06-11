@@ -11,6 +11,8 @@ describe('FSS.view.desktop.scroller.ScrollerController', function(){
             renderTo: 'test' //see spec-runner.html to see where this is defined
         });
         ScrollerController = Scroller.getController();
+        
+        jasmine.addMatchers(matchers);
     });
     
     afterEach(function(){
@@ -77,14 +79,27 @@ describe('FSS.view.desktop.scroller.ScrollerController', function(){
     
     describe('should not fail on getDefaultDelta', function(){
         it('expect correct params to be passed', function(){
-            spyOn(ScrollerController, 'getDefaultDelta').and.callFake(function(delta){
-                let args = ScrollerController.mocks.args;
-                for (var arg in args) {
-                    expect(args[arg]).toBe(typeof delta);
-                }
-            });
-    
+            expect('getDefaultDelta').toMatchExpectedParams(ScrollerController);
             ScrollerController.getDefaultDelta(1);
+        });
+        
+        it('expect to return correct type', function(){
+            let result = ScrollerController.getDefaultDelta(1);
+            expect(result).toMatchExpectedResult(ScrollerController, 'getDefaultDelta');
+        });
+    });
+    
+    describe('should not fail on setScrollBottomMargin', function(){
+        it('expect correct params to be passed', function(){
+            expect('setScrollBottomMargin').toMatchExpectedParams(ScrollerController);
+            ScrollerController.setScrollBottomMargin(1);
+        });
+    });
+    
+    describe('should not fail on setScrollTopMargin', function(){
+        it('expect correct params to be passed', function(){
+            expect('setScrollTopMargin').toMatchExpectedParams(ScrollerController);
+            ScrollerController.setScrollTopMargin(1);
         });
     });
     
