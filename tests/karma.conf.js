@@ -50,6 +50,10 @@ module.exports = function(config){
         'firebase-messaging-sw.js'
     ]);
     
+    let index = [
+        'tests/index.js'
+    ];
+    
     // Include all tests, should be done via regex to collect all tests
     let tests = [
         './tests/unit/FSS/**/*.spec.js'
@@ -64,6 +68,7 @@ module.exports = function(config){
     
     files = files.concat(resources);
     files = files.concat(firebase);
+    files = files.concat(index);
     files = files.concat(tests);
     
     let reports = [];
