@@ -26,6 +26,8 @@ module.exports = function(config){
         'tests/jasmine.override.js',
         './build/testing/FSS/resources/FSS-all.css',
         
+         { pattern: './bootstrap.js', watched: false, included: false, served: true, nocache: false },
+
         { pattern: './build/testing/FSS/app.json', watched: false, included: false, served: true, nocache: false },
         { pattern: './build/testing/FSS/app.js', watched: false, included: true, served: true, nocache: false },
         
@@ -148,6 +150,7 @@ module.exports = function(config){
         // proxy mapper list, these files are served via karma server
         // so we need to user proxy here to redirect them cause they are relative to karma base url
         proxies: {
+            '/bootstrap.js': '/base/bootstrap.js',
             '/bootstrap.json': '/base/bootstrap.json',
             '/app.js': '/base/build/testing/FSS/app.js',
             '/app.json': '/base/build/testing/FSS/app.json',
