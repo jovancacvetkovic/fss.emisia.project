@@ -11,7 +11,6 @@ describe('FSS.view.desktop.basic.details.DetailsController', function(){
             renderTo: 'test' //see spec-runner.html to see where this is defined
         });
         DetailsController = Details.getController();
-        Ext.Msg.hide();
     });
     
     afterEach(function(){
@@ -60,11 +59,5 @@ describe('FSS.view.desktop.basic.details.DetailsController', function(){
             
             DetailsController.loadDetails(snapshot);
         });
-    });
-    
-    it('should destroy Ext.Msg', function(){
-        if (Ext.Msg){
-            Ext.Msg.destroy();
-        }
     });
 });

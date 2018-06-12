@@ -23,10 +23,4 @@ describe('FSS.view.desktop.basic.BasicController', function(){
             BasicController.init();
         }).not.toThrow();
     });
-    
-    it('should destroy Ext.Msg', function(){
-        if (Ext.Msg){
-            Ext.Msg.destroy();
-        }
-    });
 });

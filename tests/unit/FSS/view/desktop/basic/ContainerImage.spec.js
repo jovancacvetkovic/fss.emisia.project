@@ -254,10 +254,4 @@ describe('FSS.view.desktop.basic.ContainerImage', function(){
             }).not.toThrow();
         });
     });
-    
-    it('should destroy Ext.Msg', function(){
-        if (Ext.Msg){
-            Ext.Msg.destroy();
-        }
-    });
 });

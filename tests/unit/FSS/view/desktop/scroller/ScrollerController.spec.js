@@ -102,10 +102,4 @@ describe('FSS.view.desktop.scroller.ScrollerController', function(){
             ScrollerController.setScrollTopMargin(1);
         });
     });
-    
-    it('should destroy Ext.Msg', function(){
-        if (Ext.Msg) {
-            Ext.Msg.destroy();
-        }
-    });
 });
