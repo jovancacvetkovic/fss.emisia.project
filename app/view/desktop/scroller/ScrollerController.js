@@ -29,7 +29,7 @@ Ext.define('FSS.view.desktop.scroller.ScrollerController', {
          * @cfg {String} clsModifier
          * Scrollable container css class modifier, it is used to create overflow style for the element
          */
-        clsModifier: 'fss-scroll-modifier',
+        clsModifier: 'fssScrollModifier',
         
         /**
          * @cfg {Ext.dom.Element} scrollEl

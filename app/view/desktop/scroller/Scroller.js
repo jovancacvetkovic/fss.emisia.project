@@ -11,7 +11,7 @@ Ext.define('FSS.view.desktop.scroller.Scroller', {
         'FSS.view.desktop.scroller.ScrollerController'
     ],
     
-    cls: 'fss-scroller',
+    cls: 'fssScrollModifier',
     
     controller: 'fssScrollerController',
     

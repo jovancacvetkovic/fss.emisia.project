@@ -7,13 +7,31 @@
 Ext.define('FSS.Application', {
     extend: 'Ext.app.Application',
     
+    require: [
+        'FSS.util.Logger',
+        'FSS.util.Util'
+    ],
+    
     name: 'FSS',
     
     quickTips: false,
+    
+    defaultToken: 'FSS',
+    
     platformConfig: {
         desktop: {
             quickTips: true
         }
+    },
+    
+    listen: {
+        global: {
+            unmatchedroute: 'onUnmatchedRoute'
+        }
+    },
+    
+    onUnmatchedRoute: function(hash){
+        console.error('Route ' + hash + ' not found');
     },
     
     /**

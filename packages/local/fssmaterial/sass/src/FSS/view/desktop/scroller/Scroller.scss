@@ -1,4 +1,4 @@
-.fss-scroller {
+.fssScroller {
     top: 0;
     
     background: transparent;
@@ -18,7 +18,7 @@
     }
 }
 
-.fss-scroll-modifier {
+.fssScrollModifier {
     > div {
         overflow-x: hidden !important;
         overflow-y: hidden !important;

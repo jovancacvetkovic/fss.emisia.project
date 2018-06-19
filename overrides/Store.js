@@ -13,7 +13,7 @@ Ext.define('FSS.overrides.Store', {
         
         if (me.hasListeners.load) {
             // Fire store load event after load is finished
-            me.fireEvent('load', me);
+            me.fireEvent('load', me, records);
         }
     }
 });

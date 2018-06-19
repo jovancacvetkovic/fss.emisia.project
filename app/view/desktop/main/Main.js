@@ -5,12 +5,12 @@ Ext.define('FSS.view.desktop.main.Main', {
     extend: 'Ext.tab.Panel',
 
     requires: [
-        'FSS.view.desktop.browser.Browser',
-        'FSS.view.desktop.header.Header',
         'FSS.view.desktop.main.MainController',
         'FSS.view.desktop.main.MainModel',
-        'FSS.view.desktop.messages.Messages',
-        'FSS.view.desktop.systematization.Systematization'
+        'FSS.view.desktop.tabpanel.browser.Browser',
+        'FSS.view.desktop.tabpanel.header.Header',
+        'FSS.view.desktop.tabpanel.messages.Messages',
+        'FSS.view.desktop.tabpanel.systematization.Systematization'
     ],
 
     xtype: 'fssDesktopMain',
@@ -31,15 +31,18 @@ Ext.define('FSS.view.desktop.main.Main', {
 
     items: [{
         xtype: 'fssBrowser',
-        reference: 'fssBrowser',
+        reference: 'browser',
+        pageId: 'browser',
         title: '&nbsp;'
     }, {
         xtype: 'fssMessages',
-        reference: 'fssMessages',
-        title: 'Poruke'
+        reference: 'messages',
+        pageId: 'messages',
+        title: '&nbsp;'
     }, {
         xtype: 'fssSystematization',
-        reference: 'fssSystematization',
-        title: 'Sistematizacija'
+        reference: 'systematization',
+        pageId: 'systematization',
+        title: '&nbsp;'
     }]
 });
