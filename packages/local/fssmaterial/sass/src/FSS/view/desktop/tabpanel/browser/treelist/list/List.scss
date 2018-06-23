@@ -1,0 +1,58 @@
+.fssList {
+    min-width: 215px;
+    height: 100%;
+    padding-top: 20px;
+    border-left: $fss-menu-no-border transparent;
+    border-right: $fss-menu-no-border transparent;
+    background-color: $fss-page-light-background;
+
+    .#{$prefix}selected {
+        background-color: $fss-page-lighter-background !important;
+    }
+
+    .#{$prefix}listitem-inner-el {
+        padding: 5px 12px 2px 20px;
+        line-height: 18px;
+    }
+
+    .#{$prefix}listitem {
+        margin: 8px 0 6px;
+
+        font-family: helveticaNeueLt, sans-serif;
+        font-weight: 500;
+        font-size: 14px;
+
+        color: map-get($material-foreground-colors, 'grey');
+
+        background-color: transparent;
+        border-left: 6px solid transparent;
+
+        &.#{$prefix}selected {
+            border-left: 6px solid $base-color;
+
+            &.LEAGUE {
+                border-left: 6px solid $fss-menu-alt-border-color;
+            }
+        }
+    }
+
+    .#{$prefix}itemheader {
+        background-color: transparent;
+
+        font-family: helveticaNeueLt, sans-serif;
+        font-weight: 500;
+        font-size: 13px;
+
+        color: map-get($material-foreground-colors, 'light-grey');
+
+        & ~ .#{$prefix}itemheader {
+            margin-top: 40px;
+            padding-top: 10px;
+            border-top: $fss-menu-border $fss-menu-border-color;
+        }
+
+        .#{$prefix}itemheader-body-el {
+            padding-left: 26px;
+        }
+    }
+}

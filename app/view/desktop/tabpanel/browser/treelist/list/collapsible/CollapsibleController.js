@@ -9,12 +9,16 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.list.collapsible.Collapsi
         controller: {
             fssTreeListController: {
                 expandList: 'onExpandList'
+            },
+
+            fssBrowserListController: {
+                expandList: 'onExpandList'
             }
         }
     },
     
     onExpandList: function(expand, reference){
-        let view = this.getView();
+        var view = this.getView();
         if (view.items.getAt(0).reference === reference) {
             if (expand && view.getCollapsed()){
                 view.expand();

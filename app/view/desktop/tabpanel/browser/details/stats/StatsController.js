@@ -10,12 +10,12 @@ Ext.define('FSS.view.desktop.tabpanel.browser.details.stats.StatsController', {
     ],
     
     loadDetails: function(details){
-        let items = [];
-        let view = this.getView();
-        let generalInfo = this.getGeneralInfo(details);
-        let item;
-        let itemConfig;
-        for (let label in generalInfo) {
+        var items = [];
+        var view = this.getView();
+        var generalInfo = this.getGeneralInfo(details);
+        var item;
+        var itemConfig;
+        for (var label in generalInfo) {
             if (generalInfo.hasOwnProperty(label)) {
                 item = generalInfo[label];
                 if (typeof item === 'object') {
@@ -35,11 +35,11 @@ Ext.define('FSS.view.desktop.tabpanel.browser.details.stats.StatsController', {
     },
     
     getGeneralInfo: function(details){
-        let view = this.getView();
-        let reference = view.refName;
+        var view = this.getView();
+        var reference = view.refName;
         if (reference.indexOf('.')){
-            let refs = reference.split('.');
-            let index = 0;
+            var refs = reference.split('.');
+            var index = 0;
             while (index < refs.length && details){
                 details = details[refs[index]];
                 index++;
@@ -60,10 +60,10 @@ Ext.define('FSS.view.desktop.tabpanel.browser.details.stats.StatsController', {
     },
     
     getItemsConfig: function(item){
-        let itemConfigs = [];
-        for (let itemLabel in item) {
+        var itemConfigs = [];
+        for (var itemLabel in item) {
             if (item.hasOwnProperty(itemLabel)) {
-                let config = this.getItemConfig(itemLabel, item[itemLabel]);
+                var config = this.getItemConfig(itemLabel, item[itemLabel]);
                 itemConfigs.push(config);
             }
         }

@@ -20,13 +20,8 @@ Ext.define('FSS.view.desktop.tabpanel.browser.BrowserController', {
             var subLeague = args[2];
             var team = args[3];
 
-            let leagueListView = this.lookup('leagueTreeList');
-            leagueListView.getController().setActiveLeague({
-                page: page,
-                league: league,
-                subLeague: subLeague,
-                team: team
-            });
+            var leagueListView = this.lookup('leagueTreeList');
+            leagueListView.getController().setActiveLeagues([team, subLeague, league]);
         }
     },
 

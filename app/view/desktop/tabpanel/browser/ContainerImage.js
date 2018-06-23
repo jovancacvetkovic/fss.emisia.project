@@ -98,10 +98,10 @@ Ext.define('FSS.view.desktop.basic.ContainerImage', {
      */
     updateMode: function(){
         //noinspection JSUnresolvedFunction
-        let imageCls = this.getImageCls();
+        var imageCls = this.getImageCls();
         
         //noinspection JSUnresolvedFunction
-        let backgroundCls = this.getBackgroundCls();
+        var backgroundCls = this.getBackgroundCls();
         
         if (this.imageObject) {
             //noinspection JSUnresolvedFunction
@@ -145,7 +145,7 @@ Ext.define('FSS.view.desktop.basic.ContainerImage', {
      */
     updateSrc: function(newSrc){
         // Create image dom
-        let dom = this.imageObject || new Image();
+        var dom = this.imageObject || new Image();
         this.imageObject = dom;
         
         dom.setAttribute('src', Ext.isString(newSrc) ? newSrc : '');
@@ -161,7 +161,7 @@ Ext.define('FSS.view.desktop.basic.ContainerImage', {
      * Detach all container listeners
      */
     detachListeners: function(){
-        let dom = this.imageObject;
+        var dom = this.imageObject;
         
         if (dom) {
             dom.removeEventListener('load', this.onLoad, false);
@@ -203,7 +203,7 @@ Ext.define('FSS.view.desktop.basic.ContainerImage', {
      */
     updateWidth: function(width){
         //noinspection JSAccessibilityCheck,JSUnresolvedFunction
-        let sizingElement = this.element;
+        var sizingElement = this.element;
         sizingElement.setWidth(width);
         
         //noinspection JSAccessibilityCheck
@@ -215,7 +215,7 @@ Ext.define('FSS.view.desktop.basic.ContainerImage', {
      */
     updateHeight: function(height){
         //noinspection JSAccessibilityCheck,JSUnresolvedFunction
-        let sizingElement = this.element;
+        var sizingElement = this.element;
         sizingElement.setHeight(height);
         
         //noinspection JSAccessibilityCheck

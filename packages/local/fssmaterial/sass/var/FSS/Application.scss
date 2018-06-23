@@ -34,6 +34,7 @@ $fss-flat-button-background-color: dynamic(#9A1C36);
 $fss-menu-border: 1px solid;
 $fss-menu-no-border: 0px solid;
 $fss-menu-border-color: dynamic(material-color($accent-color-name, '200'));
+$fss-menu-alt-border-color: dynamic(material-color($blue-color-name, 'a200'));
 
 /* input */
 $fss-text-input-color: dynamic(#4978C7);

@@ -1,7 +1,11 @@
 .fssDetails {
-    max-width: 765px;
+    max-width: 810px;
     padding: 15px;
     background-color: $fss-page-light-background;
+
+    &.fssDefaultLeague {
+        margin-left: 150px;
+    }
     
     > .#{$prefix}body-el {
         background-color: $fss-page-lighter-background;
@@ -9,9 +13,9 @@
         .fssDetailsHeader {
             height: 370px;
             
-            &.fss-container-img {
-                background-size: contain;
-                background-position: center;
+            &.fssContainerImg {
+                background-size: 810px 305px;
+                background-repeat: no-repeat;
             }
             
             .flexer {

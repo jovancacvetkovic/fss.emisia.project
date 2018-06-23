@@ -35,121 +35,153 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', {
 
     config: {
         activeLeague: undefined,
-        activeList: undefined
+        activeLeagues: undefined,
+        activeLists: [
+            'leagueList',
+            'subLeagueList',
+            'teamList'
+        ],
+        listCount: 0,
+        dbUrlTemplates: [
+            'LEAGUE',
+            'LEAGUE/{0}',
+            'LEAGUE/{0}/SUB_LEAGUE/{1}'
+        ],
+        previousLeague: undefined,
+        defaultLeague: true
     },
 
-    rootUrlTpl: 'LEAGUE/{0}',
+    loadDefaultLeague: function (itemId) {
+        var dbQueryUrl = this.getDbUrl(undefined, itemId);
+        this.loadLeague(dbQueryUrl);
+    },
 
-    subUrlTpl: 'LEAGUE/{0}/SUB_LEAGUE/{1}',
+    loadLeague: function (url) {
+        var leagues = FSS.firebase.database().ref(url);
+        leagues.once('value').then(this.loadLeagueList.bind(this));
+    },
 
     loadLeagueList: function (snapshot) {
-        var leagues = snapshot.val();
-        var leagueList = this.lookup('leagueList');
+        var rawLeagues = snapshot.val();
+        var leagueList = this.getActiveList();
+
+        var subLeagues = FSS.Util.safeGet(rawLeagues, 'SUB_LEAGUE');
+        var leagues = subLeagues ? subLeagues : rawLeagues;
         leagues = this.mixins.prepare.prepareLeaguesData(leagues);
 
         var activeLeague = this.getActiveLeague();
         var leagueController = leagueList.getController();
-        if (activeLeague) {
-            leagueController.setActiveListItem(activeLeague.league);
-        }
-
-        leagueController.loadListData(leagues, 'subLeagueList');
-    },
-
-    onListItemSelect: function (itemId, nextListReference) {
-        let leagueList = this.findList(nextListReference);
-        let dbQueryUrl = Ext.String.format(this.rootUrlTpl, itemId);
-        leagueList.getController().setActiveListItem(this.getActiveLeague().subLeague);
-
-        if (nextListReference === 'teamList') {
-            leagueList.getController().setActiveListItem(this.getActiveLeague().team);
-            dbQueryUrl = Ext.String.format(this.subUrlTpl, this.getActiveLeague().league, itemId);
-        }
-
-        this.setActiveList(nextListReference);
-        var store = leagueList.getStore();
-        var range = store.getRange();
-
-        debugger;
-        if (!range.length) {
-            this.setMasked(true);
-            let leagues = FSS.firebase.database().ref(dbQueryUrl);
-            var loadFn = Ext.Function.bind(this.loadList, this, [nextListReference], 1);
-            leagues.once('value').then(loadFn);
+        leagueController.setActiveListItem(activeLeague);
+        if (Ext.isArray(leagues) && leagues.length) {
+            leagueController.loadListData(leagues);
+            this.fireEvent('e_loadDetails', activeLeague, false);
         }
         else {
-            if (nextListReference !== 'teamList') {
-                leagueList.getController().onLoadHandler(store, range, nextListReference);
+            var previousLeague = this.getPreviousLeague();
+            if (previousLeague !== this.getSelectedId(leagueList)) {
+                this.expandLists();
             }
-            else {
-                this.setMasked(false);
+            debugger;
+            this.fireEvent('e_loadDetails', previousLeague, this.getDefaultLeague());
+        }
+
+        this.setMasked(false);
+    },
+
+    expandLists: function () {
+        var leagueList = this.getActiveList();
+        var activeLeagues = this.getActiveLeagues();
+        if (activeLeagues.length) {
+            var remainingListsIndex = activeLeagues.length + 1;
+            var activeLists = this.getActiveLists();
+            var currentListIndex = activeLists.indexOf(leagueList.reference);
+
+            while (currentListIndex <= remainingListsIndex) {
+                this.fireEvent('expandList', false, activeLists[currentListIndex]);
+                currentListIndex++;
             }
+        }
+        else {
+            this.fireEvent('expandList', false, leagueList.reference);
         }
     },
 
-    setActiveLeague: function (league) {
+    getSelectedId: function (list) {
+        var selected = list.getSelectable().getSelectedRecord();
+        if (selected) {
+            selected = selected.get('id')
+        }
+
+        return selected;
+    },
+
+    pullActiveLeague: function () {
+        var activeLeague = this.getActiveLeague();
+        this.setPreviousLeague(activeLeague);
+
+        var leagues = this.getActiveLeagues();
+        activeLeague = leagues.pop();
+        if (activeLeague) {
+            this.setActiveLeague(activeLeague);
+        }
+
+        var leagueList = this.getActiveList();
+        leagueList.setSelectedId(this.getPreviousLeague());
+
+        this._activeLeagues = leagues;
+
+        return activeLeague;
+    },
+
+    getDbUrl: function (previousLeague, itemId) {
+        var urlTemplates = this.getDbUrlTemplates();
+        var listCount = this.getListCount();
+        var leagues = this.getActiveLeagues();
+        var tplNo = listCount - leagues.length - 1;
+        var urlTpl = urlTemplates[tplNo];
+        var url = Ext.String.format(urlTpl, itemId);
+        var match = urlTpl.match(/{.}/g);
+        if (match && match.length > 1) {
+            url = Ext.String.format(urlTpl, previousLeague, itemId);
+        }
+        return url;
+    },
+
+    getActiveList: function () {
+        var lists = this.getActiveLists();
+        var listCount = this.getListCount();
+        var leagues = this.getActiveLeagues();
+        var listNo = listCount - leagues.length - 1;
+
+        return this.findList(lists[listNo]);
+    },
+
+    onListItemSelect: function (itemId) {
+        var previousLeague = this.getPreviousLeague();
+        this.pullActiveLeague();
+
+        var dbQueryUrl = this.getDbUrl(previousLeague, itemId);
+        this.loadLeague(dbQueryUrl);
+    },
+
+    setActiveLeagues: function (leagues) {
         this.setMasked(true);
 
         //noinspection JSUnusedGlobalSymbols
-        this._activeLeague = league;
-        if (league) {
-            var mainLeague = league.league;
-            var isMainLeagueLoaded = false;
-            var subLeague = league.subLeague;
+        this._activeLeagues = leagues;
+        if (leagues) {
+            this.setListCount(leagues.length);
+            var defaultLeague = this.pullActiveLeague();
 
             var leagueList = this.findList('leagueList');
+            var isDefaultLeagueLoaded = leagueList.getStore().getCount();
 
-            if (mainLeague) {
-                isMainLeagueLoaded = leagueList.getStore().getCount();
-            }
-            debugger;
-            this.setActiveList('leagueList');
-            if (isMainLeagueLoaded) {
-                var itemId = league.league;
-                leagueList.getController().setActiveListItem(itemId);
-                this.onListItemSelect(itemId, 'subLeagueList');
+            if (isDefaultLeagueLoaded) {
+                leagueList.getController().setActiveListItem(defaultLeague);
+                this.onListItemSelect(defaultLeague);
             } else {
-                this.loadDefaultLeague();
+                this.loadDefaultLeague(defaultLeague);
             }
-        }
-    },
-
-    loadDefaultLeague: function () {
-        this.setActiveList('mainList');
-        var leagues = FSS.firebase.database().ref('LEAGUE');
-        leagues.once('value').then(this.loadLeagueList.bind(this));
-    },
-
-    loadList: function (snapshot, reference) {
-        debugger;
-        //noinspection JSUnresolvedFunction
-        let league = snapshot.val();
-        let leagues = FSS.Util.safeGet(league, 'SUB_LEAGUE');
-        var isActiveList = reference !== this.getActiveList();
-        if (leagues) {
-            leagues = this.mixins.prepare.prepareLeaguesData(leagues);
-
-            var hasItems = !!(leagues && leagues.length);
-            if (hasItems) {
-                let leagueList = this.findList(reference);
-
-                leagueList.setRootId(snapshot.key);
-
-                var controller = leagueList.getController();
-
-                var activeLeague = this.getActiveLeague()[reference === 'teamList' ? 'team' : 'subLeague'];
-                controller.setActiveListItem(activeLeague);
-                this.setActiveList(reference);
-
-                controller.loadListData(leagues, 'teamList');
-            }
-            debugger;
-            this.fireEvent('expandList', hasItems && !isActiveList, reference);
-        }
-        else {
-            debugger;
-            this.fireEvent('expandList', !isActiveList, reference);
-            this.setMasked(false);
         }
     },
 
@@ -162,20 +194,32 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', {
     },
 
     onMainListSelectRouteHandler: function (list, child) {
-        this.setActiveList('leagueList');
-        this.redirectTo('FSS/browser/' + child.record.id);
+        if (child.record) {
+            this.setDefaultLeague(child.record.id);
+            this.redirectTo('FSS/browser/' + child.record.id);
+        }
     },
 
     onSubListSelectRouteHandler: function (list, child) {
-        this.setActiveList('subLeagueList');
-        let rootId = this.findList('subLeagueList').getRootId();
-        this.redirectTo('FSS/browser/' + rootId + '/' + child.record.id);
+        this.setDefaultLeague(null);
+
+        if (child.record) {
+            var leagueList = this.findList('leagueList');
+            var selectedId = this.getSelectedId(leagueList);
+            this.redirectTo('FSS/browser/' + selectedId + '/' + child.record.id);
+        }
     },
 
     onTeamListSelectRouteHandler: function (list, child) {
-        this.setActiveList('teamList');
-        let subId = this.findList('subLeagueList').getRootId();
-        let rootId = this.findList('teamList').getRootId();
-        this.redirectTo('FSS/browser/' + subId + '/' + rootId + '/' + child.record.id);
+        this.setDefaultLeague(null);
+
+        if (child.record) {
+            var leagueList = this.findList('leagueList');
+            var subId = this.getSelectedId(leagueList);
+
+            var subLeagueList = this.findList('subLeagueList');
+            var selectedId = this.getSelectedId(subLeagueList);
+            this.redirectTo('FSS/browser/' + subId + '/' + selectedId + '/' + child.record.id);
+        }
     }
 });

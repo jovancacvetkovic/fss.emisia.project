@@ -19,15 +19,19 @@ Ext.define('FSS.view.desktop.tabpanel.browser.details.DetailsController', {
     
     detailsUrlTpl: 'DETAILS/{0}',
     
-    onLoadDetails: function(id){
-        let dbDetailsUrl = Ext.String.format(this.detailsUrlTpl, id);
-        let leagues = FSS.firebase.database().ref(dbDetailsUrl);
+    onLoadDetails: function(id, defaultLeague){
+        var dbDetailsUrl = Ext.String.format(this.detailsUrlTpl, id);
+        var leagues = FSS.firebase.database().ref(dbDetailsUrl);
         leagues.once('value').then(this.loadDetails.bind(this));
+
+        var clsFn = defaultLeague ? 'addCls' : 'removeCls';
+        debugger;
+        this.getView().el[clsFn]('fssDefaultLeague');
     },
     
     loadDetails: function(snapshot){
         //noinspection JSUnresolvedFunction
-        let details = snapshot.val();
+        var details = snapshot.val();
         this.getViewModel().set('leagueDetails', {
             name: FSS.Util.safeGet(details, 'NAME'),
             fullName: FSS.Util.safeGet(details, 'FULL_NAME'),

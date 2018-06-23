@@ -1,6 +1,6 @@
-@import "../../../../../var/FSS/Application";
+@import "../../../../../../var/FSS/Application";
 
-.fssBasic {
+.fssBaseTab {
     background-color: $fss-page-light-background;
     
     .#{$prefix}panel-body-el{
