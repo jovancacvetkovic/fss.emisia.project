@@ -7,10 +7,11 @@ Ext.define('FSS.view.desktop.tabpanel.browser.BrowserModel', {
     
     stores: {
     },
+
+    locale: {
+        title: 'Pretraživač'
+    },
     
     data: {
-        appLocale: {
-            title: 'Pretraživač'
-        }
     }
 });

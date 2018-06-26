@@ -17,9 +17,10 @@ Ext.define('FSS.view.desktop.tabpanel.messages.MessagesModel', {
         */
     },
 
+    locale: {
+        title: 'Poruke'
+    },
+
     data: {
-        appLocale: {
-            title: 'Poruke'
-        }
     }
 });

@@ -25,7 +25,6 @@ Ext.define('FSS.view.desktop.tabpanel.browser.details.DetailsController', {
         leagues.once('value').then(this.loadDetails.bind(this));
 
         var clsFn = defaultLeague ? 'addCls' : 'removeCls';
-        debugger;
         this.getView().el[clsFn]('fssDefaultLeague');
     },
     

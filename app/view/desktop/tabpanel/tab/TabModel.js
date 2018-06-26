@@ -5,11 +5,11 @@ Ext.define('FSS.view.desktop.tabpanel.tab.TabModel', {
     stores: {
     },
 
+    locale: {
+        title: ''
+    },
+
     data: {
-        appLocale: {
-            title: ''
-        },
-    
         activeRoute: null
     }
 });

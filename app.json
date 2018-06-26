@@ -24,8 +24,11 @@
 
     "requires": [
         "font-awesome",
-        "font-pictos"
+        "font-pictos",
+        "ext-locale"
     ],
+
+    "locale": "en",
 
     "indexHtmlPath": "index.html",
 

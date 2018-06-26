@@ -1,3 +1,4 @@
+// noinspection JSCheckFunctionSignatures
 Ext.define('FSS.view.desktop.tabpanel.tab.TabController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.fssTabController',
@@ -7,10 +8,10 @@ Ext.define('FSS.view.desktop.tabpanel.tab.TabController', {
             'painted': 'setScrollerLayout'
         }
     },
-    
+
     init: function(){
         this.getView().applyBind({
-            title: '{appLocale.title}'
+            title: '{locale#title}'
         });
     
     

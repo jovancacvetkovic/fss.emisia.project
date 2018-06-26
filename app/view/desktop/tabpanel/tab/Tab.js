@@ -12,12 +12,5 @@ Ext.define('FSS.view.desktop.tabpanel.tab.Tab', {
 
     controller: 'fssTabController',
 
-    baseCls: 'fssBaseTab',
-    
-    tab: {
-        viewModel: 'fssTabModel',
-        bind: {
-            title: '{appLocale.title}'
-        }
-    }
+    baseCls: 'fssBaseTab'
 });

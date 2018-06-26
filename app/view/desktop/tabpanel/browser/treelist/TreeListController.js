@@ -81,7 +81,7 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', {
             if (previousLeague !== this.getSelectedId(leagueList)) {
                 this.expandLists();
             }
-            debugger;
+
             this.fireEvent('e_loadDetails', previousLeague, this.getDefaultLeague());
         }
 

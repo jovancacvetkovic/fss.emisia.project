@@ -13,7 +13,7 @@ Ext.define('FSS.view.desktop.tabpanel.header.actions.Actions', {
     xtype: 'fssHeaderActions',
 
     cls: 'fssHeaderActionsBar',
-    
+
     viewModel: {
         type: 'fssHeaderActionsModel'
     },
@@ -21,13 +21,11 @@ Ext.define('FSS.view.desktop.tabpanel.header.actions.Actions', {
     controller: 'fssHeaderActionsController',
 
     config: {
-        userAction: {
-
-        }
+        userAction: {}
     },
-    
+
     ui: 'tabbar',
-    
+
     items: [{
         xtype: 'fssHeaderActionItem',
         iconCls: 'pictos pictos-bell'
@@ -36,6 +34,18 @@ Ext.define('FSS.view.desktop.tabpanel.header.actions.Actions', {
         iconCls: 'pictos pictos-chat'
     }, {
         xtype: 'fssHeaderActionItem',
-        iconCls: 'pictos pictos-user'
+        iconCls: 'pictos pictos-user',
+        menu: [{
+            text: 'Languages',
+            menu: [{
+                bind: {
+                    text: '{appLocale.enLocale}'
+                }
+            }, {
+                bind: {
+                    text: '{appLocale.srLocale}'
+                }
+            }]
+        }]
     }]
 });
