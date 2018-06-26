@@ -138,7 +138,7 @@ Ext.define('FSS.view.desktop.basic.ContainerImage', {
      */
     applySrc: function(src){
         if(!Ext.isString(src)){
-            src = src.url ? src.url : '';
+            src = src && src.url ? src.url : '';
         }
         return src && Ext.resolveResource(src);
     },
