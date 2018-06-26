@@ -1,5 +1,5 @@
 /**
- * Created by emisia on 5/8/18.
+ * FSS Desktop TabPanel Header Actions View
  */
 Ext.define('FSS.view.desktop.tabpanel.header.actions.Actions', {
     extend: 'Ext.Toolbar',
@@ -14,14 +14,14 @@ Ext.define('FSS.view.desktop.tabpanel.header.actions.Actions', {
 
     cls: 'fssHeaderActionsBar',
 
-    viewModel: {
-        type: 'fssHeaderActionsModel'
-    },
-
     controller: 'fssHeaderActionsController',
 
     config: {
         userAction: {}
+    },
+
+    viewModel: {
+        type: 'fssHeaderActionsModel'
     },
 
     ui: 'tabbar',
@@ -36,14 +36,16 @@ Ext.define('FSS.view.desktop.tabpanel.header.actions.Actions', {
         xtype: 'fssHeaderActionItem',
         iconCls: 'pictos pictos-user',
         menu: [{
-            text: 'Languages',
+            bind: {
+                text: '{locale#languages}'
+            },
             menu: [{
                 bind: {
-                    text: '{appLocale.enLocale}'
+                    text: '{locale#en}'
                 }
             }, {
                 bind: {
-                    text: '{appLocale.srLocale}'
+                    text: '{locale#sr}'
                 }
             }]
         }]
