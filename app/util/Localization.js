@@ -1,22 +1,19 @@
 Ext.define('FSS.util.Localization', {
-    alternateClassName: 'FSS.Locale',
     singleton: true,
 
+    constructor: function () {
+        this.callParent(arguments);
+        FSS.LocaleStore = Ext.create('FSS.store.Localization', {});
+    },
+
     loadLocales: function (url) {
-        Ext.Loader.loadScript({
-                url: url,
-                onLoad: this.onSuccess,
-                onError: this.onFailure,
-                scope: this
-            }
-        );
+        FSS.LocaleStore.proxy.setUrl(url);
+        FSS.LocaleStore.load();
     },
 
-    onSuccess: function () {
-        window.location.reload();
-    },
-
-    onFailure: function () {
-        Ext.Msg.alert('Failure', 'Failed to load locale file.');
+    getLocaleUrl: function () {
+        return FSS.LocaleStore.getLocaleUrl();
     }
+}, function () {
+    FSS.Locale = FSS.util.Localization;
 });

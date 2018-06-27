@@ -5,25 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=10, user-scalable=yes">
-    
+
     <title>FSS</title>
-    
+
     <link rel="manifest" href="manifest.json"/>
-    
+
     <script>
         var FSS = FSS || {};
+
+        //<debug>, @formatter:off
+            // detect if application is running in dev mode
+            // in production mode everything within <debug> tags is removed
+            FSS.isDev = true;
+        //</debug>, @formatter:on
     </script>
-    
+
     <!-- The line below must be kept intact for Sencha Cmd to build your application -->
-    <script id="microloader" data-app="e808b5ad-3dda-4ef0-b612-65086b013d16" type="text/javascript" src="bootstrap.js"></script>
-    
+    <script id="microloader" data-app="e808b5ad-3dda-4ef0-b612-65086b013d16" type="text/javascript"
+            src="bootstrap.js"></script>
+
     <style type="text/css">
         .pulse-logo, .pulse-circle {
             position: absolute;
             margin: auto;
             display: block;
         }
-        
+
         .pulse-logo {
             z-index: 1;
             width: 100%;
@@ -58,7 +65,7 @@
                 -webkit-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
             }
         }
-        
+
         @keyframes pulse-circle {
             0% {
                 -moz-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0.4);
@@ -77,7 +84,9 @@
 </head>
 <body>
 
-<div class="pulse-logo" id="pulse-logo"><div class="pulse-circle"></div></div>
+<div class="pulse-logo" id="pulse-logo">
+    <div class="pulse-circle"></div>
+</div>
 
 </body>
 </html>

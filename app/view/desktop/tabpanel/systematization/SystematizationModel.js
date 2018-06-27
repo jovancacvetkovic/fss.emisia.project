@@ -18,7 +18,7 @@ Ext.define('FSS.view.desktop.tabpanel.systematization.SystematizationModel', {
     },
 
     locale: {
-        title: 'Sistematizacija'
+        title: 'Systematization'
     },
 
     data: {

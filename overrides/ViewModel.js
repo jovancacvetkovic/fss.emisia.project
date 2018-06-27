@@ -5,14 +5,9 @@
 Ext.define('FSS.overrides.ViewModel', {
     override: 'Ext.app.ViewModel',
 
-    config: {
-        /**
-         * @cfg {Object}
-         * ViewModel locale object.
-         * This is where all locale strings should be set.
-         */
-        locale: true
-    },
+    mixins: [
+        'FSS.mixin.Localization'
+    ],
 
     /**
      * @private
@@ -21,6 +16,13 @@ Ext.define('FSS.overrides.ViewModel', {
      * EG locale#title, locale#fieldLabel, ... etc...
      */
     localeRe: /^{locale#/,
+
+    constructor: function (config) {
+        this.callParent([config]);
+
+        // localization mixin call
+        this.initLocalization();
+    },
 
     /**
      * @inheritDoc

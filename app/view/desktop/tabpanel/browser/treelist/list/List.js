@@ -1,5 +1,5 @@
 /**
- * Created by emisia on 5/17/18.
+ * FSS Browser List
  */
 Ext.define('FSS.view.desktop.tabpanel.browser.treelist.list.List', {
     extend: 'Ext.dataview.List',
@@ -36,11 +36,8 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.list.List', {
         triggerCtEvent: 'prevent-tap'
     },
 
-    store: {
-        grouper: {
-            property: 'group',
-            direction: 'DESC'
-        }
+    bind: {
+        store: '{list}'
     },
 
     itemTpl: '{name:htmlEncode}',

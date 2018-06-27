@@ -6,10 +6,10 @@ Ext.define('FSS.view.desktop.tabpanel.header.actions.ActionsModel', {
     alias: 'viewmodel.fssHeaderActionsModel',
 
     locale: {
-        languages: 'Languages',
+        "languages": "Languages",
 
-        en: 'English',
-        sr: 'Serbian'
+        "en": "English",
+        "sr": "Serbian"
     },
 
     data: {

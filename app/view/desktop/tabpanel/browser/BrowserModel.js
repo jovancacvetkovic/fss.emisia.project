@@ -9,7 +9,7 @@ Ext.define('FSS.view.desktop.tabpanel.browser.BrowserModel', {
     },
 
     locale: {
-        title: 'Pretraživač'
+        title: 'Browser'
     },
     
     data: {

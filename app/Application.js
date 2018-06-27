@@ -1,4 +1,4 @@
-//noinspection JSUnusedLocalSymbols
+//noinspection JSUnusedLocalSymbols,JSCheckFunctionSignatures
 /**
  * The main application class. An instance of this class is created by app.js when it
  * calls Ext.application(). This is the ideal place to handle application launch and
@@ -8,8 +8,11 @@ Ext.define('FSS.Application', {
     extend: 'Ext.app.Application',
     
     require: [
+        'FSS.util.Localization',
         'FSS.util.Logger',
-        'FSS.util.Util'
+        'FSS.util.Util',
+
+        'FSS.store.Localization'
     ],
     
     name: 'FSS',
@@ -29,9 +32,14 @@ Ext.define('FSS.Application', {
             unmatchedroute: 'onUnmatchedRoute'
         }
     },
+
+    launch: function(){
+        var localeUrl = FSS.Locale.getLocaleUrl();
+        FSS.Locale.loadLocales(localeUrl);
+    },
     
     onUnmatchedRoute: function(hash){
-        console.error('Route ' + hash + ' not found');
+        Logger.error('Route ' + hash + ' not found');
     },
     
     /**
@@ -122,7 +130,7 @@ Ext.define('FSS.Application', {
      * @param error
      */
     onDenyPermissions: function(error){
-        console.error('Messaging permissions denied by user. User will not be able to see push notifications for this application.');
+        Logger.error('Messaging permissions denied by user. User will not be able to see push notifications for this application.');
     },
     
     /**
@@ -131,7 +139,7 @@ Ext.define('FSS.Application', {
      */
     onFirebaseToken: function(token){
         // Save firebase token
-        console.log('Firebase token: ', token);
+        Logger.info('Firebase token: ', token);
     },
     
     /**
@@ -139,7 +147,7 @@ Ext.define('FSS.Application', {
      * @return {String}
      */
     onGrantPermissions: function(){
-        console.log('Messaging permissions granted by user.');
+        Logger.info('Messaging permissions granted by user.');
         return FSS.messaging.getToken(); // Return firebase token for authentication
     },
     

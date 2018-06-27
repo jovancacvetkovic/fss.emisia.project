@@ -2,5 +2,22 @@
     "name": "locale",
     "version": "en",
     "translations": {
+        "FSS.view.desktop.tabpanel.header.actions.ActionsModel": {
+            "languages": "Languages",
+            "en": "English",
+            "sr": "Serbian"
+        },
+
+        "FSS.view.desktop.tabpanel.browser.BrowserModel": {
+            "title": "Browser"
+        },
+
+        "FSS.view.desktop.tabpanel.messages.MessagesModel": {
+            "title": "Messages"
+        },
+
+        "FSS.view.desktop.tabpanel.systematization.SystematizationModel": {
+            "title": "Systematization"
+        }
     }
 }

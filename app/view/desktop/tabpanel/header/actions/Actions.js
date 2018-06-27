@@ -39,15 +39,22 @@ Ext.define('FSS.view.desktop.tabpanel.header.actions.Actions', {
             bind: {
                 text: '{locale#languages}'
             },
-            menu: [{
-                bind: {
-                    text: '{locale#en}'
-                }
-            }, {
-                bind: {
-                    text: '{locale#sr}'
-                }
-            }]
+            menu: {
+                defaults: {
+                    handler: 'onLocaleTriggered'
+                },
+                items: [{
+                    bind: {
+                        text: '{locale#en}'
+                    },
+                    itemId: 'en'
+                }, {
+                    bind: {
+                        text: '{locale#sr}'
+                    },
+                    itemId: 'sr'
+                }]
+            }
         }]
     }]
 });

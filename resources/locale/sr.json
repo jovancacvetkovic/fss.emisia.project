@@ -1,6 +1,23 @@
 {
     "name": "locale",
-    "version": "en",
+    "version": "sr",
     "translations": {
+        "FSS.view.desktop.tabpanel.header.actions.ActionsModel": {
+            "languages": "Jezici",
+            "en": "Engleski",
+            "sr": "Srpski"
+        },
+
+        "FSS.view.desktop.tabpanel.browser.BrowserModel": {
+            "title": "Pretraživač"
+        },
+
+        "FSS.view.desktop.tabpanel.messages.MessagesModel": {
+            "title": "Poruke"
+        },
+
+        "FSS.view.desktop.tabpanel.systematization.SystematizationModel": {
+            "title": "Sistematizacija"
+        }
     }
 }
