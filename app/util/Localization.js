@@ -1,3 +1,9 @@
+/**
+ * FSS localization util
+ * FSS localization store wrapper
+ *
+ * NOTE: testing other languages then EN, you should set FSS.isDev to `false` in index.html file
+ */
 Ext.define('FSS.util.Localization', {
     singleton: true,
 
@@ -7,8 +13,10 @@ Ext.define('FSS.util.Localization', {
     },
 
     loadLocales: function (url) {
-        FSS.LocaleStore.proxy.setUrl(url);
-        FSS.LocaleStore.load();
+        if (url) {
+            FSS.LocaleStore.proxy.setUrl(url);
+            FSS.LocaleStore.load();
+        }
     },
 
     getLocaleUrl: function () {

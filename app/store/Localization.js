@@ -25,9 +25,10 @@ Ext.define('FSS.store.Localization', {
     },
 
     getLocale: function () {
-        var locale = Ext.util.Cookies.get('locale') ? Ext.util.Cookies.get('locale') : (
+        var locale = Ext.util.Cookies.get('locale');
+        locale = locale ? locale : (
             Ext.locale ? Ext.locale : (
-                FSS.isDev ? '' : 'en'
+                'en'
             )
         );
 
@@ -36,6 +37,6 @@ Ext.define('FSS.store.Localization', {
 
     getLocaleUrl: function () {
         var locale = this.getLocale();
-        return Ext.String.format(this.localeUrlTemplate, locale);
+        return FSS.isDev ? undefined : Ext.String.format(this.localeUrlTemplate, locale);
     }
 });
