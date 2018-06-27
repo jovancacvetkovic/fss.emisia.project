@@ -6,7 +6,7 @@
  */
 Ext.define('FSS.Application', {
     extend: 'Ext.app.Application',
-    
+
     require: [
         'FSS.util.Localization',
         'FSS.util.Logger',
@@ -14,47 +14,49 @@ Ext.define('FSS.Application', {
 
         'FSS.store.Localization'
     ],
-    
+
     name: 'FSS',
-    
+
     quickTips: false,
-    
+
     defaultToken: 'FSS',
-    
+
     platformConfig: {
         desktop: {
             quickTips: true
         }
     },
-    
+
     listen: {
         global: {
             unmatchedroute: 'onUnmatchedRoute'
         }
     },
 
-    launch: function(){
+    launch: function () {
+        this.callParent(arguments);
+
         var localeUrl = FSS.Locale.getLocaleUrl();
         FSS.Locale.loadLocales(localeUrl);
     },
-    
-    onUnmatchedRoute: function(hash){
+
+    onUnmatchedRoute: function (hash) {
         Logger.error('Route ' + hash + ' not found');
     },
-    
+
     /**
      * @inheritDoc
      */
-    onAppUpdate: function(){
+    onAppUpdate: function () {
         Ext.Msg.confirm('Application Update', 'This application has an update, reload?',
-            function(choice){
+            function (choice) {
                 if (choice === 'yes') {
                     window.location.reload();
                 }
             }
         );
     },
-    
+
     /**
      * On application launch handler
      * Firebase: registers firebase application GCM (Google Cloud Messaging, eg Push Notifications)
@@ -64,19 +66,19 @@ Ext.define('FSS.Application', {
      *
      * NOTE: This will stop app initialization and continue after firebase iz initialized
      */
-    onProfilesReady: function(){
+    onProfilesReady: function () {
         // Init firebase
         FSS.firebase = firebase; // jshint ignore:line
-        
+
         // Hide loading logo
         Ext.getBody().down('#pulse-logo').hide();
-        
+
         Ext.Ajax.request({
             url: 'firebase-config.json',
             success: this.initMessaging.bind(this)
         });
     },
-    
+
     /**
      * Initialize firebase push notifications
      *
@@ -84,78 +86,78 @@ Ext.define('FSS.Application', {
      * @param {FSS.type.ajax.Response} response
      * @param {FSS.type.ajax.Options} options
      */
-    initMessaging: function(response, options){ // jshint ignore:line
+    initMessaging: function (response, options) { // jshint ignore:line
         let responseText = response.responseText;
         let config = Ext.JSON.decode(responseText);
-        
+
         //noinspection JSUnresolvedFunction
         let firebase = config.firebase;
-        
+
         //noinspection JSUnresolvedFunction
         FSS.firebase.initializeApp(firebase); // Init firebase app
-        
+
         // Initialize firebase database
         FSS.database = FSS.firebase.database().ref(); // jshint ignore:line
-        
+
         // Init messaging
         FSS.messaging = FSS.firebase.messaging();
-        
+
         // Register public api key for messaging
         //noinspection JSUnresolvedFunction,JSUnresolvedVariable
         FSS.messaging.usePublicVapidKey(firebase.vapidKey);
-        
+
         // Request used to allow notifications
         FSS.messaging.requestPermission()
             .then(this.onGrantPermissions)
             .then(this.onFirebaseToken)
             .catch(this.onDenyPermissions);
-        
+
         if (Notification) { // Test push notifications support
             FSS.Notification = Notification;
         }
-        
+
         if (FSS.Notification) {
             FSS.messaging.onMessage(this.onMessageHandler.bind(this));
         }
         else {
             console.error('Push Notifications are not supported by browser.');
         }
-        
+
         // Continue with app startup
         this.superclass.superclass.onProfilesReady.call(this);
     },
-    
+
     /**
      * Denied permissions handler
      * @param error
      */
-    onDenyPermissions: function(error){
+    onDenyPermissions: function (error) {
         Logger.error('Messaging permissions denied by user. User will not be able to see push notifications for this application.');
     },
-    
+
     /**
      * Firebase token handler. Save token for authentication
      * @param {String} token
      */
-    onFirebaseToken: function(token){
+    onFirebaseToken: function (token) {
         // Save firebase token
         Logger.info('Firebase token: ', token);
     },
-    
+
     /**
      * Granted user permissions handler
      * @return {String}
      */
-    onGrantPermissions: function(){
+    onGrantPermissions: function () {
         Logger.info('Messaging permissions granted by user.');
         return FSS.messaging.getToken(); // Return firebase token for authentication
     },
-    
+
     /**
      * Push notifications handler. Test weather browser supports notification and show message
      * @param {FSS.type.PushMessage} pushMessage
      */
-    onMessageHandler: function(pushMessage){
+    onMessageHandler: function (pushMessage) {
         new FSS.Notification(pushMessage.notification.title, pushMessage.notification);
     }
 });
