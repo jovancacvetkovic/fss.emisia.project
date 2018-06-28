@@ -12,6 +12,7 @@
 
     <script>
         var FSS = FSS || {};
+        var TEST = TEST || {};
 
         //<debug>, @formatter:off
             // detect if application is running in dev mode
@@ -43,69 +44,11 @@
     <!-- Dynamically replaced with <script> tags -->
     %SCRIPTS%
 
-    <style type="text/css">
-        .pulse-logo, .pulse-circle {
-            position: absolute;
-            margin: auto;
-            display: block;
-        }
-
-        .pulse-logo {
-            z-index: 1;
-            width: 100%;
-            height: 100%;
-            cursor: pointer;
-            background-image: url(/resources/images/fssmodern/fss-srbije-logo.svg);
-            background-repeat: no-repeat;
-            background-size: 100px;
-            background-position: center;
-            background-color: rgba(255, 255, 255, 0.3);
-        }
-
-        .pulse-circle {
-            z-index: 2;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            box-shadow: 0 0 0 rgba(204, 169, 44, 1);
-            animation: pulse-circle 1.5s infinite;
-            top: calc(50% - 15px);
-            left: calc(50% - 15px);
-        }
-
-        @-webkit-keyframes pulse-circle {
-            0% {
-                -webkit-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0.4);
-            }
-            70% {
-                -webkit-box-shadow: 0 0 0 100px rgba(204, 169, 44, 0);
-            }
-            100% {
-                -webkit-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
-            }
-        }
-
-        @keyframes pulse-circle {
-            0% {
-                -moz-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0.4);
-                box-shadow: 0 0 0 0 rgba(204, 169, 44, 0.4);
-            }
-            70% {
-                -moz-box-shadow: 0 0 0 100px rgba(204, 169, 44, 0);
-                box-shadow: 0 0 0 100px rgba(204, 169, 44, 0);
-            }
-            100% {
-                -moz-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
-                box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
-            }
-        }
-    </style>
 </head>
 <body>
 
-<div class="pulse-logo" id="pulse-logo">
-    <div class="pulse-circle"></div>
-</div>
+    <!-- Test placeholder -->
+    <div id="test"></div>
 
 </body>
 </html>
