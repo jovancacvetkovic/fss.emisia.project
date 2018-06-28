@@ -8,7 +8,7 @@ describe('FSS.view.desktop.scroller.ScrollerController', function(){
     beforeEach(function(){
         //create a fresh grid for every test to avoid test pollution
         Scroller = Ext.create('FSS.view.desktop.scroller.Scroller', {
-            renderTo: 'test' //see spec-runner.html to see where this is defined
+            renderTo: 'test'
         });
         ScrollerController = Scroller.getController();
         
