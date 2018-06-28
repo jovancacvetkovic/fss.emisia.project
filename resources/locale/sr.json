@@ -18,6 +18,10 @@
 
         "FSS.view.desktop.tabpanel.systematization.SystematizationModel": {
             "title": "Sistematizacija"
+        },
+
+        "Ext.Component": {
+            "loading": "Učitava se..."
         }
     }
 }

@@ -52,8 +52,7 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.list.ListController', {
 
         var expand = records.length;
         this.fireEvent('expandList', expand, list.reference);
-
-        this.setMasked(false);
+        this.setViewportMasked(false);
     },
 
     onListSelect: function (list, listItem) {

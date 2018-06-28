@@ -1,8 +1,8 @@
 Ext.define('FSS.util.Util', {
     alternateClassName: 'FSS.Util',
     singleton: true,
-    
-    safeGet: function(root, param){
+
+    safeGet: function (root, param) {
         var properties = param.split('.');
         var len = properties.length;
         var item;
@@ -22,7 +22,7 @@ Ext.define('FSS.util.Util', {
                     if (!Ext.isEmpty(objIndex)) {
                         root = root[objIndex];
                     }
-                
+
                     item = 0;
                     while (Ext.isDefined(indexesOpened[item]) && root) {
                         root = root[objItem.substring(indexesOpened[item] + 1, indexesClosed[item])];
@@ -39,8 +39,8 @@ Ext.define('FSS.util.Util', {
         }
         return root;
     },
-    
-    indexesOf: function(text, chars){
+
+    indexesOf: function (text, chars) {
         var posPoints = [];
         var posPoint;
         var posPointCounter = 0;
@@ -54,6 +54,16 @@ Ext.define('FSS.util.Util', {
         }
         while (posPoint !== -1);
         return posPoints;
+    },
+
+    setViewportMasked: function (mask, text) {
+        if (Ext.Viewport) {
+            var masked = mask ? {
+                xtype: 'loadmask',
+                message: text
+            } : false;
+
+            Ext.Viewport.setMasked(masked);
+        }
     }
-    
 });

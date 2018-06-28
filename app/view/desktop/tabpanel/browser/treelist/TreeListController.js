@@ -84,8 +84,7 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', {
 
             this.fireEvent('e_loadDetails', previousLeague, this.getDefaultLeague());
         }
-
-        this.setMasked(false);
+        this.setViewportMasked(false);
     },
 
     expandLists: function () {
@@ -165,7 +164,7 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', {
     },
 
     setActiveLeagues: function (leagues) {
-        this.setMasked(true);
+        this.setViewportMasked(true);
 
         //noinspection JSUnusedGlobalSymbols
         this._activeLeagues = leagues;

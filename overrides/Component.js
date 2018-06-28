@@ -10,10 +10,21 @@ Ext.define('Ext.overrides.Component', {
         'FSS.mixin.Localization'
     ],
 
-    initComponent: function () {
-        this.callParent();
+    config: {
+        locale: {
+            "loading": "Loading..."
+        }
+    },
+
+    constructor: function (config) {
+        this.callParent([config]);
 
         // localization mixin call
         this.initLocalization();
+    },
+
+    setViewportMasked: function (mask, text) {
+        text = text ? text : this.getLocale().loading;
+        FSS.Util.setViewportMasked(mask, text);
     }
 });
