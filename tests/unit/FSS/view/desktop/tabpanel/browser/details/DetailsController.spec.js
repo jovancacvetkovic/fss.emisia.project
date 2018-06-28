@@ -1,14 +1,36 @@
-describe('FSS.view.desktop.basic.details.DetailsController', function(){
+describe('FSS.view.desktop.tabpanel.browser.details.DetailsController', function(){
     
     //reusable scoped variable
     var Details = null;
     var DetailsController = null;
+
+    FSS.firebase = {
+        database: function () {
+            return {
+                ref: function(){
+                    return {
+                        once: function(){
+                            return {
+                                then: function(fn){
+                                    return {
+                                        val: function(){
+                                            return [];
+                                        }
+                                    };
+                                }
+                            };
+                        }
+                    };
+                }
+            };
+        }
+    };
     
     //setup/teardown
     beforeEach(function(){
         //create a fresh grid for every test to avoid test pollution
-        Details = Ext.create('FSS.view.desktop.basic.details.Details', {
-            renderTo: 'test' //see spec-runner.html to see where this is defined
+        Details = Ext.create('FSS.view.desktop.tabpanel.browser.details.Details', {
+            renderTo: 'test'
         });
         DetailsController = Details.getController();
     });

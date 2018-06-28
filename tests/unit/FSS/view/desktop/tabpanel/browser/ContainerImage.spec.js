@@ -1,4 +1,4 @@
-describe('FSS.view.desktop.basic.ContainerImage', function(){
+describe('FSS.view.desktop.tabpanel.browser.ContainerImage', function(){
     
     //reusable scoped variable
     let image = null;
@@ -9,9 +9,9 @@ describe('FSS.view.desktop.basic.ContainerImage', function(){
             image.destroy();
         }
         //create a fresh grid for every test to avoid test pollution
-        image = Ext.create('FSS.view.desktop.basic.ContainerImage', {
+        image = Ext.create('FSS.view.desktop.tabpanel.browser.ContainerImage', {
             items: [],
-            renderTo: 'test' //see spec-runner.html to see where this is defined
+            renderTo: 'test'
         });
     });
     
