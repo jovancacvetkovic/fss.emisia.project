@@ -1,5 +1,6 @@
 // jasmine interceptors and matchers
 console.log('Live browser tests at http://localhost:5060');
+console.log('Live browser console at http://localhost:9876/');
 
 let matchers = {
     // test passed params
