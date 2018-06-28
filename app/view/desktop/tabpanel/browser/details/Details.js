@@ -5,7 +5,7 @@ Ext.define('FSS.view.desktop.tabpanel.browser.details.Details', {
     extend: 'Ext.Container',
 
     requires: [
-        'FSS.view.desktop.basic.ContainerImage',
+        'FSS.view.desktop.tabpanel.browser.ContainerImage',
         'FSS.view.desktop.tabpanel.browser.details.DetailsController',
         'FSS.view.desktop.tabpanel.browser.details.DetailsModel',
         'FSS.view.desktop.tabpanel.browser.details.banner.Banner',

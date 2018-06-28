@@ -3,7 +3,7 @@
  * This is a container which can set src property and get image as background image.
  * This will make layouts a lot easier to configure
  */
-Ext.define('FSS.view.desktop.basic.ContainerImage', {
+Ext.define('FSS.view.desktop.tabpanel.browser.ContainerImage', {
     extend: 'Ext.Container',
     
     xtype: 'fssContainerImage',
