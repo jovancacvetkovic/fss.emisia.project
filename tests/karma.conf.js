@@ -1,105 +1,98 @@
 'use strict';
-var path = require('path');
 
-module.exports = function (config) {
-    // File mapper fn
-    let getFileConfig = function (files) {
+// File mapper fn
+let getFileConfig = function (files, watched, included, served, nocache) {
+    if (typeof files === 'string') {
+        files = {
+            pattern: files,
+            watched: !!watched,
+            included: !!included,
+            served: !!served,
+            nocache: !!nocache
+        };
+    }
+    else {
         files = files.map(function (file) {
             return {
                 pattern: file,
-                watched: false,
-                included: false,
-                served: true,
-                nocache: false
+                watched: !!watched,
+                included: !!included,
+                served: !!served,
+                nocache: !!nocache
             };
         });
-
-        return files;
-    };
-
-    // Set debugging via Chrome or run ChromeHeadless in intelliJ
-    let isDebug = !!process.env.DEBUG;
-    console.log('\nDEBUG mode is', isDebug ? 'ON' : 'OFF');
-    let browsers = [isDebug ? 'Chrome' : 'ChromeHeadless'];
-
-    let reports = [];
-    let plugins = [];
-    let preprocessors = {
-        './build/testing/FSS/resources/3rdparty/**/*.js': ['sourcemap']
-    };
-    if (!isDebug) {
-        console.log('Running with reports at coverage/index.html\n');
-        reports = [
-            'spec',
-            'live-html',
-            'progress',
-            'coverage-istanbul'
-        ];
-
-        plugins = [
-            'karma-coverage',
-            'karma-spec-reporter',
-            'karma-html-live-reporter',
-            'karma-coverage-istanbul-reporter'
-        ];
-
-        preprocessors['./app/**/*.js'] = ['coverage'];
     }
 
-    let files = [
-        'tests/jasmine/override.js',
+    return files;
+};
+
+// Set debugging via Chrome or run ChromeHeadless in intelliJ
+let isDebug = !!process.env.DEBUG;
+console.log('\nDEBUG mode is', isDebug ? 'ON' : 'OFF');
+let browsers = [isDebug ? 'Chrome' : 'ChromeHeadless'];
+
+let reporters = [];
+let plugins = [];
+let preprocessors = {
+    'resources/3rdparty/**/*.js': ['sourcemap']
+};
+if (!isDebug) {
+    console.log('Running with reporters at coverage/index.html\n');
+    reporters = [
+        'spec',
+        'live-html',
+        'progress',
+        'coverage-istanbul',
+        'progress',
+        'coverage'
     ];
 
-    // Firebase JS to be served to application
-    let firebase = getFileConfig([
-        'manifest.json',
-        './build/testing/FSS/resources/3rdparty/firebase/*.js',
-        'firebase-config.json',
-        'firebase-messaging-sw.js'
-    ]);
+    plugins = [
+        'karma-chrome-launcher',
+        'karma-jasmine',
+        'karma-sourcemap-loader',
+        'karma-coverage',
+        'karma-spec-reporter',
+        'karma-html-live-reporter',
+        'karma-coverage-istanbul-reporter'
+    ];
 
-    files = files.concat(firebase);
-    // Include all js source files
-    files.push(
-        {
-            pattern: 'ext/build/ext-modern-all-debug.js',
-            included: true,
-            served: true,
-            watched: false
-        },
-        {
-            pattern: 'app/**/*.js',
-            watched: true,
-            included: true,
-            served: true,
-            nocache: false
-        },
-        {
-            pattern: 'overrides/**/*.js',
-            watched: true,
-            included: true,
-            served: true,
-            nocache: false
-        },
-        {
-            pattern: 'tests/app.js',
-            included: true,
-            served: true,
-            watched: false
-        }
-    );
+    preprocessors['app/**/*.js'] = ['coverage'];
+}
 
-    // Include all tests, should be done via regex to collect all tests
-    let test = './tests/unit/FSS/**/*.spec.js'; // NOTE: this will map all test files
+let files = [
+    'tests/jasmine/override.js',
+];
 
-    if (process.env.KARMA_TEST !== 'false' && process.env.KARMA_TEST !== undefined) { // If there is only one file
-        let file = process.env.KARMA_TEST.toString();
-        let className = file.split('unit')[1].replace('.spec.js', '').replace('/', '').replace(new RegExp('/', 'g'), '.');
-        console.log('SINGLE TEST MODE ', className);
-        test = [process.env.KARMA_TEST];
-    }
-    files.push(test);
+// Firebase JS to be served to application
+let firebase = getFileConfig([
+    'manifest.json',
+    'resources/3rdparty/firebase/*.js',
+    'firebase-config.json',
+    'firebase-messaging-sw.js'
+], false, false, true, false);
+files = files.concat(firebase);
 
+// Include all js source files
+files.push(
+    getFileConfig('ext/build/ext-modern-all-debug.js', false, true, true, false),
+    getFileConfig('app/**/*.js', true, true, true, false),
+    getFileConfig('overrides/**/*.js', true, true, true, false),
+    getFileConfig('tests/app.js', false, true, true, false)
+);
+
+// Include all tests, should be done via regex to collect all tests
+let test = 'tests/unit/FSS/**/*.spec.js'; // NOTE: this will map all test files
+
+if (process.env.KARMA_TEST !== 'false' && process.env.KARMA_TEST !== undefined) { // If there is only one file
+    let file = process.env.KARMA_TEST.toString();
+    let className = file.split('unit')[1].replace('.spec.js', '').replace('/', '').replace(new RegExp('/', 'g'), '.');
+    console.log('SINGLE TEST MODE ', className);
+    test = [process.env.KARMA_TEST];
+}
+files.push(test);
+
+module.exports = function (config) {
     config.set({
         // base path that will be used to resolve all patterns (eg. files, exclude)
         basePath: '../',
@@ -122,7 +115,7 @@ module.exports = function (config) {
 
         // level of logging
         // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-        logLevel: config.LOG_INFO,
+        logLevel: config.LOG_DISABLE,
 
         // enable / disable watching file and executing tests whenever any file changes
         autoWatch: true,
@@ -176,7 +169,7 @@ module.exports = function (config) {
         // test results reporter to use
         // possible values: 'dots', 'progress'
         // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-        reporters: reports,
+        reporters: reporters,
 
         // Karma plugins
         // only plugins in this list will be required by karma
@@ -207,28 +200,28 @@ module.exports = function (config) {
             focusMode: false
         },
 
-        // karma coverage reporter config
+        // karma istanbul coverage reporter config
         coverageIstanbulReporter: {
             // Include all source files eg app/**
             includeAllSources: true,
 
-            // reports can be any that are listed here: https://github.com/istanbuljs/istanbuljs/tree/aae256fb8b9a3d19414dcf069c592e88712c32c6/packages/istanbul-reports/lib
-            reports: ['html', 'lcovonly', 'text-summary'],
+            // reports coverage tools
+            reports: ['html', 'text-summary'],
 
             // base output directory. If you include %browser% in the path it will be replaced with the karma browser name
-            dir: 'coverage',
+            dir: 'tests/coverage',
 
             // Combines coverage information from multiple browsers into one report rather than outputting a report
             // for each browser.
-            combineBrowserReports: true,
+            combineBrowserReports: false,
 
             // if using webpack and pre-loaders, work around webpack breaking the source path
-            fixWebpackSourcePaths: true,
+            fixWebpackSourcePaths: false,
 
             // stop istanbul outputting messages like `File [${filename}] ignored, nothing could be mapped`
             skipFilesWithNoCoverage: true,
 
-            verbose: isDebug // output config used by istanbul for debugging
+            verbose: false // output config used by istanbul for debugging
         }
     });
 };

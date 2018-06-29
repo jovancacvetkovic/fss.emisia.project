@@ -37,9 +37,12 @@ Ext.define('FSS.mixin.Localization', {
 
     getSuperLocale: function (cmp, locales, locale) {
         locale = locale ? locale : {};
+        locales = locales ? locales : {};
+
         var localeKey = cmp.$className;
         var superLocaleKey = cmp.superclass ? cmp.superclass.$className : '';
         var superLocale = locales[superLocaleKey] ? locales[superLocaleKey] : {};
+
         Ext.applyIf(locale, locales[localeKey] ? locales[localeKey] : {});
         Ext.applyIf(locale, superLocale);
 
