@@ -160,4 +160,25 @@ Ext.define('FSS.Application', {
     onMessageHandler: function (pushMessage) {
         new FSS.Notification(pushMessage.notification.title, pushMessage.notification);
     }
+}, function(Cls){
+    Cls.mocks = {
+        onDenyPermissions: {
+            args: {
+                0: 'object'
+            }
+        },
+        onFirebaseToken: {
+            args: {
+                0: 'string'
+            }
+        },
+        onGrantPermissions: {
+            returns: 'string'
+        },
+        onMessageHandler: {
+            args: {
+                0: 'FSS.type.PushMessage'
+            }
+        }
+    };
 });

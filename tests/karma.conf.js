@@ -57,11 +57,13 @@ if (!isDebug) {
         'karma-coverage-istanbul-reporter'
     ];
 
-    preprocessors['app/**/*.js'] = ['coverage'];
+    // model and type folders are excluded for test coverage reports
+    preprocessors['app/!(model|type)/**/*.js'] = ['coverage'];
 }
 
 let files = [
-    'tests/jasmine/override.js',
+    // add any file in jasmine folder eg. jasmine override or global mock
+    'tests/jasmine/**/*.js'
 ];
 
 // Firebase JS to be served to application
@@ -75,21 +77,31 @@ files = files.concat(firebase);
 
 // Include all js source files
 files.push(
+    // load ExtJS
     getFileConfig('ext/build/ext-modern-all-debug.js', false, true, true, false),
+
+    // load source JS
     getFileConfig('app/**/*.js', true, true, true, false),
+
+    // load overrides JS
     getFileConfig('overrides/**/*.js', true, true, true, false),
-    getFileConfig('tests/app.js', false, true, true, false)
+
+    // load karma adapter and wait for Ext application to launch
+    getFileConfig('tests/karma.loader.js', true, true, true, false),
+
+    // load tests JS
+    getFileConfig('tests/app.js', true, true, true, false)
 );
 
 // Include all tests, should be done via regex to collect all tests
 let test = 'tests/unit/FSS/**/*.spec.js'; // NOTE: this will map all test files
 
-if (process.env.KARMA_TEST !== 'false' && process.env.KARMA_TEST !== undefined) { // If there is only one file
-    let file = process.env.KARMA_TEST.toString();
-    let className = file.split('unit')[1].replace('.spec.js', '').replace('/', '').replace(new RegExp('/', 'g'), '.');
-    console.log('SINGLE TEST MODE ', className);
-    test = [process.env.KARMA_TEST];
-}
+// if (process.env.KARMA_TEST !== 'false' && process.env.KARMA_TEST !== undefined) { // If there is only one file
+//     let file = process.env.KARMA_TEST.toString();
+//     let className = file.split('unit')[1].replace('.spec.js', '').replace('/', '').replace(new RegExp('/', 'g'), '.');
+//     console.log('SINGLE TEST MODE ', className);
+//     test = [getFileConfig(className, true, true, true, false)];
+// }
 files.push(test);
 
 module.exports = function (config) {
@@ -151,8 +163,10 @@ module.exports = function (config) {
         // proxy mapper list, these files are served via karma server
         // so we need to user proxy here to redirect them cause they are relative to karma base url
         proxies: {
+            // get test app.js instead of application app.js
             '/app.js': '/base/tests/app.js',
 
+            // proxy all to karma server, karma root is `base/`
             '/app': '/base/app',
             '/build': '/base/build',
             '/ext': '/base/ext',

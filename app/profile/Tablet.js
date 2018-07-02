@@ -1,10 +1,11 @@
+// noinspection JSCheckFunctionSignatures
 /**
- * Created by emisia on 5/7/18.
+ * Tablet profile
  */
 Ext.define('FSS.profile.Tablet', {
     extend: 'Ext.app.Profile',
 
-    xtype: 'fsstabletProfile',
+    xtype: 'fssTabletProfile',
     
     // The name of the initial view to create.
     mainView: 'FSS.view.tablet.main.Main',
@@ -16,4 +17,11 @@ Ext.define('FSS.profile.Tablet', {
     launch: function () {
         console.log('Tablet profile launched');
     }
+}, function (Cls) {
+    Cls.mocks = {
+        isActive: {
+            returns: 'boolean'
+        },
+        launch: {}
+    };
 });

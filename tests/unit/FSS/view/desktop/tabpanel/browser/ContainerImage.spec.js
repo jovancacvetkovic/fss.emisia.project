@@ -8,7 +8,6 @@ describe('FSS.view.desktop.tabpanel.browser.ContainerImage', function(){
         if (image) {
             image.destroy();
         }
-        //create a fresh grid for every test to avoid test pollution
         image = Ext.create('FSS.view.desktop.tabpanel.browser.ContainerImage', {
             items: [],
             renderTo: 'test'
@@ -16,7 +15,6 @@ describe('FSS.view.desktop.tabpanel.browser.ContainerImage', function(){
     });
     
     afterEach(function(){
-        //destroy the grid after every test so we don't pollute the environment
         image.destroy();
     });
     

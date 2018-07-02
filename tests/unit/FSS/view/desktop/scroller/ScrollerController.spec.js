@@ -6,7 +6,6 @@ describe('FSS.view.desktop.scroller.ScrollerController', function(){
     
     //setup/teardown
     beforeEach(function(){
-        //create a fresh grid for every test to avoid test pollution
         Scroller = Ext.create('FSS.view.desktop.scroller.Scroller', {
             renderTo: 'test'
         });
@@ -16,7 +15,6 @@ describe('FSS.view.desktop.scroller.ScrollerController', function(){
     });
     
     afterEach(function(){
-        //destroy the grid after every test so we don't pollute the environment
         Scroller.destroy();
     });
     

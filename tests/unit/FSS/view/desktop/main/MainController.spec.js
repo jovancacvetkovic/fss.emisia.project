@@ -6,7 +6,6 @@ describe('FSS.view.desktop.main.MainController', function () {
 
     //setup/teardown
     beforeEach(function () {
-        //create a fresh grid for every test to avoid test pollution
         Main = Ext.create('FSS.view.desktop.main.Main', {
             renderTo: 'test'
         });
@@ -17,7 +16,6 @@ describe('FSS.view.desktop.main.MainController', function () {
     });
 
     afterEach(function () {
-        //destroy the grid after every test so we don't pollute the environment
         Main.destroy();
     });
 

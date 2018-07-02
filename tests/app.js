@@ -4,10 +4,16 @@
  */
 Ext.application({
     extend: 'Ext.app.Application',
+    require: [
+        'Ext.MessageBox'
+    ],
 
     name: 'TEST',
 
     launch: function (application) {
-        console.log('___Starting UNIT tests___');
+        console.log('Starting UNIT tests\n');
+
+        window.__karma__.loaded = window.onKarmaLoaded;
+        window.__karma__.loaded();
     }
 });

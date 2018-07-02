@@ -1,19 +1,27 @@
+// noinspection JSCheckFunctionSignatures
 /**
- * Created by emisia on 5/7/18.
+ * Desktop profile
  */
 Ext.define('FSS.profile.Desktop', {
     extend: 'Ext.app.Profile',
-    
+
     xtype: 'fssDesktopProfile',
-    
+
     // The name of the initial view to create.
     mainView: 'FSS.view.desktop.main.Main',
-    
-    isActive: function(){
+
+    isActive: function () {
         return Ext.os.is.Desktop;
     },
-    
-    launch: function(){
+
+    launch: function () {
         console.log('Desktop profile launched');
     }
+}, function (Cls) {
+    Cls.mocks = {
+        isActive: {
+            returns: 'boolean'
+        },
+        launch: {}
+    };
 });

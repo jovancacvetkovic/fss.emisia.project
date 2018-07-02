@@ -6,7 +6,6 @@ describe('FSS.view.desktop.tabpanel.header.actions.item.ItemController', functio
 
     //setup/teardown
     beforeEach(function(){
-        //create a fresh grid for every test to avoid test pollution
         Item = Ext.create('FSS.view.desktop.tabpanel.header.actions.item.Item', {
             renderTo: 'test'
         });
@@ -16,7 +15,6 @@ describe('FSS.view.desktop.tabpanel.header.actions.item.ItemController', functio
     });
 
     afterEach(function(){
-        //destroy the grid after every test so we don't pollute the environment
         Item.destroy();
     });
 
