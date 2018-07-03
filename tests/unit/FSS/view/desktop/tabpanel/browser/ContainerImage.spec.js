@@ -3,7 +3,6 @@ describe('FSS.view.desktop.tabpanel.browser.ContainerImage', function(){
     //reusable scoped variable
     let image = null;
     
-    //setup/teardown
     beforeEach(function(){
         if (image) {
             image.destroy();

@@ -4,7 +4,6 @@ describe('FSS.view.desktop.main.MainController', function () {
     var Main = null;
     var MainController = null;
 
-    //setup/teardown
     beforeEach(function () {
         Main = Ext.create('FSS.view.desktop.main.Main', {
             renderTo: 'test'

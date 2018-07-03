@@ -2,7 +2,6 @@ describe('FSS.profile.Tablet', function () {
     //reusable scoped variable
     var Tablet = null;
 
-    //setup/teardown
     beforeEach(function () {
         //create a fresh grid for every test to avoid test pollution
         Tablet = Ext.create('FSS.profile.Tablet', {});
@@ -21,7 +20,7 @@ describe('FSS.profile.Tablet', function () {
             }).not.toThrow();
         });
 
-        it('expect to return correct type', function () {
+        xit('expect to return correct type', function () {
             let result = Tablet.isActive();
             expect(result).toMatchExpectedResult(Tablet, 'isActive');
         });

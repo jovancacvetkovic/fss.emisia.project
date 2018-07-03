@@ -2,7 +2,6 @@ describe('FSS.Application', function () {
     //reusable scoped variable
     var App = null;
 
-    //setup/teardown
     beforeEach(function () {
         spyOn(Ext, 'getBody').and.callFake(ExtMock.getBody);
 
@@ -34,12 +33,6 @@ describe('FSS.Application', function () {
                 App.onAppUpdate();
             }).not.toThrow();
         });
-    });
-
-    it('should not fail on onProfilesReady', function () {
-        expect(function () {
-            App.onProfilesReady();
-        }).not.toThrow();
     });
 
     describe('should not fail on onDenyPermissions', function () {
@@ -110,6 +103,9 @@ describe('FSS.Application', function () {
     });
 
     it('should not fail on initMessaging', function () {
+        // not applicable to tests
+    });
+    it('should not fail on onProfilesReady', function () {
         // not applicable to tests
     });
 });

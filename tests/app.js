@@ -11,7 +11,7 @@ Ext.application({
     name: 'TEST',
 
     launch: function (application) {
-        console.log('Starting UNIT tests\n');
+        console.log('Starting UNIT tests');
 
         window.__karma__.loaded = window.onKarmaLoaded;
         window.__karma__.loaded();

@@ -28,4 +28,10 @@ Ext.define('FSS.mixin.Prepare', {
 
         return mappedItems;
     }
+}, function(Cls){
+    Cls.mocks = {
+        prepareLeaguesData: {
+            0: 'object'
+        }
+    };
 });

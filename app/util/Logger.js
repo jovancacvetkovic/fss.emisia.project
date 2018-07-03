@@ -3,7 +3,7 @@ Ext.define('FSS.util.Logger', {
 
     /**
      * Logs color-coded console message; intended for development only
-     * to be used in betwee debug directives.
+     * to be used in between debug directives.
      * @param {String} text to log
      */
 
@@ -27,11 +27,11 @@ Ext.define('FSS.util.Logger', {
         this.printAll(arguments, 'error');
     },
 
-    print: function(arg, fn){
+    print: function (arg, fn) {
         this[fn](arg);
     },
 
-    printAll: function(args, fn){
+    printAll: function (args, fn) {
         var index = 0;
         while (index < args.length) {
             this.print(args[index], fn);
@@ -69,6 +69,64 @@ Ext.define('FSS.util.Logger', {
         console.timeEnd(timerId || 'timer');
     }
 
-}, function () {
+}, function (Cls) {
     window.Logger = FSS.util.Logger;
+
+    Cls.mocks = {
+        warn: {
+            args: {
+                0: 'string'
+            }
+        },
+        error: {
+            args: {
+                0: 'string'
+            }
+        },
+        info: {
+            args: {
+                0: 'string'
+            }
+        },
+        infos: {
+            args: {
+                0: 'string[]'
+            }
+        },
+        errors: {
+            args: {
+                0: 'string[]'
+            }
+        },
+        print: {
+            args: {
+                0: 'string',
+                1: 'string'
+            }
+        },
+        printAll: {
+            args: {
+                0: 'string[]',
+                1: 'string'
+            }
+        },
+        group: {
+            args: {
+                0: 'string',
+                1: 'string[]',
+                2: 'boolean'
+            }
+        },
+        close: {},
+        startTimer: {
+            args: {
+                0: 'string'
+            }
+        },
+        stopTimer: {
+            args: {
+                0: 'string'
+            }
+        }
+    };
 });

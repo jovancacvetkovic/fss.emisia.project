@@ -4,7 +4,6 @@ describe('FSS.view.desktop.tabpanel.browser.details.DetailsController', function
     var Details = null;
     var DetailsController = null;
 
-    //setup/teardown
     beforeEach(function(){
         Details = Ext.create('FSS.view.desktop.tabpanel.browser.details.Details', {
             renderTo: 'test'

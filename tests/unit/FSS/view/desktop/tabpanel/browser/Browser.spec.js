@@ -3,7 +3,6 @@ describe('FSS.view.desktop.tabpanel.browser.BrowserController', function(){
     //reusable scoped variable
     let browser = null;
     
-    //setup/teardown
     beforeEach(function(){
         if (browser) {
             browser.destroy();

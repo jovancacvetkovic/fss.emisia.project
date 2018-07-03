@@ -4,7 +4,6 @@ describe('FSS.view.desktop.tabpanel.header.actions.item.ItemController', functio
     var Item = null;
     var ItemController = null;
 
-    //setup/teardown
     beforeEach(function(){
         Item = Ext.create('FSS.view.desktop.tabpanel.header.actions.item.Item', {
             renderTo: 'test'

@@ -4,7 +4,6 @@ describe('FSS.view.desktop.scroller.ScrollerController', function(){
     var Scroller = null;
     var ScrollerController = null;
     
-    //setup/teardown
     beforeEach(function(){
         Scroller = Ext.create('FSS.view.desktop.scroller.Scroller', {
             renderTo: 'test'

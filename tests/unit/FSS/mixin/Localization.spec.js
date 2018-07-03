@@ -2,7 +2,6 @@ describe('FSS.mixin.Localization', function () {
     //reusable scoped variable
     var Locale = null;
 
-    //setup/teardown
     beforeEach(function () {
         //create a fresh grid for every test to avoid test pollution
         Locale = new FSS.mixin.Localization;

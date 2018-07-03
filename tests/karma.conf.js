@@ -96,12 +96,12 @@ files.push(
 // Include all tests, should be done via regex to collect all tests
 let test = 'tests/unit/FSS/**/*.spec.js'; // NOTE: this will map all test files
 
-// if (process.env.KARMA_TEST !== 'false' && process.env.KARMA_TEST !== undefined) { // If there is only one file
-//     let file = process.env.KARMA_TEST.toString();
-//     let className = file.split('unit')[1].replace('.spec.js', '').replace('/', '').replace(new RegExp('/', 'g'), '.');
-//     console.log('SINGLE TEST MODE ', className);
-//     test = [getFileConfig(className, true, true, true, false)];
-// }
+if (process.env.KARMA_TEST !== 'false' && process.env.KARMA_TEST !== undefined) { // If there is only one file
+    let file = process.env.KARMA_TEST.toString();
+    let className = file.split('unit')[1].replace('.spec.js', '').replace('/', '').replace(new RegExp('/', 'g'), '.');
+    console.log('SINGLE TEST MODE ', className);
+    test = [getFileConfig(className, true, true, true, false)];
+}
 files.push(test);
 
 module.exports = function (config) {
@@ -165,6 +165,7 @@ module.exports = function (config) {
         proxies: {
             // get test app.js instead of application app.js
             '/app.js': '/base/tests/app.js',
+            '/firebase-config.json': '/base/firebase-config.json',
 
             // proxy all to karma server, karma root is `base/`
             '/app': '/base/app',
