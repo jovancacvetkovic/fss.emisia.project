@@ -35,11 +35,7 @@ describe('FSS.view.desktop.tabpanel.browser.details.DetailsController', function
         let snapshot;
         beforeEach(function(){
             snapshot = {
-                val: function(){
-                    return {
-                        NAME: ''
-                    }
-                }
+                responseText: '{}'
             };
         });
         

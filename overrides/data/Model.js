@@ -1,3 +1,6 @@
+/**
+ * Overrides data Model and adds localization into model
+ */
 Ext.define('FSS.overrides.data.Model', {
     override: 'Ext.data.Model',
 

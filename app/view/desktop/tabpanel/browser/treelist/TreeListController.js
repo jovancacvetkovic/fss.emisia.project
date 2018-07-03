@@ -57,12 +57,16 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', {
     },
 
     loadLeague: function (url) {
-        var leagues = FSS.firebase.database().ref(url);
-        leagues.once('value').then(this.loadLeagueList.bind(this));
+        Ext.Ajax.request({
+            isFirebase: true,
+            url: url,
+            success: this.loadLeagueList,
+            scope: this
+        });
     },
 
-    loadLeagueList: function (snapshot) {
-        var rawLeagues = snapshot.val();
+    loadLeagueList: function (response) {
+        var rawLeagues = JSON.parse(response.responseText);
         var leagueList = this.getActiveList();
 
         var subLeagues = FSS.Util.safeGet(rawLeagues, 'SUB_LEAGUE');
