@@ -1,5 +1,6 @@
 /**
- * Created by emisia on 5/13/18.
+ * Tree-list controller
+ * Tree-list data-view contains three sub-lists loaded via routes
  */
 Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', {
     extend: 'Ext.app.ViewController',
@@ -34,28 +35,88 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', {
     },
 
     config: {
+        /**
+         * @private
+         * @cfg {String}
+         * Currently selected league
+         */
         activeLeague: undefined,
+
+        /**
+         * @private
+         * @cfg {String[]}
+         * Currently active/expanded league lists
+         */
         activeLeagues: undefined,
-        activeLists: [
+
+        /**
+         * @private
+         * @protected
+         * @cfg {String[]}
+         * All available lists
+         */
+        availableLists: [
             'leagueList',
             'subLeagueList',
             'teamList'
         ],
+
+        /**
+         * @private
+         * @cfg {Number}
+         * Number of active lists
+         */
         listCount: 0,
+
+        /**
+         * @private
+         * @protected
+         * @cfg {String[]}
+         * Firebase url templates
+         */
         dbUrlTemplates: [
             'LEAGUE',
             'LEAGUE/{0}',
             'LEAGUE/{0}/SUB_LEAGUE/{1}'
         ],
+
+        /**
+         * @private
+         * @cfg {String}
+         * Previously selected list
+         */
         previousLeague: undefined,
-        defaultLeague: true
+
+        /**
+         * @private
+         * @cfg {Boolean}
+         * Tells list to load default league list
+         * if any league from default list is selected
+         */
+        defaultLeague: true,
+
+        /**
+         * @private
+         * @cfg {String[]}
+         * List of all list per route
+         * This is after parsing route and set as array of lists that will be loaded
+         */
+        originalLeagues: undefined
     },
 
-    loadDefaultLeague: function (itemId) {
-        var dbQueryUrl = this.getDbUrl(undefined, itemId);
+    /**
+     * Loads default league if there is no route or route has failed
+     * @param {String} league League identification string
+     */
+    loadDefaultLeague: function (league) {
+        var dbQueryUrl = this.getDbUrl(undefined, league);
         this.loadLeague(dbQueryUrl);
     },
 
+    /**
+     * Sends request for league list and loads league store if request was successful
+     * @param {String} url Request url
+     */
     loadLeague: function (url) {
         Ext.Ajax.request({
             isFirebase: true,
@@ -65,42 +126,64 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', {
         });
     },
 
+    /**
+     * Loads league list
+     * @param {FSS.type.ajax.Response} response
+     */
     loadLeagueList: function (response) {
         var rawLeagues = JSON.parse(response.responseText);
         var leagueList = this.getActiveList();
 
+        // prepare leagues data
         var subLeagues = FSS.Util.safeGet(rawLeagues, 'SUB_LEAGUE');
         var leagues = subLeagues ? subLeagues : rawLeagues;
         leagues = this.mixins.prepare.prepareLeaguesData(leagues);
 
         var activeLeague = this.getActiveLeague();
+        var previousLeague = this.getPreviousLeague();
         var leagueController = leagueList.getController();
+        var nextLeague = this.getNextLeague(activeLeague);
+
+        // set active league
         leagueController.setActiveListItem(activeLeague);
+
         if (Ext.isArray(leagues) && leagues.length) {
             leagueController.loadListData(leagues);
-            this.fireEvent('e_loadDetails', activeLeague, false);
+            if (!nextLeague) {
+                // if there is no selected item in sub-list then load details
+                // for the currently selected league
+                this.fireEvent('e_loadDetails', activeLeague, false);
+            }
         }
         else {
-            var previousLeague = this.getPreviousLeague();
             if (previousLeague !== this.getSelectedId(leagueList)) {
                 this.expandLists();
-            }
 
-            this.fireEvent('e_loadDetails', previousLeague, this.getDefaultLeague());
+                if (!nextLeague && previousLeague !== activeLeague) {
+                    // if there is no selected item in sub-list then load details
+                    // and details are not already loaded for the same league
+                    this.fireEvent('e_loadDetails', previousLeague, this.getDefaultLeague());
+                }
+            }
         }
+
         this.setViewportMasked(false);
     },
 
+    /**
+     * Expands or collapses list
+     * If list has no items it will be collapsed
+     */
     expandLists: function () {
         var leagueList = this.getActiveList();
         var activeLeagues = this.getActiveLeagues();
         if (activeLeagues.length) {
             var remainingListsIndex = activeLeagues.length + 1;
-            var activeLists = this.getActiveLists();
-            var currentListIndex = activeLists.indexOf(leagueList.reference);
+            var availableLists = this.getAvailableLists();
+            var currentListIndex = availableLists.indexOf(leagueList.reference);
 
             while (currentListIndex <= remainingListsIndex) {
-                this.fireEvent('expandList', false, activeLists[currentListIndex]);
+                this.fireEvent('expandList', false, availableLists[currentListIndex]);
                 currentListIndex++;
             }
         }
@@ -109,15 +192,26 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', {
         }
     },
 
+    /**
+     * Get current list selected league identification string
+     * @param {FSS.view.desktop.tabpanel.browser.treelist.list.List} list
+     * @returns {String} selectedId Selected league identification string
+     */
     getSelectedId: function (list) {
+        var selectedId;
+        // noinspection JSUnresolvedFunction
         var selected = list.getSelectable().getSelectedRecord();
         if (selected) {
-            selected = selected.get('id')
+            selectedId = selected.get('id');
         }
 
-        return selected;
+        return selectedId;
     },
 
+    /**
+     * Returns active league and pulls it from a list of active leagues
+     * @returns {String} activeLeague
+     */
     pullActiveLeague: function () {
         var activeLeague = this.getActiveLeague();
         this.setPreviousLeague(activeLeague);
@@ -136,22 +230,48 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', {
         return activeLeague;
     },
 
-    getDbUrl: function (previousLeague, itemId) {
+    /**
+     * Returns next league if there is one
+     * @param {String} activeLeague Currently active league identification string
+     * @returns {String} nextLeague Next league identification string
+     */
+    getNextLeague: function (activeLeague) {
+        var nextLeague;
+        var originalLeagues = this.getOriginalLeagues();
+        var index = Ext.Array.indexOf(originalLeagues, activeLeague);
+        if (index !== -1) {
+            nextLeague = originalLeagues[index + 1];
+        }
+
+        return nextLeague;
+    },
+
+    /**
+     * Returns league firebase url
+     * @param {String} previousLeague Previously selected league identification string
+     * @param {String} leagueId League identification string
+     * @returns {String} url Firebase url
+     */
+    getDbUrl: function (previousLeague, leagueId) {
         var urlTemplates = this.getDbUrlTemplates();
         var listCount = this.getListCount();
         var leagues = this.getActiveLeagues();
         var tplNo = listCount - leagues.length - 1;
         var urlTpl = urlTemplates[tplNo];
-        var url = Ext.String.format(urlTpl, itemId);
+        var url = Ext.String.format(urlTpl, leagueId);
         var match = urlTpl.match(/{.}/g);
         if (match && match.length > 1) {
-            url = Ext.String.format(urlTpl, previousLeague, itemId);
+            url = Ext.String.format(urlTpl, previousLeague, leagueId);
         }
         return url;
     },
 
+    /**
+     * Returns selected list reference
+     * @returns {FSS.view.desktop.tabpanel.browser.treelist.list.List}
+     */
     getActiveList: function () {
-        var lists = this.getActiveLists();
+        var lists = this.getAvailableLists();
         var listCount = this.getListCount();
         var leagues = this.getActiveLeagues();
         var listNo = listCount - leagues.length - 1;
@@ -159,14 +279,22 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', {
         return this.findList(lists[listNo]);
     },
 
-    onListItemSelect: function (itemId) {
+    /**
+     * Handles list item selection and load selected league list
+     * @param {String} leagueId League identification string
+     */
+    onListItemSelect: function (leagueId) {
         var previousLeague = this.getPreviousLeague();
         this.pullActiveLeague();
 
-        var dbQueryUrl = this.getDbUrl(previousLeague, itemId);
+        var dbQueryUrl = this.getDbUrl(previousLeague, leagueId);
         this.loadLeague(dbQueryUrl);
     },
 
+    /**
+     * Sets a list of active lists
+     * @param {String[]} leagues List of list names
+     */
     setActiveLeagues: function (leagues) {
         this.setViewportMasked(true);
 
@@ -188,12 +316,17 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', {
         }
     },
 
+    /**
+     * Finds and returns list reference
+     * @param {String} reference List reference
+     * @returns {FSS.view.desktop.tabpanel.browser.treelist.list.List} list
+     */
     findList: function (reference) {
-        var component = this.lookup(reference);
-        if (!component) {
-            component = this.lookup(reference + 'Panel').lookup(reference);
+        var list = this.lookup(reference);
+        if (!list) {
+            list = this.lookup(reference + 'Panel').lookup(reference);
         }
-        return component;
+        return list;
     },
 
     onMainListSelectRouteHandler: function (list, child) {

@@ -22,6 +22,7 @@ Ext.define('FSS.view.desktop.tabpanel.browser.BrowserController', {
 
             var leagueListView = this.lookup('leagueTreeList');
             leagueListView.getController().setActiveLeagues([team, subLeague, league]);
+            leagueListView.getController().setOriginalLeagues([league, subLeague, team]);
         }
     },
 
