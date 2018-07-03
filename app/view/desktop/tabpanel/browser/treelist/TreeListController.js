@@ -225,6 +225,7 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', {
         var leagueList = this.getActiveList();
         leagueList.setSelectedId(this.getPreviousLeague());
 
+        // noinspection JSUnusedGlobalSymbols
         this._activeLeagues = leagues;
 
         return activeLeague;
