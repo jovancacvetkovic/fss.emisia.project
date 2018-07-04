@@ -1,6 +1,10 @@
 Ext.define('FSS.overrides.Base', {
     override: 'Ext.Base',
 
+    requires: [
+        'FSS.util.Util'
+    ],
+
     config: {
         locale: {}
     },

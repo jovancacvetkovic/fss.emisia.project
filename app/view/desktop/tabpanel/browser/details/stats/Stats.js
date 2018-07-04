@@ -23,6 +23,10 @@ Ext.define('FSS.view.desktop.tabpanel.browser.details.stats.Stats', {
     config: {
         stats: []
     },
+
+    bind: {
+        locale: '{locale}'
+    },
     
     itemTpl: [
         '<div class="fssDetailsStatsItemLabel">{label}</div>',

@@ -3,11 +3,15 @@
  * function for properties bind to locale object.
  */
 
-Ext.define('Ext.overrides.Component', {
+Ext.define('FSS.overrides.Component', {
     override: 'Ext.Component',
 
     mixins: [
         'FSS.mixin.Localization'
+    ],
+
+    requires: [
+        'FSS.util.Util'
     ],
 
     config: {

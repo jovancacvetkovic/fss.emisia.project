@@ -4,12 +4,12 @@
 Ext.define('FSS.view.desktop.tabpanel.browser.details.stats.StatsController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.fssDetailsStatsController',
-    
+
     requires: [
         'Ext.field.Display'
     ],
-    
-    loadDetails: function(details){
+
+    loadDetails: function (details) {
         var items = [];
         var view = this.getView();
         var generalInfo = this.getGeneralInfo(details);
@@ -28,38 +28,39 @@ Ext.define('FSS.view.desktop.tabpanel.browser.details.stats.StatsController', {
             }
         }
         view.setItems(items);
-        
+
         if (view.header) {
-            view.setTitle(view.refName);
+            var title = this.translate(view.refName.replace('.', ''));
+            view.setTitle(title);
         }
     },
-    
-    getGeneralInfo: function(details){
+
+    getGeneralInfo: function (details) {
         var view = this.getView();
         var reference = view.refName;
-        if (reference.indexOf('.')){
+        if (reference.indexOf('.')) {
             var refs = reference.split('.');
             var index = 0;
-            while (index < refs.length && details){
+            while (index < refs.length && details) {
                 details = details[refs[index]];
                 index++;
             }
         }
-        
+
         return details;
     },
-    
-    getItemConfig: function(label, value){
+
+    getItemConfig: function (label, value) {
         return {
             xtype: 'displayfield',
             flex: 1,
             labelAlign: 'top',
-            label: label,
+            label: this.translate(label),
             value: value
         };
     },
-    
-    getItemsConfig: function(item){
+
+    getItemsConfig: function (item) {
         var itemConfigs = [];
         for (var itemLabel in item) {
             if (item.hasOwnProperty(itemLabel)) {
@@ -67,7 +68,7 @@ Ext.define('FSS.view.desktop.tabpanel.browser.details.stats.StatsController', {
                 itemConfigs.push(config);
             }
         }
-        
+
         return {
             xtype: 'container',
             flex: 1,

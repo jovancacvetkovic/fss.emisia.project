@@ -157,9 +157,11 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', {
         }
         else {
             if (previousLeague !== this.getSelectedId(leagueList)) {
+                // If there are sub leagues expand next list to show them
+                // If there are no sub leagues and next list is expanded then collapse nest list
                 this.expandLists();
 
-                if (!nextLeague && previousLeague !== activeLeague) {
+                if (!nextLeague) {
                     // if there is no selected item in sub-list then load details
                     // and details are not already loaded for the same league
                     this.fireEvent('e_loadDetails', previousLeague, this.getDefaultLeague());
@@ -306,7 +308,8 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', {
             var defaultLeague = this.pullActiveLeague();
 
             var leagueList = this.findList('leagueList');
-            var isDefaultLeagueLoaded = leagueList.getStore().getCount();
+            var store = leagueList.getStore();
+            var isDefaultLeagueLoaded = store ? store.getCount() : 0;
 
             if (isDefaultLeagueLoaded) {
                 leagueList.getController().setActiveListItem(defaultLeague);

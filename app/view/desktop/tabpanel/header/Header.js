@@ -52,6 +52,6 @@ Ext.define('FSS.view.desktop.tabpanel.header.Header', {
     },
     
     getActionsConfig: function(item){
-        return item.xtype == 'fssHeaderActions'
+        return item.xtype === 'fssHeaderActions';
     }
 });

@@ -1,6 +1,11 @@
 Ext.define('FSS.overrides.bind.RootStub', {
     override: 'Ext.app.bind.RootStub',
 
+    requires: [
+        'Ext.app.bind.LinkStub',
+        'FSS.bind.LocaleStub'
+    ],
+
     /**
      * @inheritDoc
      */
@@ -27,10 +32,11 @@ Ext.define('FSS.overrides.bind.RootStub', {
      * @returns {Object}
      */
     getOriginData: function () {
-        var data = this.owner.data;
+        var data = this.owner.getData();
         if (this.scheduler.isLocale) {
-            data = this.owner.locale;
+            data = this.owner.getLocale();
         }
+        this.scheduler.isLocale = false;
 
         return data;
     },
@@ -62,7 +68,7 @@ Ext.define('FSS.overrides.bind.RootStub', {
                 stub = children[key];
                 setSelf = preventClimb || !me.shouldClimb(key);
                 if (!stub) {
-                    stub = me.createRootChild(key, setSelf);
+                    stub = me.createLocaleChild(key, setSelf);
                     created = true;
                 } else if (setSelf && stub.isLinkStub && !stub.getLinkFormulaStub()) {
                     stub = me.insertChild(key);
@@ -88,5 +94,28 @@ Ext.define('FSS.overrides.bind.RootStub', {
                 }
             }
         }
+    },
+
+    createLocaleChild: function (name, direct) {
+        var me = this,
+            owner = me.owner,
+            ownerData = owner.getLocale(),
+            children = me.children,
+            previous = children && children[name],
+            parentStub = previous ? null : me,
+            parentVM, stub;
+
+        if (direct || ownerData.hasOwnProperty(name) || !(parentVM = owner.getParent())) {
+            stub = new FSS.bind.LocaleStub(owner, name, parentStub);
+        } else {
+            stub = new Ext.app.bind.LinkStub(owner, name, parentStub);
+            stub.link('{' + name + '}', parentVM);
+        }
+
+        if (previous) {
+            previous.graft(stub);
+        }
+
+        return stub;
     }
 });
