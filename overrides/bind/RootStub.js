@@ -36,7 +36,6 @@ Ext.define('FSS.overrides.bind.RootStub', {
         if (this.scheduler.isLocale) {
             data = this.owner.getLocale();
         }
-        this.scheduler.isLocale = false;
 
         return data;
     },
