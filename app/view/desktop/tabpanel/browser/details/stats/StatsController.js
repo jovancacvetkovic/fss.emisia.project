@@ -1,5 +1,5 @@
 /**
- * Created by emisia on 5/22/18.
+ * Details statistics controller
  */
 Ext.define('FSS.view.desktop.tabpanel.browser.details.stats.StatsController', {
     extend: 'Ext.app.ViewController',
@@ -30,9 +30,13 @@ Ext.define('FSS.view.desktop.tabpanel.browser.details.stats.StatsController', {
         view.setItems(items);
 
         if (view.header) {
-            var title = this.translate(view.refName.replace('.', ''));
-            view.setTitle(title);
+
+            this.getView().applyBind({
+                title: '{locale#' + view.refName.replace('.', '') + '}'
+            });
         }
+
+        this.updateLocale();
     },
 
     getGeneralInfo: function (details) {
@@ -55,7 +59,9 @@ Ext.define('FSS.view.desktop.tabpanel.browser.details.stats.StatsController', {
             xtype: 'displayfield',
             flex: 1,
             labelAlign: 'top',
-            label: this.translate(label),
+            bind: {
+                label: '{locale#' + label + '}'
+            },
             value: value
         };
     },

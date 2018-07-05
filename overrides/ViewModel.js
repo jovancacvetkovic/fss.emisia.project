@@ -46,6 +46,7 @@ Ext.define('FSS.overrides.ViewModel', {
             options = Ext.apply(options || {}, {
                 isLocale: true
             });
+
             binding = me.bindExpression(descriptor, callback, scope, options);
         }
         else {

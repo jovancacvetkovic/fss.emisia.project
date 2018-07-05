@@ -6,13 +6,14 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.list.List', {
 
     requires: [
         'FSS.view.desktop.tabpanel.browser.treelist.list.ListController',
-        'FSS.view.desktop.tabpanel.browser.treelist.list.ListModel'
+        'FSS.view.desktop.tabpanel.browser.treelist.list.ListModel',
+        'FSS.view.desktop.tabpanel.browser.treelist.list.header.Header'
     ],
 
     xtype: 'fssList',
 
     viewModel: {
-        type: 'list'
+        type: 'fssBrowserListModel'
     },
 
     config: {
@@ -26,7 +27,7 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.list.List', {
     grouped: true,
 
     groupHeader: {
-        tpl: '{name}'
+        xtype: 'fssListHeader'
     },
 
     selectable: {

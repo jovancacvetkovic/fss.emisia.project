@@ -3,7 +3,7 @@
  */
 Ext.define('FSS.view.desktop.tabpanel.browser.treelist.list.ListModel', {
     extend: 'Ext.app.ViewModel',
-    alias: 'viewmodel.list',
+    alias: 'viewmodel.fssBrowserListModel',
 
     stores: {
         list: {
@@ -18,10 +18,5 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.list.ListModel', {
         }
     },
 
-    data: {
-        locale: {
-            UNION: 'Savezi',
-            LEAGUE: 'Lige'
-        }
-    }
+    data: {}
 });

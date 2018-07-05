@@ -20,6 +20,37 @@
             "title": "Sistematizacija"
         },
 
+        "FSS.view.desktop.tabpanel.browser.details.stats.StatsModel": {
+            "ADDRESS": "Adresa",
+            "FOUNDED": "Osnovan",
+            "FAX": "Fax No.",
+            "EMAIL": "Email",
+            "PHONE": "Tel No.",
+            "SITE": "Veb Sajt",
+            "DIRECTOR": "Direktor",
+            "BOARD": "Odbor",
+            "PARLAMENT": "Parlament",
+            "EXECUTIVES": "Izvršni odbor",
+            "PRESIDENT": "Predsednik",
+            "SUPREVISORS": "Supervisori",
+            "SECRETARY": "Sekretar",
+            "VICEPRESIDENTS": "Podpredsednici",
+            "CLUBS": "Klubovi",
+            "COACHES": "Treneri",
+            "JUDGES": "Sudije",
+            "LEAGUES": "Lige",
+            "PLAYERS": "Igrači",
+            "PERSONNELGENERAL": "Osnovno",
+            "ACTIVITY": "Aktivnosti"
+        },
+
+        "FSS.view.desktop.tabpanel.browser.treelist.list.header.HeaderModel": {
+            "header": {
+                "UNION": "Savezi",
+                "LEAGUE": "Lige"
+            }
+        },
+
         "Ext.Component": {
             "loading": "Učitava se..."
         }
