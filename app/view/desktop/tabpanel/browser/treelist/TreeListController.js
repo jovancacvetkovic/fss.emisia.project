@@ -256,15 +256,18 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', {
      * @returns {String} url Firebase url
      */
     getDbUrl: function (previousLeague, leagueId) {
+        var url = '';
         var urlTemplates = this.getDbUrlTemplates();
         var listCount = this.getListCount();
         var leagues = this.getActiveLeagues();
-        var tplNo = listCount - leagues.length - 1;
-        var urlTpl = urlTemplates[tplNo];
-        var url = Ext.String.format(urlTpl, leagueId);
-        var match = urlTpl.match(/{.}/g);
-        if (match && match.length > 1) {
-            url = Ext.String.format(urlTpl, previousLeague, leagueId);
+        if (leagues && leagues.length) {
+            var tplNo = listCount - leagues.length - 1;
+            var urlTpl = urlTemplates[tplNo];
+            url = Ext.String.format(urlTpl, leagueId);
+            var match = urlTpl.match(/{.}/g);
+            if (match && match.length > 1) {
+                url = Ext.String.format(urlTpl, previousLeague, leagueId);
+            }
         }
         return url;
     },
@@ -274,10 +277,13 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', {
      * @returns {FSS.view.desktop.tabpanel.browser.treelist.list.List}
      */
     getActiveList: function () {
+        var listNo = 0;
         var lists = this.getAvailableLists();
         var listCount = this.getListCount();
         var leagues = this.getActiveLeagues();
-        var listNo = listCount - leagues.length - 1;
+        if (leagues && leagues.length) {
+            listNo = listCount - leagues.length - 1;
+        }
 
         return this.findList(lists[listNo]);
     },
@@ -362,4 +368,22 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', {
             this.redirectTo('FSS/browser/' + subId + '/' + selectedId + '/' + child.record.id);
         }
     }
+}, function (Cls) {
+    Cls.mocks = {
+        loadDefaultLeague: {
+            args: {
+                0: 'string'
+            }
+        },
+        loadLeague: {
+            args: {
+                0: 'string'
+            }
+        },
+        loadLeagueList: {
+            args: {
+                0: 'FSS.type.ajax.Response'
+            }
+        }
+    };
 });

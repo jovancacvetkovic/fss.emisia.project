@@ -1,7 +1,7 @@
 describe('FSS.view.desktop.tabpanel.browser.ContainerImage', function(){
     
     //reusable scoped variable
-    let image = null;
+    var image = null;
     
     beforeEach(function(){
         if (image) {
@@ -51,14 +51,14 @@ describe('FSS.view.desktop.tabpanel.browser.ContainerImage', function(){
     describe('function `afterShow` will not throw', function(){
         it('! hiddenSrc', function(){
             expect(function(){
-                image.hide();
+                image.afterShow();
             }).not.toThrow();
         });
         
         it('hiddenSrc', function(){
             expect(function(){
                 image.hiddenSrc = 'src://some-src';
-                image.hide();
+                image.afterShow();
             }).not.toThrow();
         });
     });
@@ -133,7 +133,7 @@ describe('FSS.view.desktop.tabpanel.browser.ContainerImage', function(){
         
         it('when function is called', function(){
             expect(function(){
-                let event = new Ext.event.Event({});
+                var event = new Ext.event.Event({});
                 image.onLoad(event);
             }).not.toThrow();
         });
@@ -154,7 +154,7 @@ describe('FSS.view.desktop.tabpanel.browser.ContainerImage', function(){
         
         it('when function is called', function(){
             expect(function(){
-                let event = new Ext.event.Event({});
+                var event = new Ext.event.Event({});
                 image.onError(event);
             }).not.toThrow();
         });
@@ -184,7 +184,7 @@ describe('FSS.view.desktop.tabpanel.browser.ContainerImage', function(){
         });
         
         it('when function is called and returned `string`', function(){
-            let src = image.applySrc('sec-url');
+            var src = image.applySrc('sec-url');
             expect(typeof src).toEqual('string');
         });
     });

@@ -463,16 +463,16 @@ Ext.define('FSS.view.desktop.scroller.ScrollerController', {
         //noinspection JSUnresolvedVariable
         var evt = e.browserEvent;
 
-        if (evt.deltaY != null) {
+        if (evt.deltaY !== null) {
             wheelDeltaY = evt.deltaY;
             if (evt.deltaMode === 1) {
                 wheelDeltaY *= this.mouseWheelSpeed;
             }
         }
-        else if (evt.wheelDelta != null) {
+        else if (evt.wheelDelta !== null) {
             wheelDeltaY = evt.wheelDelta;
         }
-        else if ((evt.detail != null) || evt.detail === 0) {
+        else if ((evt.detail !== null) || evt.detail === 0) {
             wheelDeltaY = evt.detail * this.mouseWheelSpeed;
         }
 

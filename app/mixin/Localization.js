@@ -21,6 +21,11 @@ Ext.define('FSS.mixin.Localization', {
         FSS.LocaleStore.on('load', this.onChangeLocale, this);
     },
 
+    destroy: function(){
+        FSS.LocaleStore.un('load', this.onChangeLocale);
+        this.callParent(arguments);
+    },
+
     /**
      * After locale file is loaded trigger setLocale
      * to set/update/apply all locale bind values
@@ -55,8 +60,8 @@ Ext.define('FSS.mixin.Localization', {
 
     translate: function (arg) {
         var locale = this.getLocale();
-        var isEmptylocale = !locale || !Ext.Object.getSize(locale);
-        if (isEmptylocale && this.getViewModel) {
+        var isEmptyLocale = !locale || !Ext.Object.getSize(locale);
+        if (isEmptyLocale && this.getViewModel) {
             locale = this.getViewModel().getLocale();
         }
 

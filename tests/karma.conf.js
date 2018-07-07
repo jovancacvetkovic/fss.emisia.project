@@ -1,5 +1,7 @@
 'use strict';
 
+var path = require('path');
+
 // File mapper fn
 let getFileConfig = function (files, watched, included, served, nocache) {
     if (typeof files === 'string') {
@@ -27,38 +29,42 @@ let getFileConfig = function (files, watched, included, served, nocache) {
 };
 
 // Set debugging via Chrome or run ChromeHeadless in intelliJ
-let isDebug = !!process.env.DEBUG;
+let isDebug = !!process.env['_INTELLIJ_KARMA_INTERNAL_PARAMETER_debug'];
+let isCovered = !!process.env['_INTELLIJ_KARMA_INTERNAL_PARAMETER_coverage-temp-dir'];
+
 console.log('\nDEBUG mode is', isDebug ? 'ON' : 'OFF');
 let browsers = [isDebug ? 'Chrome' : 'ChromeHeadless'];
 
-let reporters = [];
-let plugins = [];
 let preprocessors = {
-    'resources/3rdparty/**/*.js': ['sourcemap']
+    'resources/3rdparty/**/*.js': ['sourcemap'],
+    'tests/data/**/*.mock.json': ['json_fixtures']
 };
-if (!isDebug) {
-    console.log('Running with reporters at coverage/index.html\n');
-    reporters = [
-        'spec',
-        'live-html',
-        'progress',
-        'coverage-istanbul',
-        'progress',
-        'coverage'
-    ];
 
-    plugins = [
-        'karma-chrome-launcher',
-        'karma-jasmine',
-        'karma-sourcemap-loader',
+let reporters = [
+    'spec',
+    'live-html',
+    'progress'
+];
+
+let plugins = [
+    'karma-chrome-launcher',
+    'karma-jasmine',
+    'karma-sourcemap-loader',
+    'karma-spec-reporter',
+    'karma-html-live-reporter',
+    'karma-json-fixtures-preprocessor'
+];
+
+if (isCovered) {
+    console.log('Running with code coverage at `coverage/index.html`\n');
+    reporters = reporters.concat(['coverage', 'coverage-istanbul']);
+    plugins = plugins.concat([
         'karma-coverage',
-        'karma-spec-reporter',
-        'karma-html-live-reporter',
-        'karma-coverage-istanbul-reporter'
-    ];
-
+        'karma-coverage-istanbul-reporter',
+        'karma-jshint'
+    ]);
     // model and type folders are excluded for test coverage reports
-    preprocessors['app/!(model|type)/**/*.js'] = ['coverage'];
+    preprocessors['app/!(model|type)/**/*.js'] = ['coverage', 'jshint'];
 }
 
 let files = [
@@ -85,6 +91,9 @@ files.push(
 
     // load overrides JS
     getFileConfig('overrides/**/*.js', true, true, true, false),
+
+    // load JSON fixtures
+    'tests/data/**/*.mock.json',
 
     // load karma adapter and wait for Ext application to launch
     getFileConfig('tests/karma.loader.js', true, true, true, false),
@@ -237,6 +246,33 @@ module.exports = function (config) {
             skipFilesWithNoCoverage: true,
 
             verbose: false // output config used by istanbul for debugging
+        },
+
+        // options to validate JS code with jsHint
+        jshint: {
+            options: {
+                eqeqeq: true,   // must use `===`
+                eqnull: true,   // must use `===` if compared with `null` or `undefined`
+                curly: true,    // requires `{}` around while,for,if... blocks
+                evil: true,     // suppresses eval warnings, ext mandatory
+                maxdepth: 4,    // defines max nested blocks
+                maxparams: 5,   // defines max params to be passed to a method
+                newcap: false,  // suppresses mandatory use on `new` to create instances, ext is using `create`
+                globals: {
+                    cordova: true,
+                    firebase: true,
+                    Ext: true,
+                    FSS: true,
+                    Logger: true
+                }
+            },
+            summary: true
+        },
+
+        // json fixtures config
+        jsonFixturesPreprocessor: {
+            stripPrefix: 'tests/data/',
+            variableName: 'jsonMocks'
         }
     });
 };

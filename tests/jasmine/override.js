@@ -2,25 +2,25 @@
 console.log('Live browser tests at http://localhost:5060');
 console.log('Live browser console at http://localhost:9876/');
 
-let matchers = {
+var matchers = {
     // test passed params
     toMatchExpectedParams: function () {
         return {
             compare: function (fn, controller) {
                 spyOn(controller, fn).and.callFake(function () {
-                    let mocks = controller.mocks || controller.self.mocks;
+                    var mocks = controller.mocks || controller.self.mocks;
                     var className = controller.$name ? controller.$name : controller.$className;
                     if (!mocks) {
                         throw 'class `' + className + '` is missing a mocks object';
                     }
                     else {
-                        let mock = mocks[fn];
+                        var mock = mocks[fn];
                         if (!mock) {
                             throw 'class `' + className + '` is missing a mock for fn ' + fn;
                         }
                         else {
-                            let args = mock.args;
-                            for (let arg in arguments) {
+                            var args = mock.args;
+                            for (var arg in arguments) {
                                 if (arguments.hasOwnProperty(arg)) {
                                     var argument = arguments[arg];
                                     if (!args || !args.hasOwnProperty(arg)) {
@@ -42,7 +42,7 @@ let matchers = {
                             if (!arguments.length) {
                                 var length = 0;
                                 var params = [];
-                                for (let arg in args) {
+                                for (var arg in args) {
                                     if (args.hasOwnProperty(arg)) {
                                         params.push(args[arg]);
                                         length++;
@@ -56,7 +56,7 @@ let matchers = {
 
                 return {
                     pass: true
-                }
+                };
             }
         }
     },
@@ -65,33 +65,24 @@ let matchers = {
     toMatchExpectedResult: function () {
         return {
             compare: function (result, controller, fn) {
-                let mocks = controller.mocks || controller.self.mocks;
-                let expectedResult = {
-                    pass: false
-                };
-
+                var mocks = controller.mocks || controller.self.mocks;
                 var className = controller.$name ? controller.$name : controller.$className;
                 if (!mocks) {
-                    expectedResult.message = 'class `' + className + '` is missing a mocks object';
+                    throw 'class `' + className + '` is missing a mocks object';
                 }
                 else {
-                    let mock = mocks[fn];
+                    var mock = mocks[fn];
                     if (!mock) {
-                        expectedResult.message = 'class `' + className + '` is missing a mock for fn ' + fn;
+                        throw 'class `' + className + '` is missing a mock for fn ' + fn;
                     }
                     else {
-                        let type = getSuperType(result);
-                        expectedResult = {
-                            pass: type === mock.returns
-                        };
-
-                        if (!expectedResult.pass) {
-                            expectedResult.message = 'expected `' + result + '` to be of type ' + typeOfArg(mock.returns)
-                        }
+                        expect(result).toBeOfType(mock.returns);
                     }
                 }
 
-                return expectedResult;
+                return {
+                    pass: true
+                };
             }
         }
     },
@@ -99,21 +90,20 @@ let matchers = {
     toBeOfType: function () {
         return {
             compare: function (actual, expected) {
-                debugger;
                 var isArrayExpected = expected.indexOf('[]') !== -1;
                 if (isArrayExpected) {
                     var type = expected.substring(0, expected.length - 2);
                     expect(actual).toBeOfSameType(type);
-
-                    return {
-                        pass: true
-                    };
                 }
                 else {
-                    return {
-                        pass: typeOfArg(actual) === expected
-                    };
+                    if (getSuperType(actual) !== expected) {
+                        throw 'expected argument `' + getSuperType(actual) + '` to be of type `' + expected + '`';
+                    }
                 }
+
+                return {
+                    pass: true
+                };
             }
         };
     },
@@ -121,13 +111,13 @@ let matchers = {
     toBeArray: function () {
         return {
             compare: function (actual) {
-                var test = {
-                    pass: isArray(actual)
-                };
-                if (!test.pass) {
-                    test.message = 'expected Array but passed ' + typeOfArg(actual);
+                if (!isArray(actual)) {
+                    throw 'expected Array but passed ' + getSuperType(actual);
                 }
-                return test;
+
+                return {
+                    pass: true
+                };
             }
         };
     },
@@ -136,25 +126,25 @@ let matchers = {
         return {
             compare: function (actual, expected) {
                 expect(actual).toBeArray();
-                var test = {
-                    pass: isArray(actual)
-                };
 
-                if (test.pass) {
+                if (isArray(actual)) {
                     if (actual.length) {
+                        var isValid = true;
                         var index = 0;
-                        while (index < actual.length) {
-                            test.pass &= typeOfArg(actual[index]) === expected;
-                            index++;
-                        }
+                        while (isValid && index < actual.length) {
+                            isValid = (getSuperType(actual[index]) === expected);
+                            if (!isValid) {
+                                toHaveSameMembers(actual[index], expected);
+                            }
 
-                        if (!test.pass) {
-                            test.message = 'Not all Array items are same type, expected ' + expected;
+                            index++;
                         }
                     }
                 }
 
-                return test;
+                return {
+                    pass: true
+                };
             }
         };
     },
@@ -162,55 +152,86 @@ let matchers = {
     toPass: function () {
         return {
             compare: function (fn, scope, args) {
-                var test = {pass: true};
+                var isValid = true;
                 var func = scope[fn];
                 var isFn = isFunction(func);
                 var exception;
 
                 if (!func || !isFn) {
-                    test.pass = false;
-                    test.message = 'passed arg `' + fn + '` is not a function or is undefined';
+                    throw 'expected passed arg `' + fn + '` to be `function` but `' + getSuperType(fn) + '` was passed';
                 }
                 else {
                     try {
                         func.apply(scope, args);
                     } catch (e) {
                         exception = e;
-                    }
-
-                    if (exception) {
-                        test.pass = false;
+                        isValid = false;
                     }
                 }
 
                 var not = this.isNot ? "not " : "";
-                if (!test.pass) {
-                    test.message = 'Expected function `' + fn + '` ' + not + 'to throw but it threw - ' + exception.message;
-                } else {
-                    test.message = 'Expected function `' + fn + '` to throw an exception';
+                if (!isValid) {
+                    throw 'expected function `' + fn + '` ' + not + 'to throw but it threw - ' + exception.message;
                 }
 
-                return test;
+                return {
+                    pass: true
+                };
             }
         };
     }
 };
 
+var toHaveSameMembers = function (actual, expected) {
+    var isValid = true;
+    if (isObject(actual)) {
+        var originalExpected = expected;
+        if (isString(expected)) {
+            // make this available as real class/type definition
+            expected = eval(expected);
+        }
 
-let getSuperType = function (argument) {
+        var configs = expected.$config ? expected.$config.configs : {};
+
+        for (var arg in actual) {
+            if (actual.hasOwnProperty(arg)) {
+                isValid &= configs.hasOwnProperty(arg);
+
+                if (!isValid) {
+                    break;
+                }
+            }
+        }
+
+        if (!isValid) {
+            throw 'expected to have `' + arg + '` but it did not match any member from ' + originalExpected;
+        }
+    }
+    else {
+        isValid = false;
+        throw 'expected passed argument to be an object';
+    }
+
+    return isValid;
+};
+
+var getSuperType = function (argument) {
     var supertype = argument.$className;
 
     if (!supertype && argument.superclass) {
+        // If this is Ext class/type try and find its classname as type
         supertype = getSuperType(argument.superclass);
     }
+
     if (!supertype) {
-        supertype = typeOfArg(argument);
+        // If none above returned type then try to find a native JS type
+        supertype = getTypeOf(argument);
     }
 
     return supertype;
 };
 
-var typeOfArg = function (arg) {
+var getTypeOf = function (arg) {
     var type;
 
     if (isObject(arg)) {
@@ -250,12 +271,15 @@ var typeOfArg = function (arg) {
         type = 'undefined';
     }
 
-    if(!type){
-        type = getSuperType(arg);
+    if (!type) {
+        // If all types fail then fallback to native typeof method
+        type = typeof arg;
     }
 
     return type;
 };
+
+// List of all wrapped data types for testing purposes
 
 var isString = function (value) {
     return typeof value === 'string' || value instanceof String;

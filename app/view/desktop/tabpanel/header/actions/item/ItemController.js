@@ -1,9 +1,13 @@
 /**
- * Created by emisia on 5/8/18.
+ * Header actions panel
  */
 Ext.define('FSS.view.desktop.tabpanel.header.actions.item.ItemController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.fssHeaderActionItemController',
+
+    requires: [
+        'Ext.util.Cookies'
+    ],
 
     localeUrlTpl: 'resources/locale/{0}.json',
 

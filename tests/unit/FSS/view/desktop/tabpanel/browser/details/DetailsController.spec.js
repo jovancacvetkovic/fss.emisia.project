@@ -32,7 +32,7 @@ describe('FSS.view.desktop.tabpanel.browser.details.DetailsController', function
     });
     
     describe('function `loadDetails` will not throw', function(){
-        let snapshot;
+        var snapshot;
         beforeEach(function(){
             snapshot = {
                 responseText: '{}'

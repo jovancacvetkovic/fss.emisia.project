@@ -21,7 +21,7 @@ describe('FSS.profile.Tablet', function () {
         });
 
         xit('expect to return correct type', function () {
-            let result = Tablet.isActive();
+            var result = Tablet.isActive();
             expect(result).toMatchExpectedResult(Tablet, 'isActive');
         });
     });

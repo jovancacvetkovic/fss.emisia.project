@@ -6,20 +6,20 @@ Ext.define('FSS.mixin.Prepare', {
 
     /**
      * Prepare list data
-     * @param leagues
-     * @return {Array}
+     * @param {FSS.type.mixin.Prepare[]} leagues
+     * @return {FSS.type.mixin.Prepared[]}
      */
     prepareLeaguesData: function (leagues) {
-        let mappedItems = [];
+        var mappedItems = [];
 
-        for (let key in leagues) {
+        for (var key in leagues) {
             if (leagues.hasOwnProperty(key)) {
-                let league = leagues[key];
+                var league = leagues[key];
                 if (Ext.isObject(league)) {
                     mappedItems.push({
-                        root: league['ROOT'],
-                        name: league['NAME'],
-                        group: league['GROUP'],
+                        root: league.ROOT,
+                        name: league.NAME,
+                        group: league.GROUP,
                         id: key
                     });
                 }
@@ -31,7 +31,10 @@ Ext.define('FSS.mixin.Prepare', {
 }, function(Cls){
     Cls.mocks = {
         prepareLeaguesData: {
-            0: 'object'
+            args: {
+                0: 'FSS.type.mixin.Prepare[]'
+            },
+            returns: 'FSS.type.mixin.Prepared[]'
         }
     };
 });

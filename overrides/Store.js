@@ -11,7 +11,7 @@ Ext.define('FSS.overrides.Store', {
         let me = this;
         this.callParent(arguments);
         
-        if (me.hasListeners.load) {
+        if (me.hasListeners.load && !(me.destroying || me.destroyed)) {
             // Fire store load event after load is finished
             me.fireEvent('load', me, records);
         }

@@ -97,7 +97,7 @@ describe('FSS.Application', function () {
             }).not.toThrow();
         });
         it('expect to return correct type', function () {
-            let result = App.onGrantPermissions();
+            var result = App.onGrantPermissions();
             expect(result).toMatchExpectedResult(App, 'onGrantPermissions');
         });
     });

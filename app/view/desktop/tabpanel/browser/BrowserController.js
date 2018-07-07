@@ -37,4 +37,13 @@ Ext.define('FSS.view.desktop.tabpanel.browser.BrowserController', {
             syncList: [fssDetails]
         });
     }
+}, function(Cls){
+    Cls.mocks = {
+        onActiveRoute: {
+            args: {
+                0: 'FSS.type.RouteArguments'
+            }
+        },
+        setScrollerLayout: {}
+    };
 });

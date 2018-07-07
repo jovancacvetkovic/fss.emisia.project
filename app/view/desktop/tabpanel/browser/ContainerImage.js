@@ -183,7 +183,7 @@ Ext.define('FSS.view.desktop.tabpanel.browser.ContainerImage', {
         this.element.dom.style.backgroundImage = 'url("' + this.imageObject.src + '")';
         
         //noinspection JSUnresolvedFunction
-        this.fireEvent('load', this, e);
+        //this.fireEvent('load', this, e);
     },
     
     /**

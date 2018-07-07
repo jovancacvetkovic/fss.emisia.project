@@ -1,5 +1,5 @@
 /**
- * Created by emisia on 5/13/18.
+ * Browser details controller
  */
 Ext.define('FSS.view.desktop.tabpanel.browser.details.DetailsController', {
     extend: 'Ext.app.ViewController',

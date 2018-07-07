@@ -12,7 +12,7 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.list.ListController', {
     },
 
     loadListData: function (data) {
-        var store = this.getView().getStore();
+        var store = this.getListStore();
         store.on('load', this.onLoadHandler, this, {
             single: true
         });
@@ -20,7 +20,8 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.list.ListController', {
     },
 
     findItemById: function (itemId) {
-        return this.getView().getStore().findRecord('id', itemId);
+        var store = this.getListStore();
+        return store.findRecord('id', itemId);
     },
 
     getActiveListItem: function () {
@@ -29,11 +30,16 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.list.ListController', {
         item = Ext.isString(item) ? this.findItemById(item) : item;
 
         if (!item && this.getSelectFirstListItem()) {
+            var store = this.getListStore();
             // If selectFirstListItem is `true` get first store record
-            item = this.getView().getStore().getAt(0);
+            item = store.getAt(0);
         }
 
         return item;
+    },
+
+    getListStore: function(){
+        return this.getView().getViewModel().getStore('list');
     },
 
     onLoadHandler: function (store, records) {

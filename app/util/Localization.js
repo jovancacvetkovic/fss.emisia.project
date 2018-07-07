@@ -5,6 +5,11 @@
  * NOTE: testing other languages then EN, you should set FSS.isDev to `false` in index.html file
  */
 Ext.define('FSS.util.Localization', {
+
+    requires: [
+        'FSS.store.Localization'
+    ],
+
     singleton: true,
 
     constructor: function () {

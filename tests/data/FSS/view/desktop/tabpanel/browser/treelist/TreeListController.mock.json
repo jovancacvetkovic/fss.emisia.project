@@ -1,0 +1,65 @@
+{
+    "FSVOJVODINE": {
+        "GROUP": "UNION",
+        "NAME": "FS Vojvodine",
+        "SUB_LEAGUE": {
+            "FSNOVOGSADA": {
+                "NAME": "FS Grada Novog Sada"
+            },
+            "PFSPANCEVO": {
+                "NAME": "PFS Pančevo"
+            },
+            "PFSSOMBOR": {
+                "NAME": "PFS Sombor"
+            },
+            "PFSSREM": {
+                "NAME": "PFS Srem"
+            },
+            "PFSSUBOTICA": {
+                "NAME": "PFS Subotica",
+                "SUB_LEAGUE": {
+                    "ADA": {
+                        "NAME": "Ada"
+                    },
+                    "BACKATOPOLA": {
+                        "NAME": "Bačka Topola"
+                    },
+                    "BECEJ": {
+                        "NAME": "Bečej"
+                    },
+                    "COKA": {
+                        "NAME": "Čoka"
+                    },
+                    "KANJIZA": {
+                        "NAME": "Kanjiža"
+                    },
+                    "MALIIDJOS": {
+                        "NAME": "Mali Idjoš"
+                    },
+                    "NOVIKNJAZEVAC": {
+                        "NAME": "Novi Knjaževac"
+                    },
+                    "SENTA": {
+                        "NAME": "Senta"
+                    },
+                    "SRBOBRAN": {
+                        "NAME": "Srbobran"
+                    },
+                    "SUBOTICA": {
+                        "NAME": "Subotica"
+                    },
+                    "VRBAS": {
+                        "NAME": "Vrbas"
+                    }
+                }
+            },
+            "PFSZRENJANIN": {
+                "NAME": "PFS Zrenjanin"
+            }
+        },
+        "details": {
+            "FULL_NAME": "Fudbalski Savez Vojvodine",
+            "NAME": "FS Vojvodine"
+        }
+    }
+}

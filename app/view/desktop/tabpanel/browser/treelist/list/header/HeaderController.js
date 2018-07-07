@@ -16,7 +16,7 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.list.header.HeaderControl
     },
 
     onLocaleChange: function (locales, prevLocale, binding) {
-        var groupKey = this.getView().getGroupHeaderTplData()['name'];
+        var groupKey = this.getView().getGroupHeaderTplData().name;
         if(locales && locales[groupKey]){
             this.getView().setHtml(locales[groupKey]);
         }

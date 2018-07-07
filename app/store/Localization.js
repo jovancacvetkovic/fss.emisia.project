@@ -7,6 +7,10 @@
 Ext.define('FSS.store.Localization', {
     extend: 'Ext.data.Store',
 
+    requires: [
+        'Ext.util.Cookies'
+    ],
+
     localeUrlTemplate: 'resources/locale/{0}.json',
 
     constructor: function () {

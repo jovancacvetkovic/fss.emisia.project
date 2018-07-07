@@ -81,7 +81,7 @@ describe('FSS.view.desktop.scroller.ScrollerController', function(){
         });
         
         it('expect to return correct type', function(){
-            let result = ScrollerController.getDefaultDelta(1);
+            var result = ScrollerController.getDefaultDelta(1);
             expect(result).toMatchExpectedResult(ScrollerController, 'getDefaultDelta');
         });
     });
