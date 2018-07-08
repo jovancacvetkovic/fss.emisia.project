@@ -3,8 +3,12 @@ console.log('Live browser tests at http://localhost:5060');
 console.log('Live browser console at http://localhost:9876/');
 
 var matchers = {
-    // test passed params
-    toMatchExpectedParams: function () {
+    /**
+     * Test passed arguments to be of expected type
+     * @param {*} controller
+     * @returns {{compare: (function(*=, *=): {pass: boolean})}}
+     */
+    toMatchExpectedParams: function (controller) {
         return {
             compare: function (fn, controller) {
                 spyOn(controller, fn).and.callFake(function () {
@@ -27,6 +31,7 @@ var matchers = {
                                         throw 'argument `' + argument + '` is passed but it is not mocked';
                                     }
                                     else {
+                                        // test argument type
                                         expect(argument).toBeOfType(args[arg]);
                                     }
                                 }
@@ -39,10 +44,10 @@ var matchers = {
                                 }
                             }
 
-                            if (!arguments.length) {
+                            if (!arguments.length) { // test number of passed arguments
                                 var length = 0;
                                 var params = [];
-                                for (var arg in args) {
+                                for (arg in args) {
                                     if (args.hasOwnProperty(arg)) {
                                         params.push(args[arg]);
                                         length++;
@@ -61,8 +66,13 @@ var matchers = {
         }
     },
 
-    // test result type
-    toMatchExpectedResult: function () {
+    /**
+     * Test function return value be of expected type
+     * @param {*} controller
+     * @param {string} fn
+     * @returns {{compare: (function(*=, *, *): {pass: boolean})}}
+     */
+    toMatchExpectedResult: function (controller, fn) {
         return {
             compare: function (result, controller, fn) {
                 var mocks = controller.mocks || controller.self.mocks;
@@ -87,17 +97,30 @@ var matchers = {
         }
     },
 
-    toBeOfType: function () {
+    /**
+     * Test argument type to of proper type
+     * @param {*} expected
+     * @returns {{compare: (function(*=, *): {pass: boolean})}}
+     */
+    toBeOfType: function (expected) {
         return {
             compare: function (actual, expected) {
                 var isArrayExpected = expected.indexOf('[]') !== -1;
                 if (isArrayExpected) {
                     var type = expected.substring(0, expected.length - 2);
-                    expect(actual).toBeOfSameType(type);
+                    expect(actual).toBeOfSameType(type); // if its array, test array items
                 }
                 else {
-                    if (getSuperType(actual) !== expected) {
-                        throw 'expected argument `' + getSuperType(actual) + '` to be of type `' + expected + '`';
+                    var index = 0;
+                    var isExpected = false;
+                    var allExpectancies = expected.split('|'); // result can be passed as a list of return types
+                    var superType = actual && getSuperType(actual) || getTypeOf(actual);
+                    while (!isExpected && index < allExpectancies.length) {
+                        isExpected = superType === allExpectancies[index]; // examine all return type, if any matches
+                        index++;
+                    }
+                    if (!isExpected) {
+                        throw 'expected argument `' + superType + '` to be of type `' + expected + '`';
                     }
                 }
 
@@ -108,6 +131,10 @@ var matchers = {
         };
     },
 
+    /**
+     * Test argument to be of type `array`
+     * @returns {{compare: (function(*=): {pass: boolean})}}
+     */
     toBeArray: function () {
         return {
             compare: function (actual) {
@@ -122,6 +149,10 @@ var matchers = {
         };
     },
 
+    /**
+     * Test array items to be of proper type
+     * @returns {{compare: (function(*=, *=): {pass: boolean})}}
+     */
     toBeOfSameType: function () {
         return {
             compare: function (actual, expected) {
@@ -149,7 +180,13 @@ var matchers = {
         };
     },
 
-    toPass: function () {
+    /**
+     * Test method call to pass
+     * @param {*} scope
+     * @param {array} args
+     * @returns {{compare: (function(*=, *=, *=): {pass: boolean})}}
+     */
+    toPass: function (scope, args) {
         return {
             compare: function (fn, scope, args) {
                 var isValid = true;
@@ -158,20 +195,22 @@ var matchers = {
                 var exception;
 
                 if (!func || !isFn) {
+                    // expected argument is function
                     throw 'expected passed arg `' + fn + '` to be `function` but `' + getSuperType(fn) + '` was passed';
                 }
                 else {
                     try {
+                        // try to execute function
                         func.apply(scope, args);
                     } catch (e) {
                         exception = e;
-                        isValid = false;
+                        isValid = false; // if function call fails test case will fail
                     }
                 }
 
-                var not = this.isNot ? "not " : "";
+                var not = !this.isNot ? "not " : "";
                 if (!isValid) {
-                    throw 'expected function `' + fn + '` ' + not + 'to throw but it threw - ' + exception.message;
+                    throw 'expected function `' + fn + '` ' + not + 'to throw but it threw - ' + exception.message + ' \nCall Stack: ' + exception.stack;
                 }
 
                 return {
@@ -182,6 +221,12 @@ var matchers = {
     }
 };
 
+/**
+ * Test object members if type is `object` or object instance
+ * @param {*} actual
+ * @param {*} expected
+ * @returns {boolean}
+ */
 var toHaveSameMembers = function (actual, expected) {
     var isValid = true;
     if (isObject(actual)) {
@@ -215,6 +260,11 @@ var toHaveSameMembers = function (actual, expected) {
     return isValid;
 };
 
+/**
+ * Returns argument type, variable type or class/type name
+ * @param {*} argument
+ * @returns {string}
+ */
 var getSuperType = function (argument) {
     var supertype = argument.$className;
 
@@ -231,6 +281,11 @@ var getSuperType = function (argument) {
     return supertype;
 };
 
+/**
+ * Returns atom variable type
+ * @param {*} arg
+ * @returns {string}
+ */
 var getTypeOf = function (arg) {
     var type;
 

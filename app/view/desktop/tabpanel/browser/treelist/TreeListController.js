@@ -179,7 +179,7 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', {
     expandLists: function () {
         var leagueList = this.getActiveList();
         var activeLeagues = this.getActiveLeagues();
-        if (activeLeagues.length) {
+        if (activeLeagues && activeLeagues.length) {
             var remainingListsIndex = activeLeagues.length + 1;
             var availableLists = this.getAvailableLists();
             var currentListIndex = availableLists.indexOf(leagueList.reference);
@@ -219,16 +219,18 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', {
         this.setPreviousLeague(activeLeague);
 
         var leagues = this.getActiveLeagues();
-        activeLeague = leagues.pop();
-        if (activeLeague) {
-            this.setActiveLeague(activeLeague);
+        if (leagues) {
+            activeLeague = leagues.pop();
+            if (activeLeague) {
+                this.setActiveLeague(activeLeague);
+            }
+
+            var leagueList = this.getActiveList();
+            leagueList.setSelectedId(this.getPreviousLeague());
+
+            // noinspection JSUnusedGlobalSymbols
+            this._activeLeagues = leagues;
         }
-
-        var leagueList = this.getActiveList();
-        leagueList.setSelectedId(this.getPreviousLeague());
-
-        // noinspection JSUnusedGlobalSymbols
-        this._activeLeagues = leagues;
 
         return activeLeague;
     },
@@ -314,8 +316,8 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', {
             var defaultLeague = this.pullActiveLeague();
 
             var leagueList = this.findList('leagueList');
-            var store = leagueList.getStore();
-            var isDefaultLeagueLoaded = store ? store.getCount() : 0;
+            var store = leagueList.getViewModel().getStore('list');
+            var isDefaultLeagueLoaded = store.getCount();
 
             if (isDefaultLeagueLoaded) {
                 leagueList.getController().setActiveListItem(defaultLeague);
@@ -339,10 +341,15 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', {
         return list;
     },
 
-    onMainListSelectRouteHandler: function (list, child) {
-        if (child.record) {
-            this.setDefaultLeague(child.record.id);
-            this.redirectTo('FSS/browser/' + child.record.id);
+    /**
+     * Main list select handler
+     * @param {FSS.view.desktop.tabpanel.browser.treelist.list.List} list
+     * @param {Ext.list.Location} listLocationItem
+     */
+    onMainListSelectRouteHandler: function (list, listLocationItem) {
+        if (listLocationItem.record) {
+            this.setDefaultLeague(listLocationItem.record.id);
+            this.redirectTo('FSS/browser/' + listLocationItem.record.id);
         }
     },
 
@@ -370,6 +377,24 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', {
     }
 }, function (Cls) {
     Cls.mocks = {
+        onMainListSelectRouteHandler: {
+            args: {
+                0: 'FSS.view.desktop.tabpanel.browser.treelist.list.List',
+                1: 'Ext.list.Location'
+            }
+        },
+        onSubListSelectRouteHandler: {
+            args: {
+                0: 'FSS.view.desktop.tabpanel.browser.treelist.list.List',
+                1: 'Ext.list.Location'
+            }
+        },
+        onTeamListSelectRouteHandler: {
+            args: {
+                0: 'FSS.view.desktop.tabpanel.browser.treelist.list.List',
+                1: 'Ext.list.Location'
+            }
+        },
         loadDefaultLeague: {
             args: {
                 0: 'string'
@@ -384,6 +409,41 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', {
             args: {
                 0: 'FSS.type.ajax.Response'
             }
+        },
+        expandLists: {},
+        getSelectedId: {
+            args: {
+                0: 'FSS.view.desktop.tabpanel.browser.treelist.list.List'
+            },
+            returns: 'string|undefined'
+        },
+        pullActiveLeague: {
+            returns: 'string|undefined'
+        },
+        getNextLeague: {
+            args: {
+                0: 'string'
+            },
+            returns: 'string|undefined'
+        },
+        getActiveList: {
+            returns: 'FSS.view.desktop.tabpanel.browser.treelist.list.List'
+        },
+        onListItemSelect: {
+            args: {
+                0: 'string'
+            }
+        },
+        setActiveLeagues: {
+            args: {
+                0: 'string[]'
+            }
+        },
+        findList: {
+            args: {
+                0: 'string'
+            },
+            returns : 'FSS.view.desktop.tabpanel.browser.treelist.list.List'
         }
     };
 });
