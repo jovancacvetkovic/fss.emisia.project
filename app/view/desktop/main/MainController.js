@@ -1,5 +1,5 @@
 /**
- * Created by emisia on 5/7/18.
+ * Desktop main controller
  */
 Ext.define('FSS.view.desktop.main.MainController', {
     extend: 'Ext.app.ViewController',

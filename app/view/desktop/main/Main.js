@@ -1,5 +1,5 @@
 /**
- * Created by emisia on 5/7/18.
+ * Desktop main view
  */
 Ext.define('FSS.view.desktop.main.Main', {
     extend: 'Ext.tab.Panel',
