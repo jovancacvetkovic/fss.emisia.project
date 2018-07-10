@@ -16,6 +16,7 @@ Ext.define('FSS.store.Localization', {
     constructor: function () {
         this.callParent(arguments);
 
+        // create proxy to load locales
         var proxy = new Ext.data.proxy.Ajax({
             autoCreated: true,
             url: this.getLocaleUrl(),
@@ -28,6 +29,11 @@ Ext.define('FSS.store.Localization', {
         this.setProxy(proxy);
     },
 
+    /**
+     * Returns default or saved locale code
+     * Defaults to `en` code
+     * @returns {String} locale Locale code
+     */
     getLocale: function () {
         var locale = Ext.util.Cookies.get('locale');
         locale = locale ? locale : (
@@ -39,6 +45,10 @@ Ext.define('FSS.store.Localization', {
         return locale;
     },
 
+    /**
+     * Returns generated locale url
+     * @returns {String}
+     */
     getLocaleUrl: function () {
         var locale = this.getLocale();
         return FSS.isDev ? undefined : Ext.String.format(this.localeUrlTemplate, locale);
