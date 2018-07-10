@@ -6,7 +6,9 @@ Ext.define('FSS.profile.Tablet', {
     extend: 'Ext.app.Profile',
 
     xtype: 'fssTabletProfile',
-    
+
+    isTablet: true,
+
     // The name of the initial view to create.
     mainView: 'FSS.view.tablet.main.Main',
     
