@@ -7,6 +7,8 @@ Ext.define('FSS.profile.Mobile', {
 
     xtype: 'fssMobileProfile',
 
+    isMobile: true,
+
     // The name of the initial view to create.
     mainView: 'FSS.view.mobile.main.Main',
 

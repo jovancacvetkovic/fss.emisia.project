@@ -7,6 +7,8 @@ Ext.define('FSS.profile.Desktop', {
 
     xtype: 'fssDesktopProfile',
 
+    isDesktop: true,
+
     // The name of the initial view to create.
     mainView: 'FSS.view.desktop.main.Main',
 
