@@ -1,5 +1,5 @@
 /**
- * Created by emisia on 5/7/18.
+ * Desktop main header view
  */
 Ext.define('FSS.view.desktop.tabpanel.header.Header', {
     extend: 'Ext.tab.Bar',
@@ -34,11 +34,11 @@ Ext.define('FSS.view.desktop.tabpanel.header.Header', {
         reference: 'fssHeaderActions',
         uiCls: 'body-el'
     }],
-    
+
     initElement: function(){
         var me = this;
         me.callParent();
-        
+
         if (me.fssHeaderActions) {
             var headerActionsConfig = Ext.Array.findBy(me.getTemplate(), me.getActionsConfig, me);
             if (headerActionsConfig){
@@ -46,11 +46,11 @@ Ext.define('FSS.view.desktop.tabpanel.header.Header', {
                 headerActionsConfig.renderTo = me.fssHeaderActions;
                 Ext.factory(headerActionsConfig); // Create actions bar
             }
-            
+
             me.fssHeaderActions.addCls('fssHeaderActions');
         }
     },
-    
+
     getActionsConfig: function(item){
         return item.xtype === 'fssHeaderActions';
     }
