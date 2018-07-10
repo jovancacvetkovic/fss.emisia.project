@@ -1,5 +1,5 @@
 /**
- * Created by emisia on 5/13/18.
+ * Desktop browser details panel
  */
 Ext.define('FSS.view.desktop.tabpanel.browser.details.Details', {
     extend: 'Ext.Container',

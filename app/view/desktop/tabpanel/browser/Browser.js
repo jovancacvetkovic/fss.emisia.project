@@ -1,5 +1,5 @@
 /**
- * Created by emisia on 5/7/18.
+ * Desktop browser tab
  */
 Ext.define('FSS.view.desktop.tabpanel.browser.Browser', {
     extend: 'FSS.view.desktop.tabpanel.tab.Tab',
