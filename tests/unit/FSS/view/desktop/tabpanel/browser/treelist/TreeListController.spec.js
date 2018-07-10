@@ -94,6 +94,34 @@ describe('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', functi
         });
     });
 
+
+    describe('should not fail on getDbUrl', function () {
+        it('expect correct params to be passed', function () {
+            expect('getDbUrl').toMatchExpectedParams(TreeListController);
+            TreeListController.getDbUrl('string', 'string');
+        });
+
+        it('should not fail on getDbUrl', function () {
+            expect('getDbUrl').toPass(TreeListController, ['string', 'string']);
+        });
+
+        it('should not fail on getDbUrl with activeLeagues set', function () {
+            TreeListController.setActiveLeagues(['string']);
+            expect('getDbUrl').toPass(TreeListController, ['string', 'string']);
+        });
+
+        it('should not fail on getDbUrl with activeLeagues set with sub-leagues', function () {
+            TreeListController.setActiveLeagues(['string', 'string', 'string']);
+            TreeListController.setListCount(5);
+            expect('getDbUrl').toPass(TreeListController, ['string', 'string']);
+        });
+
+        it('expect to return correct type', function () {
+            var result = TreeListController.getDbUrl('string', 'string');
+            expect(result).toMatchExpectedResult(TreeListController, 'getDbUrl');
+        });
+    });
+
     describe('should not fail on pullActiveLeague', function () {
         it('should not fail on pullActiveLeague', function () {
             expect('pullActiveLeague').toPass(TreeListController, []);

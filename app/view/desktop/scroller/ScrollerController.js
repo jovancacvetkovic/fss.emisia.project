@@ -13,7 +13,7 @@ Ext.define('FSS.view.desktop.scroller.ScrollerController', {
 
     config: {
         /**
-         * @cfg {FSS.type.view.desktop.basic.scroller.Cfg} asyncCfg
+         * @cfg {FSS.type.view.desktop.scroller.Cfg} asyncCfg
          * Scroll arguments, arg object that is passed to native scroll method scrollTo
          */
         asyncCfg: {},

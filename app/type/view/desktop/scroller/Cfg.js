@@ -2,7 +2,7 @@
  * Scroller cfg type
  * @author Jovan Cvetkovic
  */
-Ext.define('FSS.type.view.desktop.basic.scroller.Cfg', {
+Ext.define('FSS.type.view.desktop.scroller.Cfg', {
     extend: 'FSS.type.Abstract',
     statics: {
         addMembers: function(data){

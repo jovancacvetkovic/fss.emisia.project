@@ -11,6 +11,10 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.list.ListController', {
         selectFirstListItem: false
     },
 
+    /**
+     * Load list data
+     * @param {Object[]} data
+     */
     loadListData: function (data) {
         var store = this.getListStore();
         store.on('load', this.onLoadHandler, this, {
@@ -65,4 +69,8 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.list.ListController', {
         var itemData = listItem.getData();
         this.fireEvent('itemSelect', itemData.id);
     }
+}, function(Cls){
+    Cls.mocks = {
+        loadListData: {}
+    };
 });

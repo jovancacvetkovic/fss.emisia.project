@@ -444,6 +444,13 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', {
                 0: 'string'
             },
             returns : 'FSS.view.desktop.tabpanel.browser.treelist.list.List'
+        },
+        getDbUrl: {
+            args: {
+                0: 'string',
+                1: 'string'
+            },
+            returns : 'string'
         }
     };
 });
