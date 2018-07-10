@@ -1,13 +1,5 @@
 'use strict';
 
-// beforeAll override
-// add current spec reference
-var beforeAllMock = jasmine.Suite.prototype.beforeAll;
-jasmine.Suite.prototype.beforeAll = function (...args) {
-    self.currentSpec = this.result;
-    beforeAllMock.apply(this, args);
-};
-
 // beforeEach override
 // add current spec reference
 var beforeEachMock = jasmine.Suite.prototype.beforeEach;

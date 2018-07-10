@@ -5,8 +5,6 @@ describe('FSS.mixin.Prepare', function () {
     beforeEach(function () {
         //create a fresh grid for every test to avoid test pollution
         Prepare = new FSS.mixin.Prepare;
-
-        jasmine.addMatchers(matchers);
     });
 
     afterEach(function () {

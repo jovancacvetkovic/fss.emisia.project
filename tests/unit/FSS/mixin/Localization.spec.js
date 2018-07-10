@@ -5,8 +5,6 @@ describe('FSS.mixin.Localization', function () {
     beforeEach(function () {
         //create a fresh grid for every test to avoid test pollution
         Locale = new FSS.mixin.Localization;
-
-        jasmine.addMatchers(matchers);
     });
 
     afterEach(function () {

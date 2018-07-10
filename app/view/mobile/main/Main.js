@@ -6,17 +6,12 @@ Ext.define('FSS.view.mobile.main.Main', {
 
     requires: [
         'FSS.view.mobile.main.MainController',
-        'FSS.view.mobile.main.MainModel',
         'FSS.view.mobile.tabpanel.browser.Browser',
         'FSS.view.mobile.tabpanel.header.Header'
     ],
 
     xtype: 'fssMobileMain',
 
-    viewModel: {
-        type: 'fssMobileMainModel'
-    },
-    
     cls: 'fssMobileMain',
     
     controller: 'fssMobileMainController',

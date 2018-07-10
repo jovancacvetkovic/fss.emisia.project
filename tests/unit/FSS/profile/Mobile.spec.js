@@ -5,8 +5,6 @@ describe('FSS.profile.Mobile', function () {
     beforeEach(function () {
         //create a fresh grid for every test to avoid test pollution
         Mobile = Ext.create('FSS.profile.Mobile', {});
-
-        jasmine.addMatchers(matchers);
     });
 
     afterEach(function () {

@@ -9,8 +9,6 @@ describe('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', functi
             renderTo: 'test'
         });
         TreeListController = TreeList.getController();
-
-        jasmine.addMatchers(matchers);
     });
 
     afterEach(function () {

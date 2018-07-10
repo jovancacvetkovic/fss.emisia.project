@@ -3,12 +3,18 @@ describe('FSS.view.desktop.tabpanel.browser.details.DetailsController', function
     //reusable scoped variable
     var Details = null;
     var DetailsController = null;
-
+    var response;
     beforeEach(function(){
         Details = Ext.create('FSS.view.desktop.tabpanel.browser.details.Details', {
             renderTo: 'test'
         });
         DetailsController = Details.getController();
+
+        spyOn(FSS, 'getApplication').and.callFake(FSSMock.getApplication);
+
+        response = Ext.create('FSS.type.ajax.Response', {
+            responseText: JSON.stringify(mockService.jsonMock)
+        });
     });
     
     afterEach(function(){
@@ -16,41 +22,23 @@ describe('FSS.view.desktop.tabpanel.browser.details.DetailsController', function
     });
     
     describe('function `onLoadDetails` will not throw', function(){
-        it('when function is called', function(){
-            expect(function(){
-                DetailsController.onLoadDetails('id');
-            }).not.toThrow();
+        it('should not fail on onLoadDetails', function () {
+            expect('onLoadDetails').toPass(DetailsController, ['string', true]);
         });
-        
-        it('when function is called with expected params', function(){
-            spyOn(DetailsController, 'onLoadDetails').and.callFake(function(src){
-                expect(typeof arguments[0]).toEqual('string');
-            });
-            
-            DetailsController.onLoadDetails('id');
+
+        it('expect correct params to be passed', function () {
+            expect('onLoadDetails').toMatchExpectedParams(DetailsController);
+            DetailsController.onLoadDetails('string', true);
         });
     });
     
-    describe('function `loadDetails` will not throw', function(){
-        var snapshot;
-        beforeEach(function(){
-            snapshot = {
-                responseText: '{}'
-            };
+    describe('function `loadDetailsSuccess` will not throw', function(){
+        it('should not fail on loadDetailsSuccess', function () {
+            expect('loadDetailsSuccess').toPass(DetailsController, [response]);
         });
-        
-        it('when function is called', function(){
-            expect(function(){
-                DetailsController.loadDetails(snapshot);
-            }).not.toThrow();
-        });
-        
-        it('when function is called with expected params', function(){
-            spyOn(DetailsController, 'loadDetails').and.callFake(function(src){
-                expect(typeof arguments[0]).toEqual('object');
-            });
-            
-            DetailsController.loadDetails(snapshot);
+        it('expect correct params to be passed', function () {
+            expect('loadDetailsSuccess').toMatchExpectedParams(DetailsController);
+            DetailsController.loadDetailsSuccess(response);
         });
     });
 });

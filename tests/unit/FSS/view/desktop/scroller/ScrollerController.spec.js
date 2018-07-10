@@ -9,8 +9,6 @@ describe('FSS.view.desktop.scroller.ScrollerController', function(){
             renderTo: 'test'
         });
         ScrollerController = Scroller.getController();
-        
-        jasmine.addMatchers(matchers);
     });
     
     afterEach(function(){

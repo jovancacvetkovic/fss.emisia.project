@@ -12,8 +12,6 @@ describe('FSS.view.desktop.tabpanel.browser.BrowserController', function(){
             renderTo: 'test'
         });
         BrowserController = Browser.getController();
-
-        jasmine.addMatchers(matchers);
     });
     
     afterEach(function(){

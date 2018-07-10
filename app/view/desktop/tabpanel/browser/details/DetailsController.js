@@ -62,4 +62,18 @@ Ext.define('FSS.view.desktop.tabpanel.browser.details.DetailsController', {
         this.lookup('fssPersonnelStats').getController().loadDetails(details);
         this.lookup('fssPersonnelOtherStats').getController().loadDetails(details);
     }
+}, function(Cls){
+    Cls.mocks = {
+        onLoadDetails: {
+            args: {
+                0: 'string',
+                1: 'boolean'
+            }
+        },
+        loadDetailsSuccess: {
+            args: {
+                0: 'FSS.type.ajax.Response'
+            }
+        }
+    };
 });

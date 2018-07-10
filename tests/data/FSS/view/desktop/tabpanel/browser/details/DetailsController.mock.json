@@ -1,0 +1,40 @@
+{
+    "ACTIVITY": {
+        "CLUBS": 2770,
+        "COACHES": 4901,
+        "JUDGES": 4032,
+        "LEAGUES": 365,
+        "PLAYERS": 120194
+    },
+    "BANNER_URL": "https://firebasestorage.googleapis.com/v0/b/fssmodern.appspot.com/o/fssmodern%2Fbanners%2Fbanner.png?alt=media&token=3e7b767a-3356-4f50-9415-7e7fbad5ba43",
+    "CREATED": 1919,
+    "FULL_NAME": "Fudbalski Savez Srbije",
+    "GENERAL": {
+        "ADDRESS": "Terazije 35 | Beograd",
+        "FOUNDED": 1919,
+        "PHONES": {
+            "FAX": "011.3233.558",
+            "PHONE": "011.3233.447"
+        },
+        "WEB": {
+            "EMAIL": "office@fss.rs",
+            "SITE": "www.fss.rs"
+        }
+    },
+    "LOGO_URL": "https://firebasestorage.googleapis.com/v0/b/fssmodern.appspot.com/o/fssmodern%2Ffss-srbije-logo.svg?alt=media&token=5c3abd3f-fd90-40bc-95c4-4c4a80b926ea",
+    "NAME": "FS Srbije",
+    "PERSONNEL": {
+        "GENERAL": {
+            "DIRECTOR": "Bunjevčević Goran",
+            "PARLAMENT": 68,
+            "PRESIDENT": "Kokeza Slaviša",
+            "SECRETARY": "Šurbatović Jovan"
+        },
+        "OTHER": {
+            "BOARD": 17,
+            "EXECUTIVES": 14,
+            "SUPREVISORS": 5,
+            "VICEPRESIDENTS": 3
+        }
+    }
+}

@@ -5,8 +5,6 @@ describe('FSS.profile.Desktop', function () {
     beforeEach(function () {
         //create a fresh grid for every test to avoid test pollution
         Desktop = Ext.create('FSS.profile.Desktop', {});
-
-        jasmine.addMatchers(matchers);
     });
 
     afterEach(function () {

@@ -2,6 +2,7 @@
 console.log('Live browser tests at http://localhost:5060');
 console.log('Live browser console at http://localhost:9876/');
 
+// noinspection JSUnusedLocalSymbols
 var matchers = {
     /**
      * Test passed arguments to be of expected type
@@ -220,6 +221,11 @@ var matchers = {
         };
     }
 };
+
+// add matchers to jasmine
+beforeEach(function () {
+    jasmine.addMatchers(matchers);
+});
 
 /**
  * Test object members if type is `object` or object instance

@@ -10,7 +10,6 @@ describe('FSS.view.desktop.main.MainController', function () {
         });
         MainController = Main.getController();
 
-        jasmine.addMatchers(matchers);
         spyOn(MainController, 'redirectTo');
     });
 

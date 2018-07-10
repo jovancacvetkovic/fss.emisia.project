@@ -9,8 +9,6 @@ describe('FSS.view.desktop.tabpanel.header.actions.item.ItemController', functio
             renderTo: 'test'
         });
         ItemController = Item.getController();
-
-        jasmine.addMatchers(matchers);
     });
 
     afterEach(function(){

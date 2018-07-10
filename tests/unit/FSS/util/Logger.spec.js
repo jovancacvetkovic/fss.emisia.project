@@ -4,10 +4,6 @@ describe('FSS.util.Logger', function () {
     Ext.require('FSS.util.Logger');
     var Logger = FSS.util.Logger;
 
-    beforeEach(function () {
-        jasmine.addMatchers(matchers);
-    });
-
     describe('should not fail on warn', function () {
         it('expect correct params to be passed', function () {
             expect('warn').toMatchExpectedParams(Logger);
