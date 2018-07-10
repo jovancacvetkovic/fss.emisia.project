@@ -1,0 +1,58 @@
+@import "../../../../../../var/FSS/Application";
+
+.fssMobileHeader {
+    height: $header-mobile-height;
+
+    .fssLogo {
+        position: absolute;
+        height: $header-mobile-height;
+        width: 100%;
+        clip: rect(0 360px 50px 0) !important;
+
+        &::before {
+            content: '';
+            background: url(images/fssmodern/fss-srbije-logo.svg) no-repeat;
+            background-size: 50px;
+
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 50px;
+            height: 100px;
+
+            -webkit-transform: rotate(15deg);
+            transform: rotate(15deg);
+        }
+    }
+
+    .#{$prefix}toolbar-body-el {
+        padding: 35px 50px 20px 16px;
+        justify-content: flex-end;
+    }
+
+    .#{$prefix}tabbar-body-el {
+        font-family: Ubuntu, sans-serif;
+        font-weight: 700;
+        font-size: 15px;
+        padding: 0;
+
+        min-height: $header-mobile-height !important;
+
+        color: map-get($material-foreground-colors, 'dark-red');
+
+        &.#{$prefix}active {
+            color: map-get($material-foreground-colors, 'white-grey');
+        }
+
+        .#{$prefix}active-indicator-el {
+            display: none;
+        }
+    }
+
+    .fssHeaderActions, .fssHeaderActionsBar {
+        width: 100%;
+        justify-content: flex-end;
+        background: transparent;
+        height: $header-mobile-height;
+    }
+}

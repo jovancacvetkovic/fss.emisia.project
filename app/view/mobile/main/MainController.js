@@ -1,14 +1,35 @@
 /**
- * Created by emisia on 5/7/18.
+ * Mobile main controller
  */
 Ext.define('FSS.view.mobile.main.MainController', {
-    extend: 'Ext.app.ViewController',
+    extend: 'FSS.view.desktop.main.MainController',
     alias: 'controller.fssMobileMainController',
 
-    /**
-     * Called when the view is created
-     */
-    init: function() {
+    requires: [
+        'FSS.view.desktop.tabpanel.browser.treelist.TreeList'
+    ],
 
+    init: function () {
+        Ext.Viewport.setMenu(this.getMenuCfg('left'), {
+            side: 'left',
+            reveal: true
+        });
+    },
+
+    getMenuCfg: function (side) {
+        return {
+            cls: 'fssSideMenu',
+            scrollable: 'y',
+            items: [{
+                xtype: 'fssTreeList',
+                reference: 'leagueTreeList',
+                minWidth: 220
+            }]
+        };
+    },
+
+    doDestroy: function () {
+        Ext.Viewport.removeMenu('left');
+        this.callParent();
     }
 });

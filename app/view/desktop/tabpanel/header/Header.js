@@ -3,23 +3,15 @@
  */
 Ext.define('FSS.view.desktop.tabpanel.header.Header', {
     extend: 'Ext.tab.Bar',
-    
+
     requires: [
-        'FSS.view.desktop.tabpanel.header.HeaderController',
-        'FSS.view.desktop.tabpanel.header.HeaderModel',
         'FSS.view.desktop.tabpanel.header.actions.Actions'
     ],
-    
+
     xtype: 'fssHeader',
-    
-    viewModel: {
-        type: 'fssHeaderModel'
-    },
-    
+
     cls: 'fssHeader',
-    
-    controller: 'fssHeaderController',
-    
+
     template: [{
         xtype: 'container',
         cls: Ext.baseCSSPrefix + 'body-el fssLogo',
@@ -35,13 +27,13 @@ Ext.define('FSS.view.desktop.tabpanel.header.Header', {
         uiCls: 'body-el'
     }],
 
-    initElement: function(){
+    initElement: function () {
         var me = this;
         me.callParent();
 
         if (me.fssHeaderActions) {
             var headerActionsConfig = Ext.Array.findBy(me.getTemplate(), me.getActionsConfig, me);
-            if (headerActionsConfig){
+            if (headerActionsConfig) {
                 // Render to actions holder el
                 headerActionsConfig.renderTo = me.fssHeaderActions;
                 Ext.factory(headerActionsConfig); // Create actions bar
@@ -51,7 +43,7 @@ Ext.define('FSS.view.desktop.tabpanel.header.Header', {
         }
     },
 
-    getActionsConfig: function(item){
+    getActionsConfig: function (item) {
         return item.xtype === 'fssHeaderActions';
     }
 });

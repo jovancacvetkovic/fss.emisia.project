@@ -1,12 +1,14 @@
 /**
- * Created by emisia on 5/7/18.
+ * Mobile main view
  */
 Ext.define('FSS.view.mobile.main.Main', {
     extend: 'FSS.view.desktop.main.Main',
 
     requires: [
+        'FSS.view.mobile.main.MainController',
         'FSS.view.mobile.main.MainModel',
-		'FSS.view.mobile.main.MainController'
+        'FSS.view.mobile.tabpanel.browser.Browser',
+        'FSS.view.mobile.tabpanel.header.Header'
     ],
 
     xtype: 'fssMobileMain',
@@ -18,18 +20,27 @@ Ext.define('FSS.view.mobile.main.Main', {
     cls: 'fssMobileMain',
     
     controller: 'fssMobileMainController',
-    
+
+    config: {
+        tabBar: {
+            xtype: 'fssMobileHeader'
+        }
+    },
+
     items: [{
-        xtype: 'fssBrowser',
-        reference: 'fssBrowser',
-        title: 'Pretrazivac'
+        xtype: 'fssMobileBrowser',
+        reference: 'browser',
+        pageId: 'browser',
+        title: '&nbsp;'
     }, {
         xtype: 'fssMessages',
-        reference: 'fssMessages',
-        title: 'Poruke'
+        reference: 'messages',
+        pageId: 'messages',
+        title: '&nbsp;'
     }, {
         xtype: 'fssSystematization',
-        reference: 'fssSystematization',
-        title: 'Sistematizacija'
+        reference: 'systematization',
+        pageId: 'systematization',
+        title: '&nbsp;'
     }]
 });

@@ -1,0 +1,159 @@
+.fssMobileDetails {
+    padding: 10px;
+    background-color: $fss-page-light-background;
+
+    > .#{$prefix}body-el {
+        background-color: $fss-page-lighter-background;
+
+        .fssDetailsHeader {
+            height: 170px;
+
+            &.fssContainerImg {
+                background: no-repeat top;
+                background-size: 100% 120px;
+            }
+
+            .flexer {
+                height: 20px;
+                background: transparent;
+            }
+
+            .fssDetailsBanner {
+                .bannerLogo {
+                    left: 10px;
+                    top: 70px;
+                    width: 75px;
+                    height: 75px;
+                }
+
+                .bannerBody {
+                    height: 155px;
+
+                    &::after {
+                        position: absolute;
+                        content: '';
+                        top: 65px;
+                        height: 110px;
+                        border-top: 60px solid $base-color;
+                        border-right: 34px solid transparent;
+                        width: 100%;
+                    }
+
+                    .bannerText {
+                        height: 80px;
+                        z-index: 1;
+                        color: map-get($material-foreground-colors, 'blue');
+                        left: 180px;
+                        top: 15px;
+                        line-height: 45px;
+
+                        .bannerFullName {
+                            font-family: Ubuntu, sans-serif;
+                            font-weight: 500;
+                            font-size: 18px;
+                            line-height: 25px;
+                        }
+
+                        .bannerName {
+                            font-family: Ubuntu, sans-serif;
+                            font-weight: 700;
+                            font-size: 34px;
+                            text-transform: uppercase;
+                        }
+                    }
+                }
+
+                .bannerRightSide {
+                    width: 100px;
+                    height: 45px;
+                    transform: skew(-29deg);
+                    background-color: $fss-blue-page-background;
+                    left: -22px;
+                    top: 80px;
+                }
+            }
+        }
+
+        .fssDetailsStats {
+            width: calc(100% - 20px);
+            margin: 10px;
+            background-color: $fss-page-light-background;
+
+            > .#{$prefix}panel-body-wrap-el {
+                > .#{$prefix}panel-body-el {
+                    background-color: transparent;
+                    display: block;
+                    text-align: center;
+                }
+            }
+
+            .#{$prefix}panelheader {
+                background-color: transparent;
+
+                .#{$prefix}paneltitle {
+                    color: map-get($material-foreground-colors, 'darker-red');
+                    font-family: helveticaNeueLt, sans-serif;
+                    font-weight: 500;
+                    font-size: 18px;
+                    width: 100%;
+
+                    > .#{$prefix}body-el {
+                        padding: 0;
+                        width: 100%;
+
+                        .#{$prefix}text-el {
+                            width: 100%;
+                            text-align: center;
+                        }
+                    }
+                }
+            }
+
+            .#{$prefix}displayfield {
+                width: 100%;
+
+                .#{$prefix}label-el {
+                    width: 50%;
+                    padding: 0;
+
+                    .#{$prefix}label-text-el {
+                        color: map-get($material-foreground-colors, 'light-grey');
+                        font-family: helveticaNeueLt, sans-serif;
+                        font-weight: 300;
+                        font-size: 12px;
+                        text-align: right;
+                        width: 100%;
+                        height: 100%;
+                        display: inline-block;
+                        vertical-align: middle;
+                        padding: 8px 10px;
+                    }
+                }
+
+                .#{$prefix}body-el {
+                    display: block;
+                    .#{$prefix}input-el {
+                        padding: 6px 0;
+                        color: map-get($material-foreground-colors, 'grey');
+                        font-family: helveticaNeueLt, sans-serif;
+                        font-weight: 300;
+                        font-size: 13px;
+                        text-align: left;
+                    }
+                }
+            }
+
+            .fssDetailsStatsContainer {
+                .#{$prefix}displayfield:first-child {
+                    padding: 0;
+                    margin: 0;
+                }
+                .#{$prefix}displayfield:last-child {
+                    padding: 0;
+                    margin: 0;
+                }
+            }
+
+        }
+    }
+}

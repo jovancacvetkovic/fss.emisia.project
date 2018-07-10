@@ -1,29 +1,24 @@
 /**
- * FSS Desktop TabPanel Header Actions View
+ * FSS Mobile TabPanel Header Actions View
  */
-Ext.define('FSS.view.desktop.tabpanel.header.actions.Actions', {
-    extend: 'Ext.Toolbar',
+Ext.define('FSS.view.mobile.tabpanel.header.actions.Actions', {
+    extend: 'FSS.view.desktop.tabpanel.header.actions.Actions',
 
     requires: [
-        'FSS.view.desktop.tabpanel.header.actions.ActionsModel',
-        'FSS.view.desktop.tabpanel.header.actions.item.Item'
+        'FSS.view.mobile.tabpanel.header.actions.ActionsController'
     ],
 
-    xtype: 'fssHeaderActions',
+    xtype: 'fssMobileHeaderActions',
 
-    cls: 'fssHeaderActionsBar',
-
-    config: {
-        userAction: {}
-    },
-
-    viewModel: {
-        type: 'fssHeaderActionsModel'
-    },
-
-    ui: 'tabbar',
+    controller: 'fssMobileHeaderActionsController',
 
     items: [{
+        xtype: 'fssHeaderActionItem',
+        iconCls: 'pictos pictos-list',
+        handler: 'openSideMenu'
+    }, {
+        xtype: 'spacer'
+    }, {
         xtype: 'fssHeaderActionItem',
         iconCls: 'pictos pictos-bell'
     }, {

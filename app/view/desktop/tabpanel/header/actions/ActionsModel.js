@@ -10,9 +10,5 @@ Ext.define('FSS.view.desktop.tabpanel.header.actions.ActionsModel', {
 
         "en": "English",
         "sr": "Serbian"
-    },
-
-    data: {
-
     }
 });

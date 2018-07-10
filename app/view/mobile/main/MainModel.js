@@ -1,23 +1,7 @@
 /**
- * Created by emisia on 5/7/18.
+ * Mobile main model
  */
 Ext.define('FSS.view.mobile.main.MainModel', {
-    extend: 'Ext.app.ViewModel',
-    alias: 'viewmodel.fssMobileMainModel',
-
-    stores: {
-        /*
-        A declaration of Ext.data.Store configurations that are first processed as binds to produce an effective
-        store configuration. For example:
-
-        users: {
-            model: 'Main',
-            autoLoad: true
-        }
-        */
-    },
-
-    data: {
-        /* This object holds the arbitrary data that populates the ViewModel and is then available for binding. */
-    }
+    extend: 'FSS.view.desktop.main.MainModel',
+    alias: 'viewmodel.fssMobileMainModel'
 });
