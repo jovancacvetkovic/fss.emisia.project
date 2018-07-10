@@ -6,7 +6,6 @@ Ext.define('FSS.view.desktop.main.Main', {
 
     requires: [
         'FSS.view.desktop.main.MainController',
-        'FSS.view.desktop.main.MainModel',
         'FSS.view.desktop.tabpanel.browser.Browser',
         'FSS.view.desktop.tabpanel.header.Header',
         'FSS.view.desktop.tabpanel.messages.Messages',
@@ -14,10 +13,6 @@ Ext.define('FSS.view.desktop.main.Main', {
     ],
 
     xtype: 'fssDesktopMain',
-
-    viewModel: {
-        type: 'fssDesktopMainModel'
-    },
 
     cls: 'fssDesktopMain',
     
