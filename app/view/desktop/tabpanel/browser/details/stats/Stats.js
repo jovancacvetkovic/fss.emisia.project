@@ -1,5 +1,5 @@
 /**
- * Created by emisia on 5/22/18.
+ * Browser details statistics panel
  */
 Ext.define('FSS.view.desktop.tabpanel.browser.details.stats.Stats', {
     extend: 'Ext.Panel',

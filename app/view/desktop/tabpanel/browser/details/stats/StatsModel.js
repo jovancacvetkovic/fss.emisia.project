@@ -1,5 +1,5 @@
 /**
- * Stats view model
+ * Browser details statistics model
  */
 Ext.define('FSS.view.desktop.tabpanel.browser.details.stats.StatsModel', {
     extend: 'Ext.app.ViewModel',

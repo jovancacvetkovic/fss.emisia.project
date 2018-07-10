@@ -1,32 +1,24 @@
 /**
- * Created by emisia on 5/21/18.
+ * Browser tab top banner view
  */
 Ext.define('FSS.view.desktop.tabpanel.browser.details.banner.Banner', {
     extend: 'Ext.Container',
-    
+
     requires: [
         'Ext.Img',
-        'Ext.layout.HBox',
-        'FSS.view.desktop.tabpanel.browser.details.banner.BannerController',
-        'FSS.view.desktop.tabpanel.browser.details.banner.BannerModel'
+        'Ext.layout.HBox'
     ],
-    
+
     xtype: 'fssDetailsBanner',
-    
-    viewModel: {
-        type: 'fssDetailsBannerModel'
-    },
-    
+
     config: {
         details: undefined
     },
-    
-    controller: 'fssDetailsBannerController',
-    
+
     cls: 'fssDetailsBanner',
-    
+
     layout: 'hbox',
-    
+
     items: [{
         xtype: 'image',
         cls: 'bannerLogo',

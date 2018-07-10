@@ -1,5 +1,5 @@
 /**
- * Details statistics controller
+ * Browser details statistics controller
  */
 Ext.define('FSS.view.desktop.tabpanel.browser.details.stats.StatsController', {
     extend: 'Ext.app.ViewController',

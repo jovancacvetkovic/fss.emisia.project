@@ -16,21 +16,37 @@ Ext.define('FSS.view.desktop.tabpanel.browser.details.DetailsController', {
             }
         }
     },
-    
+
+    /**
+     * @protected
+     * @private
+     * @property {String} detailsUrlTpl
+     * Details template url used to create specific league details link
+     */
     detailsUrlTpl: 'DETAILS/{0}',
-    
-    onLoadDetails: function(id, defaultLeague){
+
+    /**
+     * Load details handler loads details for selected league
+     * @param {String} leagueId
+     * @param {Boolean} isDefault
+     */
+    onLoadDetails: function(leagueId, isDefault){
         Ext.Ajax.request({
             isFirebase: true,
-            url: Ext.String.format(this.detailsUrlTpl, id),
-            success: this.loadDetails,
+            url: Ext.String.format(this.detailsUrlTpl, leagueId),
+            success: this.loadDetailsSuccess,
             scope: this
         });
-        var clsFn = defaultLeague ? 'addCls' : 'removeCls';
+        var clsFn = isDefault ? 'addCls' : 'removeCls';
         this.getView().el[clsFn]('fssDefaultLeague');
     },
-    
-    loadDetails: function(response){
+
+    /**
+     * Load details success handler
+     * Receives details response and loads details view
+     * @param {FSS.type.ajax.Response} response
+     */
+    loadDetailsSuccess: function(response){
         //noinspection JSUnresolvedFunction
         var details = JSON.parse(response.responseText);
 

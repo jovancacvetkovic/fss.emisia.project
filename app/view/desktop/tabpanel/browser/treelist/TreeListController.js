@@ -164,7 +164,7 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', {
                 if (!nextLeague) {
                     // if there is no selected item in sub-list then load details
                     // and details are not already loaded for the same league
-                    this.fireEvent('e_loadDetails', previousLeague, this.getDefaultLeague());
+                    this.fireEvent('e_loadDetails', previousLeague, !!this.getDefaultLeague());
                 }
             }
         }

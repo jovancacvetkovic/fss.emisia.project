@@ -1,5 +1,5 @@
 /**
- * Desktop browser details panel
+ * Browser details view
  */
 Ext.define('FSS.view.desktop.tabpanel.browser.details.Details', {
     extend: 'Ext.Container',
