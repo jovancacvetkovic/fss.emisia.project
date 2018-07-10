@@ -1,3 +1,7 @@
+/**
+ * FSS logger util is color-coded console message
+ * Intended for development only
+ */
 Ext.define('FSS.util.Logger', {
     singleton: true,
 

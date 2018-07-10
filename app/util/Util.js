@@ -1,7 +1,17 @@
+/**
+ * FSS general util class
+ * Intended for small util methods only
+ */
 Ext.define('FSS.util.Util', {
     alternateClassName: 'FSS.Util',
     singleton: true,
 
+    /**
+     * Safely return object params
+     * @param {Object} root
+     * @param {String} param
+     * @returns {*}
+     */
     safeGet: function (root, param) {
         var properties = param.split('.');
         var len = properties.length;
@@ -40,6 +50,12 @@ Ext.define('FSS.util.Util', {
         return root;
     },
 
+    /**
+     * Returns indexes of text elements
+     * @param {String} text
+     * @param {String} chars
+     * @returns {Number[]} posPoints
+     */
     indexesOf: function (text, chars) {
         var posPoints = [];
         var posPoint;
@@ -56,6 +72,11 @@ Ext.define('FSS.util.Util', {
         return posPoints;
     },
 
+    /**
+     * Sets viewport masked
+     * @param {Boolean} mask Mask visibility status
+     * @param {String} text Mask message
+     */
     setViewportMasked: function (mask, text) {
         if (Ext.Viewport) {
             var masked = mask ? {

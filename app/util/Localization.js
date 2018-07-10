@@ -17,6 +17,10 @@ Ext.define('FSS.util.Localization', {
         FSS.LocaleStore = Ext.create('FSS.store.Localization', {});
     },
 
+    /**
+     * Loads new locales
+     * @param {String} url Locale file url
+     */
     loadLocales: function (url) {
         if (url) {
             FSS.LocaleStore.proxy.setUrl(url);
@@ -24,6 +28,10 @@ Ext.define('FSS.util.Localization', {
         }
     },
 
+    /**
+     * Returns locale url
+     * @returns {String}
+     */
     getLocaleUrl: function () {
         return FSS.LocaleStore.getLocaleUrl();
     }
