@@ -6,6 +6,7 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.list.collapsible.Collapsi
     xtype: 'fssCollapsiblePanel',
     
     requires: [
+        'Ext.panel.Collapser', // this is mandatory for collapsible to work
         'FSS.view.desktop.tabpanel.browser.treelist.list.collapsible.CollapsibleController'
     ],
     

@@ -1,9 +1,11 @@
 {
     "builds": {
-        "web": {"default": true},
+        "web": {
+            "default": true
+        },
         "android": {
             "packager": "cordova",
-            "cordova" : {
+            "cordova": {
                 "config": {
                     "platforms": "android",
                     "id": "com.emisia.fss",
@@ -13,89 +15,68 @@
             "theme": "fssmaterial"
         }
     },
-
-                
     "name": "FSS",
     "namespace": "",
     "version": "1.0.0.0",
     "framework": "ext",
     "toolkit": "modern",
     "theme": "fssmaterial",
-
     "requires": [
-        "font-awesome",
-        "font-pictos",
-        "ext-locale"
+        "font-awesome"
     ],
-
     "locale": "en",
-
     "indexHtmlPath": "index.html",
-
     "classpath": [
         "app"
     ],
-
     "overrides": [
         "overrides"
     ],
-
     "fashion": {
         "missingParameters": "error",
         "inliner": {
             "enable": false
         }
     },
-
     "sass": {
         "namespace": "",
-
         "generated": {
             "var": "sass/save.scss",
             "src": "sass/save"
         },
-
         "etc": [
             "sass/etc/all.scss"
         ],
-
         "var": [
             "sass/var/all.scss",
             "sass/var"
         ],
-
         "src": [
             "sass/src"
         ]
     },
-
     "js": [
         {
             "path": "resources/3rdparty/firebase/firebase.js"
-        },
-        {
-            "path": "${framework.dir}/build/ext-modern-all-debug.js"
         },
         {
             "path": "app.js",
             "bundle": true
         }
     ],
-
     "css": [
         {
             "path": "${build.out.css.path}",
             "bundle": true,
-            "exclude": ["fashion"]
+            "exclude": [
+                "fashion"
+            ]
         }
     ],
-
-     "loader": {
-         "cache": false,
-
-         "cacheParam": "_dc"
-     },
-
+    "loader": {
+        "cache": false,
+        "cacheParam": "_dc"
+    },
     "production": {
         "output": {
             "appCache": {
@@ -113,35 +94,27 @@
             "type": "yui"
         }
     },
-
-    "testing": {
-    },
-
+    "testing": {},
     "development": {
         "watch": {
             "delay": 250
         }
     },
-
     "bootstrap": {
         "base": "${app.dir}",
-
         "microloader": "bootstrap.js",
         "css": "bootstrap.css"
     },
-
     "output": {
         "base": "${workspace.build.dir}/${build.environment}/${app.name}",
         "appCache": {
             "enable": false
         }
     },
-
     "cache": {
         "enable": false,
         "deltas": true
     },
-
     "appCache": {
         "cache": [
             "index.html",
@@ -152,21 +125,16 @@
         ],
         "fallback": []
     },
-
     "resources": [
         {
             "path": "resources",
             "output": "shared"
         }
     ],
-
     "archivePath": "archive",
-
     "slicer": null,
-
     "ignore": [
         "(^|/)CVS(/?$|/.*?$)"
     ],
-
     "id": "e808b5ad-3dda-4ef0-b612-65086b013d16"
 }

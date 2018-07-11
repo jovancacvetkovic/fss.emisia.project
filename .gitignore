@@ -1,5 +1,6 @@
 **/build
 **/node_modules
+**/generatedFiles
 *.lock
 *lock.json
 .idea

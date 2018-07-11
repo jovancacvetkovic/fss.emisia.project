@@ -59,12 +59,12 @@
         /**
          * A summarized description of this package.
          */
-        "summary": "Short summary",
+        "summary": "FSS material theme",
 
         /**
          * A detailed description of this package.
          */
-        "detailedDescription": "Long description of package",
+        "detailedDescription": "Fudbalski Savez Srbije Material Theme",
 
         /**
          * The package version.

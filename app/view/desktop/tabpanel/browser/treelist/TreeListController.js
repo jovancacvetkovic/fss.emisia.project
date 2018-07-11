@@ -110,7 +110,9 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', {
      */
     loadDefaultLeague: function (league) {
         var dbQueryUrl = this.getDbUrl(undefined, league);
-        this.loadLeague(dbQueryUrl);
+        if (dbQueryUrl) {
+            this.loadLeague(dbQueryUrl);
+        }
     },
 
     /**
@@ -299,7 +301,9 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', {
         this.pullActiveLeague();
 
         var dbQueryUrl = this.getDbUrl(previousLeague, leagueId);
-        this.loadLeague(dbQueryUrl);
+        if (dbQueryUrl) {
+            this.loadLeague(dbQueryUrl);
+        }
     },
 
     /**
