@@ -3,7 +3,7 @@
  */
 Ext.define('FSS.view.desktop.tabpanel.browser.details.DetailsController', {
     extend: 'Ext.app.ViewController',
-    alias: 'controller.details',
+    alias: 'controller.fssBrowserDetailsController',
     
     requires: [
         'FSS.util.Util'

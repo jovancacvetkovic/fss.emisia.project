@@ -10,6 +10,10 @@ Ext.define('FSS.view.mobile.tabpanel.header.actions.ActionsController', {
         var left = menus.left;
         if (left && !left.isVisible()) {
             left.show();
+
+            var leagueListView = left.items.getAt(0);
+            var height = left.getHeight();
+            leagueListView.setHeight(height);
         }
     }
 });

@@ -15,12 +15,12 @@ Ext.define('FSS.view.desktop.tabpanel.browser.details.Details', {
     xtype: 'fssDetails',
 
     viewModel: {
-        type: 'details'
+        type: 'fssBrowserDetailsModel'
     },
 
     cls: 'fssDetails',
     
-    controller: 'details',
+    controller: 'fssBrowserDetailsController',
     
     scrollable: 'y',
     

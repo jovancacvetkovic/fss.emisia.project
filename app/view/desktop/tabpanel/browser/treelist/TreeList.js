@@ -1,5 +1,5 @@
 /**
- * Created by emisia on 5/13/18.
+ * Browser leagues tree-list
  */
 Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeList', {
     extend: 'Ext.Panel',
@@ -10,7 +10,8 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeList', {
         'FSS.view.desktop.tabpanel.browser.treelist.TreeListController',
         'FSS.view.desktop.tabpanel.browser.treelist.TreeListModel',
         'FSS.view.desktop.tabpanel.browser.treelist.list.List',
-        'FSS.view.desktop.tabpanel.browser.treelist.list.collapsible.Collapsible'
+        'FSS.view.desktop.tabpanel.browser.treelist.list.collapsible.Collapsible',
+        'FSS.view.mobile.tabpanel.browser.treelist.list.collapsible.Collapsible'
     ],
     
     xtype: 'fssTreeList',
@@ -22,12 +23,12 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeList', {
     cls: 'fssTreeList',
     
     controller: 'fssTreeListController',
-    
+
     layout:{
         type: 'hbox',
         align: 'stretch'
     },
-    
+
     items: [{
         xtype: 'fssList',
         reference: 'leagueList',

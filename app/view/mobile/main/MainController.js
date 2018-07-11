@@ -6,7 +6,8 @@ Ext.define('FSS.view.mobile.main.MainController', {
     alias: 'controller.fssMobileMainController',
 
     requires: [
-        'FSS.view.desktop.tabpanel.browser.treelist.TreeList'
+        'Ext.layout.HBox',
+        'FSS.view.mobile.tabpanel.browser.treelist.treelist.TreeList'
     ],
 
     init: function () {
@@ -21,7 +22,7 @@ Ext.define('FSS.view.mobile.main.MainController', {
             cls: 'fssSideMenu',
             scrollable: 'y',
             items: [{
-                xtype: 'fssTreeList',
+                xtype: 'fssMobileTreeList',
                 reference: 'leagueTreeList',
                 minWidth: 220
             }]

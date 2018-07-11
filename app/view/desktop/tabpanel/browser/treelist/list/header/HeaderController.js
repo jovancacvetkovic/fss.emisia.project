@@ -9,16 +9,18 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.list.header.HeaderControl
     /**
      * Called when the view is created
      */
-    init: function() {
+    init: function () {
         this.getViewModel().bind('{locale#header}', this.onLocaleChange, this, {
             deep: true
         });
     },
 
     onLocaleChange: function (locales, prevLocale, binding) {
-        var groupKey = this.getView().getGroupHeaderTplData().name;
-        if(locales && locales[groupKey]){
-            this.getView().setHtml(locales[groupKey]);
+        if (this.getView().getGroup()) {
+            var groupKey = this.getView().getGroupHeaderTplData().name;
+            if (locales && locales[groupKey]) {
+                this.getView().setHtml(locales[groupKey]);
+            }
         }
     }
 });

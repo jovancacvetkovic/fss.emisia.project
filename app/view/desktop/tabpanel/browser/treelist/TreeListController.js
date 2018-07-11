@@ -1,5 +1,5 @@
 /**
- * Tree-list controller
+ * Browser tree-list controller
  * Tree-list data-view contains three sub-lists loaded via routes
  */
 Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', {

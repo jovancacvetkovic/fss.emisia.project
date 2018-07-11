@@ -4,7 +4,7 @@
 Ext.define('FSS.view.desktop.tabpanel.browser.Browser', {
     extend: 'FSS.view.desktop.tabpanel.tab.Tab',
     xtype: 'fssBrowser',
-    
+
     requires: [
         'Ext.layout.HBox',
         'FSS.view.desktop.scroller.Scroller',
@@ -17,15 +17,19 @@ Ext.define('FSS.view.desktop.tabpanel.browser.Browser', {
     viewModel: {
         type: 'fssBrowserModel'
     },
-    
+
     controller: 'fssBrowserController',
-    
+
     layout: {
         type: 'hbox'
     },
-    
+
     items: [{
         xtype: 'fssTreeList',
+        layout: {
+            type: 'hbox',
+            align: 'stretch'
+        },
         reference: 'leagueTreeList',
         minWidth: 220
     }, {
