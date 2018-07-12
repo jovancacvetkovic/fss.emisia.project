@@ -42,7 +42,6 @@ let preprocessors = {
 
 let reporters = [
     'spec',
-    'live-html',
     'progress'
 ];
 
@@ -51,12 +50,11 @@ let plugins = [
     'karma-jasmine',
     'karma-sourcemap-loader',
     'karma-spec-reporter',
-    'karma-html-live-reporter',
     'karma-json-fixtures-preprocessor'
 ];
 
 if (isCovered) {
-    console.log('Running with code coverage at `coverage/index.html`\n');
+    console.log('Running with code coverage at `tests/coverage/index.html`\n');
     reporters = reporters.concat(['coverage', 'coverage-istanbul']);
     plugins = plugins.concat([
         'karma-coverage',
@@ -213,15 +211,6 @@ module.exports = function (config) {
             showSpecTiming: false,          // print the time elapsed for each spec
             failFast: false,                // test would finish with error when a first fail occurs.
             useColors: true
-        },
-
-        // html live reporter config
-        htmlLiveReporter: {
-            colorScheme: 'jasmine',
-            defaultTab: 'summary', // 'summary' or 'failures' tab to start with
-
-            // only show one suite and fail log at a time, with keyboard navigation
-            focusMode: false
         },
 
         // karma istanbul coverage reporter config

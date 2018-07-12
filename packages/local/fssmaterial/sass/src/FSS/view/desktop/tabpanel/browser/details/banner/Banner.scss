@@ -17,8 +17,8 @@
         z-index: 1;
         background-color: $fss-page-lighter-background;
         background-size: contain;
-        background-position: center;
-        box-shadow: 0 4px 0px $fss-page-light-background;
+        background-position: top;
+        box-shadow: 0 4px 0 $fss-page-light-background;
     }
     
     .bannerBody {
