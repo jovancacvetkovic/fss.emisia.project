@@ -4,8 +4,7 @@
     height: $header-height;
     
     .#{$prefix}tabbar-body-el .#{$prefix}tab {
-        font-family: Ubuntu, sans-serif;
-        font-weight: 700;
+        font-family: $font-family-ubuntu-bold;
         font-size: 15px;
         color: map-get($material-foreground-colors, 'dark-red');
         
@@ -26,7 +25,7 @@
         
         &::before {
             content: '';
-            background: url(images/fssmodern/fss-srbije-logo.svg) no-repeat;
+            background: url(get-resource-path('images/fssmodern/fss-srbije-logo.svg')) no-repeat;
             background-size: 95px;
             
             position: absolute;
@@ -57,8 +56,8 @@
                     padding: 0 25px;
                 }
             }
-            
-            .pictos::before {
+
+            .fssIconHeader::before {
                 font-size: 30px !important;
                 color: $fss-flat-button-background-color;
             }

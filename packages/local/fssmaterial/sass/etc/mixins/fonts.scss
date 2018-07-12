@@ -1,0 +1,56 @@
+/**
+ * Generate @font-face for Ubuntu family
+ */
+
+$urlFonts: 'fonts/'; //app resources fonts folder
+
+@mixin fontFaceUbuntu {
+    @font-face {
+        font-family: 'Ubuntu-Regular';
+        src: url('#{$urlFonts}Ubuntu-R.ttf');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    @font-face {
+        font-family: 'Ubuntu-Light';
+        src: url('#{$urlFonts}Ubuntu-L.ttf');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    @font-face {
+        font-family: 'Ubuntu-Medium';
+        src: url('#{$urlFonts}Ubuntu-M.ttf');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    @font-face {
+        font-family: 'Ubuntu-Bold';
+        src: url('#{$urlFonts}Ubuntu-B.ttf');
+        font-weight: normal;
+        font-style: normal;
+    }
+}
+
+@mixin fontFaceHelvetica {
+    @font-face {
+        font-family: Helvetica-Bold;
+        src: url('#{$urlFonts}HelveticaNeueLTStd-Bd.otf');
+    }
+    @font-face {
+        font-family: Helvetica-Medium;
+        src: url('#{$urlFonts}HelveticaNeueLTStd-Md.otf');
+    }
+
+    @font-face {
+        font-family: Helvetica-Lite;
+        src: url('#{$urlFonts}HelveticaNeueLTStd-Lt.otf');
+    }
+
+    @font-face {
+        font-family: Helvetica-Regular;
+        src: url('#{$urlFonts}HelveticaNeueLTStd-Roman.otf');
+    }
+}

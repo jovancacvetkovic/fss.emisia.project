@@ -11,7 +11,7 @@
 
         &::before {
             content: '';
-            background: url(images/fssmodern/fss-srbije-logo.svg) no-repeat;
+            background: url(get-resource-path('images/fssmodern/fss-srbije-logo.svg')) no-repeat;
             background-size: 50px;
 
             position: absolute;
@@ -31,8 +31,7 @@
     }
 
     .#{$prefix}tabbar-body-el {
-        font-family: Ubuntu, sans-serif;
-        font-weight: 700;
+        font-family: $font-family-ubuntu-bold;
         font-size: 15px;
         padding: 0;
 

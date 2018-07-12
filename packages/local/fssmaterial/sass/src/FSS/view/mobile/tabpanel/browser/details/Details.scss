@@ -52,15 +52,13 @@
                         line-height: 45px;
 
                         .bannerFullName {
-                            font-family: Ubuntu, sans-serif;
-                            font-weight: 500;
+                            font-family: $font-family-ubuntu-regular;
                             font-size: 17px;
                             line-height: 25px;
                         }
 
                         .bannerName {
-                            font-family: Ubuntu, sans-serif;
-                            font-weight: 700;
+                            font-family: $font-family-ubuntu-bold;
                             font-size: 25px;
                             text-transform: uppercase;
                             width: calc(100% - 30px);
@@ -98,8 +96,7 @@
 
                 .#{$prefix}paneltitle {
                     color: map-get($material-foreground-colors, 'darker-red');
-                    font-family: helveticaNeueLt, sans-serif;
-                    font-weight: 500;
+                    font-family: $font-family-helvetica-regular;
                     font-size: 18px;
                     width: 100%;
 
@@ -124,8 +121,7 @@
 
                     .#{$prefix}label-text-el {
                         color: map-get($material-foreground-colors, 'light-grey');
-                        font-family: helveticaNeueLt, sans-serif;
-                        font-weight: 300;
+                        font-family: $font-family-helvetica-light;
                         font-size: 12px;
                         text-align: right;
                         width: 100%;
@@ -141,8 +137,7 @@
                     .#{$prefix}input-el {
                         padding: 6px 0;
                         color: map-get($material-foreground-colors, 'grey');
-                        font-family: helveticaNeueLt, sans-serif;
-                        font-weight: 300;
+                        font-family: $font-family-helvetica-light;
                         font-size: 13px;
                         text-align: left;
                     }

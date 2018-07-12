@@ -18,8 +18,7 @@
     .#{$prefix}listitem {
         margin: 8px 0 6px;
 
-        font-family: helveticaNeueLt, sans-serif;
-        font-weight: 500;
+        font-family: $font-family-helvetica-regular;
         font-size: 14px;
 
         color: map-get($material-foreground-colors, 'grey');
@@ -39,8 +38,7 @@
     .#{$prefix}itemheader {
         background-color: transparent;
 
-        font-family: helveticaNeueLt, sans-serif;
-        font-weight: 500;
+        font-family: $font-family-helvetica-regular;
         font-size: 13px;
 
         color: map-get($material-foreground-colors, 'light-grey');

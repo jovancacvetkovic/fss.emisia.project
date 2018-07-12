@@ -21,9 +21,6 @@
     "framework": "ext",
     "toolkit": "modern",
     "theme": "fssmaterial",
-    "requires": [
-        "font-awesome"
-    ],
     "locale": "en",
     "indexHtmlPath": "index.html",
     "classpath": [

@@ -45,8 +45,7 @@
                 
                 .#{$prefix}paneltitle {
                     color: map-get($material-foreground-colors, 'darker-red');
-                    font-family: helveticaNeueLt, sans-serif;
-                    font-weight: 500;
+                    font-family: $font-family-helvetica-regular;
                     font-size: 18px;
                 }
             }
@@ -57,8 +56,7 @@
                     
                     .#{$prefix}label-text-el {
                         color: map-get($material-foreground-colors, 'light-grey');
-                        font-family: helveticaNeueLt, sans-serif;
-                        font-weight: 500;
+                        font-family: $font-family-helvetica-regular;
                         font-size: 13px;
                     }
                 }
@@ -68,8 +66,7 @@
                     .#{$prefix}input-el {
                         padding: 6px 0;
                         color: map-get($material-foreground-colors, 'grey');
-                        font-family: helveticaNeueLt, sans-serif;
-                        font-weight: 500;
+                        font-family: $font-family-helvetica-regular;
                         font-size: 14px;
                     }
                 }

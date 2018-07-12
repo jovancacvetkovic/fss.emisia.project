@@ -25,13 +25,13 @@ Ext.define('FSS.view.desktop.tabpanel.header.actions.Actions', {
 
     items: [{
         xtype: 'fssHeaderActionItem',
-        iconCls: 'pictos pictos-bell'
+        iconCls: 'fssIconHeader md-icon-notifications'
     }, {
         xtype: 'fssHeaderActionItem',
-        iconCls: 'pictos pictos-chat'
+        iconCls: 'fssIconHeader md-icon-chat'
     }, {
         xtype: 'fssHeaderActionItem',
-        iconCls: 'pictos pictos-user',
+        iconCls: 'fssIconHeader md-icon-person',
         menu: [{
             bind: {
                 text: '{locale#languages}'

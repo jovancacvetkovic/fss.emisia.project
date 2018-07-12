@@ -44,15 +44,13 @@
             line-height: 45px;
             
             .bannerFullName {
-                font-family: Ubuntu, sans-serif;
-                font-weight: 500;
+                font-family: $font-family-ubuntu-regular;
                 font-size: 18px;
                 line-height: 25px;
             }
             
             .bannerName {
-                font-family: Ubuntu, sans-serif;
-                font-weight: 700;
+                font-family: $font-family-ubuntu-bold;
                 font-size: 34px;
                 text-transform: uppercase;
             }

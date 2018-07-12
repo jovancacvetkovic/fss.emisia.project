@@ -42,7 +42,7 @@
 
                 &::before {
                     content: '';
-                    background: url(images/fssmodern/small-logo.png) no-repeat;
+                    background: url(get-resource-path('images/fssmodern/small-logo.png')) no-repeat;
                     background-size: 13px;
 
                     position: absolute;
