@@ -1,7 +1,5 @@
 'use strict';
 
-var path = require('path');
-
 // File mapper fn
 let getFileConfig = function (files, watched, included, served, nocache) {
     if (typeof files === 'string') {
@@ -215,21 +213,11 @@ module.exports = function (config) {
 
         // karma istanbul coverage reporter config
         coverageIstanbulReporter: {
-            // Include all source files eg app/**
-            includeAllSources: true,
-
             // reports coverage tools
             reports: ['html', 'text-summary'],
 
             // base output directory. If you include %browser% in the path it will be replaced with the karma browser name
             dir: 'tests/coverage',
-
-            // Combines coverage information from multiple browsers into one report rather than outputting a report
-            // for each browser.
-            combineBrowserReports: false,
-
-            // if using webpack and pre-loaders, work around webpack breaking the source path
-            fixWebpackSourcePaths: false,
 
             // stop istanbul outputting messages like `File [${filename}] ignored, nothing could be mapped`
             skipFilesWithNoCoverage: true,

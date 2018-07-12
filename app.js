@@ -15,7 +15,6 @@ Ext.application({
     
     profiles: [
         'Desktop',
-        'Tablet',
         'Mobile'
     ]
 });
