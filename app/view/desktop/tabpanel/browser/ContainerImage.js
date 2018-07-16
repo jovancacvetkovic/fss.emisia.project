@@ -79,10 +79,7 @@ Ext.define('FSS.view.desktop.tabpanel.browser.ContainerImage', {
             this.setSrc(null);
         }
     },
-    
-    /**
-     * @inheritDoc
-     */
+
     afterShow: function(){
         //noinspection JSAccessibilityCheck
         this.callParent(arguments);
@@ -92,10 +89,7 @@ Ext.define('FSS.view.desktop.tabpanel.browser.ContainerImage', {
             delete this.hiddenSrc;
         }
     },
-    
-    /**
-     * @inheritDoc
-     */
+
     updateMode: function(){
         //noinspection JSUnresolvedFunction
         var imageCls = this.getImageCls();
@@ -110,32 +104,20 @@ Ext.define('FSS.view.desktop.tabpanel.browser.ContainerImage', {
         
         this.replaceCls(imageCls, backgroundCls);
     },
-    
-    /**
-     * @inheritDoc
-     */
+
     updateImageCls: function(newCls, oldCls){
         this.replaceCls(oldCls, newCls);
     },
-    
-    /**
-     * @inheritDoc
-     */
+
     updateBackgroundCls: function(newCls, oldCls){
         this.replaceCls(oldCls, newCls);
     },
-    
-    /**
-     * @inheritDoc
-     */
+
     onTap: function(e){
         //noinspection JSUnresolvedFunction
         this.fireEvent('tap', this, e);
     },
-    
-    /**
-     * @inheritDoc
-     */
+
     applySrc: function(src){
         if(!Ext.isString(src)){
             src = src && src.url ? src.url : '';
