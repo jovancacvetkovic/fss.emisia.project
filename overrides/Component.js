@@ -2,7 +2,6 @@
  * Component override that implements custom localization through onChangeLocale
  * function for properties bind to locale object.
  */
-
 Ext.define('FSS.overrides.Component', {
     override: 'Ext.Component',
 

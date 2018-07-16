@@ -1,5 +1,9 @@
 /**
- * Created by emisia on 5/22/18.
+ * Store overrides
+ *
+ * 1. Add load event
+ *
+ * @overrides Ext.data.Store
  */
 Ext.define('FSS.overrides.Store', {
     override: 'Ext.data.Store',

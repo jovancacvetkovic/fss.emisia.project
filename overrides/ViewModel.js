@@ -24,12 +24,6 @@ Ext.define('FSS.overrides.ViewModel', {
         this.initLocalization();
     },
 
-    /**
-     * @inheritDoc
-     *
-     * Overridden to add locale selector matcher and add binding to a locale specific key
-     * It will match any locale selector starting with `locale#`
-     */
     bind: function (descriptor, callback, scope, options) {
         var me = this,
             binding;
