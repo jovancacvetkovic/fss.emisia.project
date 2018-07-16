@@ -1,3 +1,6 @@
+/**
+ * FSS desktop tabs view
+ */
 Ext.define('FSS.view.desktop.tabpanel.tab.Tab', {
     extend: 'Ext.Panel',
 

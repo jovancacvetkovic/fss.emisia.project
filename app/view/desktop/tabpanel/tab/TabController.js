@@ -1,4 +1,7 @@
 // noinspection JSCheckFunctionSignatures
+/**
+ * FSS desktop view tab controller
+ */
 Ext.define('FSS.view.desktop.tabpanel.tab.TabController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.fssTabController',
