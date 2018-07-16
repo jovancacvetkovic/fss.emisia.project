@@ -15,7 +15,8 @@
         "build-phone-testing": "ext-build app build phone testing",
         "build-phone-production": "ext-build app build phone production",
         "createview": "cross-env-shell ext-build generate viewpackage $npm_package_extbuild_defaultprofile $VIEW",
-        "sencha-fashion-all": "sencha app watch --fashion"
+        "sencha-fashion-all": "sencha app watch --fashion",
+        "sencha-doxi": "sencha doxi build"
     },
     "extbuild": {
         "defaultprofile": "desktop",

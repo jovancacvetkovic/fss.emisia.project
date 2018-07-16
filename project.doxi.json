@@ -1,0 +1,154 @@
+{
+    "version": 1,
+    "profiles": {
+        "js": {
+            "language": "javascript",
+            "builtins": [
+                "Mixed",
+                "Event",
+                "HTMLElement",
+                "undefined",
+                "null",
+                "Window",
+                "Error",
+                "CSSStyleRule",
+                "CSSStyleSheet",
+                "Arguments",
+                "Integer",
+                "XMLElement",
+                "TextNode",
+                "Uint8Array",
+                "NodeList",
+                "XMLHttpRequest",
+                "FileList",
+                "measurement",
+                "percent",
+                "List",
+                "north",
+                "east",
+                "west",
+                "south",
+                "center",
+                "top",
+                "left",
+                "right",
+                "bottom"
+            ]
+        },
+        "sass": {
+            "language": "sass",
+            "builtins": [
+                "Color",
+                "color",
+                "list"
+            ]
+        }
+    },
+    "sources": [
+        {
+            "profile": "js",
+            "path": [
+                "node_modules/@sencha/ext-modern/src",
+                "node_modules/@sencha/ext-modern/overrides"
+            ]
+        },
+        {
+            "profile": "js",
+            "path": [
+                "node_modules/@sencha/ext-core/src",
+                "node_modules/@sencha/ext-core/overrides"
+            ],
+            "defaults": {
+                "class": {
+                    "package": "core"
+                }
+            }
+        },
+        {
+            "profile": "sass",
+            "path": [
+                "node_modules/@sencha/ext-modern-theme-material/sass/src",
+                "node_modules/@sencha/ext-modern-theme-material/sass/var",
+                "node_modules/@sencha/ext-modern-theme-material/sass/etc"
+            ]
+        },
+        {
+            "profile": "js",
+            "path": [
+                "app",
+                "overrides"
+            ]
+        },
+        {
+            "profile": "sass",
+            "path": [
+                "packages/local/fssmaterial/sass/src",
+                "packages/local/fssmaterial/sass/var",
+                "packages/local/fssmaterial/sass/etc"
+            ]
+        }
+    ],
+    "outputs": {
+        "all": {
+            "default": true,
+            "depends": [
+                "combo-nosrc",
+                "all-classes"
+            ]
+        },
+        "combo-nosrc": {
+            "type": "json",
+            "dir": "../../../input/classic-json",
+            "includeSrc": true,
+            "links": true,
+            "flatten": true,
+            "autoLinks": [
+                "text",
+                "deprecatedMessage",
+                "removedMessage"
+            ],
+            "renames": {
+                "number": "Number",
+                "boolean": "Boolean",
+                "string": "String"
+            }
+        },
+        "all-classes": {
+            "type": "json",
+            "dir": "../../../input/classic-json",
+            "file": "classic-all-classes.json",
+            "includeSrc": true,
+            "links": true,
+            "flatten": false,
+            "autoLinks": [
+                "text",
+                "deprecatedMessage",
+                "removedMessage"
+            ],
+            "renames": {
+                "number": "Number",
+                "boolean": "Boolean",
+                "string": "String"
+            }
+        },
+        "all-classes-flatten": {
+            "type": "json",
+            "dir": "../../../input/classic-json",
+            "file": "classic-all-classes-flatten.json",
+            "includeSrc": true,
+            "links": true,
+            "flatten": true,
+            "pretty": false,
+            "autoLinks": [
+                "text",
+                "deprecatedMessage",
+                "removedMessage"
+            ],
+            "renames": {
+                "number": "Number",
+                "boolean": "Boolean",
+                "string": "String"
+            }
+        }
+    }
+}

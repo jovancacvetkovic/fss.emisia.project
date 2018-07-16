@@ -2,7 +2,7 @@
  * Generate @font-face for Ubuntu family
  */
 
-$urlFonts: 'fonts/'; //app resources fonts folder
+$urlFonts: 'font/'; //app resources fonts folder
 
 @mixin fontFaceUbuntu {
     @font-face {
