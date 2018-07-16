@@ -6,7 +6,6 @@ Ext.define('FSS.mixin.Localization', {
     config: {
         /**
          * @private
-         * @protected
          * @cfg {Object}
          * ViewModel locale object.
          * This is where all locale strings should be set.
