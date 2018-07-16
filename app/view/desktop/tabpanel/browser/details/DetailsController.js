@@ -18,7 +18,6 @@ Ext.define('FSS.view.desktop.tabpanel.browser.details.DetailsController', {
     },
 
     /**
-     * @protected
      * @private
      * @property {String} detailsUrlTpl
      * Details template url used to create specific league details link
