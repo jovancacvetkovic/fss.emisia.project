@@ -16,6 +16,8 @@
         "build-phone-production": "ext-build app build phone production",
         "createview": "cross-env-shell ext-build generate viewpackage $npm_package_extbuild_defaultprofile $VIEW",
         "sencha-fashion-all": "sencha app watch --fashion",
+        "sencha-build-production": "sencha build production",
+        "sencha-build-production-v": "sencha -info build production",
         "sencha-doxi": "sencha doxi build"
     },
     "extbuild": {
@@ -26,9 +28,9 @@
     "dependencies": {
         "@sencha/ext": "6.6.0",
         "@sencha/ext-modern": "6.6.0",
-        "@sencha/ext-modern-theme-base": "^6.6.0",
+        "@sencha/ext-modern-theme-base": "6.6.0",
         "@sencha/ext-modern-theme-material": "6.6.0",
-        "sencha-cmd": "^0.1.4"
+        "sencha-cmd": "0.1.4"
     },
     "devDependencies": {
         "jasmine": "3.1.0",

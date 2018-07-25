@@ -14,14 +14,17 @@ Ext.define('FSS.view.desktop.tabpanel.browser.BrowserController', {
     },
 
     onActiveRoute: function (args) {
+        var leagues = [];
         if (args) {
-            var league = args[1];
-            var subLeague = args[2];
-            var team = args[3];
+            for (var arg in args) {
+                if (args.hasOwnProperty(arg)) {
+                    leagues.push(args[arg]);
+                }
+            }
 
             var leagueListView = this.lookup('leagueTreeList');
-            leagueListView.getController().setActiveLeagues([team, subLeague, league]);
-            leagueListView.getController().setOriginalLeagues([league, subLeague, team]);
+            leagueListView.getController().setOriginalLeagues(Ext.clone(leagues));
+            leagueListView.getController().setActiveLeagues(Ext.clone(leagues.reverse()));
         }
     },
 
@@ -37,7 +40,7 @@ Ext.define('FSS.view.desktop.tabpanel.browser.BrowserController', {
             syncList: [fssDetails]
         });
     }
-}, function(Cls){
+}, function (Cls) {
     Cls.mocks = {
         onActiveRoute: {
             args: {

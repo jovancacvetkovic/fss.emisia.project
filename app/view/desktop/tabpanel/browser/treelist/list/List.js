@@ -17,7 +17,8 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.list.List', {
     },
 
     config: {
-        selectedId: ''
+        selectedId: '',
+        selectFirstListItem: false
     },
 
     controller: 'fssBrowserListController',
@@ -43,9 +44,6 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.list.List', {
 
     itemTpl: '{name:htmlEncode}',
 
-    /**
-     * @inheritDoc
-     */
     onItemDeselect: function (records, suppressEvent) {
         // noinspection JSAccessibilityCheck
         this.callParent(arguments);
@@ -59,9 +57,6 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.list.List', {
         }
     },
 
-    /**
-     * @inheritDoc
-     */
     onItemSelect: function (record, suppressEvent) {
         // noinspection JSAccessibilityCheck
         this.callParent(arguments);
@@ -77,5 +72,5 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.list.List', {
     getItemByRecord: function (item, record) {
         var itemRecord = item._record;
         return itemRecord && itemRecord.get('id') === record.get('id');
-    },
+    }
 });

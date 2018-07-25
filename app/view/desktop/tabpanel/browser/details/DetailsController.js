@@ -13,6 +13,9 @@ Ext.define('FSS.view.desktop.tabpanel.browser.details.DetailsController', {
         controller: {
             fssTreeListController: {
                 e_loadDetails: 'onLoadDetails'
+            },
+            fssBrowserListController: {
+                e_loadDetails: 'onLoadDetails'
             }
         }
     },

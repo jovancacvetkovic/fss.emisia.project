@@ -3,14 +3,11 @@
  *
  * 1. Add load event
  *
- * @overrides Ext.data.Store
+ * @override Ext.data.Store
  */
 Ext.define('FSS.overrides.Store', {
     override: 'Ext.data.Store',
-    
-    /**
-     * @override
-     */
+
     loadRawData: function(records, options){
         let me = this;
         this.callParent(arguments);

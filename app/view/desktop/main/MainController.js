@@ -39,10 +39,10 @@ Ext.define('FSS.view.desktop.main.MainController', {
      */
     onRouteNavigate: function () {
         var pageItem = this.lookup(arguments[0]);
-        var pageId = arguments[1];
+        delete arguments[0]; // first route item is not a league but page
 
         if (!pageItem) { // If none route is set then route to default tab
-            pageId = this.getDefaultPage();
+            var pageId = this.getDefaultPage();
             pageItem = this.lookup(pageId);
         }
 

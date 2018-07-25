@@ -20,18 +20,13 @@ describe('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', functi
     });
 
     describe('should not fail on loadDefaultLeague', function () {
-        it('expect correct params to be passed', function () {
-            expect('loadDefaultLeague').toMatchExpectedParams(TreeListController);
-            TreeListController.loadDefaultLeague('string');
-        });
-
         it('should not fail on loadDefaultLeague', function () {
-            expect('loadDefaultLeague').toPass(TreeListController, ['string']);
+            expect('loadDefaultLeague').toPass(TreeListController, []);
         });
 
         it('should not fail on loadDefaultLeague with activeLeagues', function () {
             TreeListController.setActiveLeagues(['string']);
-            expect('loadDefaultLeague').toPass(TreeListController, ['string']);
+            expect('loadDefaultLeague').toPass(TreeListController, []);
         });
     });
 
@@ -57,11 +52,6 @@ describe('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', functi
 
         it('should not fail on loadLeague', function () {
             expect('loadLeague').toPass(TreeListController, ['string']);
-        });
-
-        it('should not fail on loadDefaultLeague with activeLeagues', function () {
-            TreeListController.setActiveLeagues(['string']);
-            expect('loadDefaultLeague').toPass(TreeListController, ['string']);
         });
     });
 

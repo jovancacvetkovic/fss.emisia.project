@@ -1,14 +1,12 @@
 /**
- * Created by emisia on 5/17/18.
+ * League List View Controller
  */
 Ext.define('FSS.view.desktop.tabpanel.browser.treelist.list.ListController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.fssBrowserListController',
 
     config: {
-        activeListItem: undefined,
-        lastSelectedItem: undefined,
-        selectFirstListItem: false
+        activeListItem: undefined
     },
 
     /**
@@ -33,7 +31,7 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.list.ListController', {
         var item = this._activeListItem;
         item = Ext.isString(item) ? this.findItemById(item) : item;
 
-        if (!item && this.getSelectFirstListItem()) {
+        if (!item && this.getView().getSelectFirstListItem()) {
             var store = this.getListStore();
             // If selectFirstListItem is `true` get first store record
             item = store.getAt(0);
@@ -42,34 +40,25 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.list.ListController', {
         return item;
     },
 
-    getListStore: function(){
+    getListStore: function () {
         return this.getView().getViewModel().getStore('list');
     },
 
     onLoadHandler: function (store, records) {
         var list = this.getView();
         var item = this.getActiveListItem();
-
         var selectable = list.getSelectable();
         selectable.deselectAll(true);
 
+        this.fireEvent('expandList', true, list.reference);
+
         if (item) {
             selectable.select(item, false, true);
-            list.getController().setLastSelectedItem(item);
-
-            this.onListSelect(list, item);
+            var listId = item.get('id');
+            this.fireEvent('itemSelect', listId);
         }
-
-        var expand = records.length;
-        this.fireEvent('expandList', expand, list.reference);
-        this.setViewportMasked(false);
-    },
-
-    onListSelect: function (list, listItem) {
-        var itemData = listItem.getData();
-        this.fireEvent('itemSelect', itemData.id);
     }
-}, function(Cls){
+}, function (Cls) {
     Cls.mocks = {
         loadListData: {}
     };
