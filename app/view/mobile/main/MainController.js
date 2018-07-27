@@ -6,26 +6,18 @@ Ext.define('FSS.view.mobile.main.MainController', {
     alias: 'controller.fssMobileMainController',
 
     requires: [
-        'Ext.layout.HBox',
-        'FSS.view.mobile.tabpanel.browser.treelist.treelist.TreeList'
+        'FSS.view.mobile.main.menu.Menu'
     ],
 
     init: function () {
         Ext.Viewport.setMenu(this.getMenuCfg('left'), {
-            side: 'left',
-            reveal: true
+            side: 'left'
         });
     },
 
     getMenuCfg: function (side) {
         return {
-            cls: 'fssSideMenu',
-            scrollable: 'y',
-            items: [{
-                xtype: 'fssMobileTreeList',
-                reference: 'leagueTreeList',
-                minWidth: 220
-            }]
+            xtype: 'fssMobileMainMenu'
         };
     },
 

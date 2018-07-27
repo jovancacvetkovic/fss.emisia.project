@@ -16,8 +16,8 @@ $font-family-ubuntu-medium: dynamic('Ubuntu-Medium');//500
 $font-family-ubuntu-bold: dynamic('Ubuntu-Bold');//700
 
 @include fontFaceHelvetica;
-$font-family-helvetica-light: dynamic('Helvetica-Light');// 300
-$font-family-helvetica-roman: dynamic('Helvetica-Roman'); //400
-$font-family-helvetica-regular: dynamic('Helvetica-Regular'); //400
-$font-family-helvetica-medium: dynamic('Helvetica-Medium');//500
-$font-family-helvetica-bold: dynamic('Helvetica-Bold');//700
+$font-family-helvetica-light: dynamic('Ubuntu-Light');// 300
+$font-family-helvetica-roman: dynamic('Ubuntu-Regular'); //400
+$font-family-helvetica-regular: dynamic('Ubuntu-Regular'); //400
+$font-family-helvetica-medium: dynamic('Ubuntu-Medium');//500
+$font-family-helvetica-bold: dynamic('Ubuntu-Bold');//700

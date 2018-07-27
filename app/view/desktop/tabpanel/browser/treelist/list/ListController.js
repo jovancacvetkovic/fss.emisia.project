@@ -49,7 +49,7 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.list.ListController', {
         var item = this.getActiveListItem();
         var selectable = list.getSelectable();
         selectable.deselectAll(true);
-
+        debugger;
         this.fireEvent('expandList', true, list.reference);
 
         if (item) {

@@ -3,28 +3,27 @@
  */
 Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeList', {
     extend: 'Ext.Panel',
-    
+
     requires: [
         'Ext.Panel',
         'Ext.layout.HBox',
         'FSS.view.desktop.tabpanel.browser.treelist.TreeListController',
         'FSS.view.desktop.tabpanel.browser.treelist.TreeListModel',
         'FSS.view.desktop.tabpanel.browser.treelist.list.List',
-        'FSS.view.desktop.tabpanel.browser.treelist.list.collapsible.Collapsible',
-        'FSS.view.mobile.tabpanel.browser.treelist.list.collapsible.Collapsible'
+        'FSS.view.desktop.tabpanel.browser.treelist.list.collapsible.Collapsible'
     ],
-    
+
     xtype: 'fssTreeList',
-    
+
     viewModel: {
         type: 'fssTreeListModel'
     },
-    
+
     cls: 'fssTreeList',
-    
+
     controller: 'fssTreeListController',
 
-    layout:{
+    layout: {
         type: 'hbox',
         align: 'stretch'
     },

@@ -17,5 +17,20 @@ Ext.define('FSS.view.mobile.tabpanel.browser.treelist.treelist.TreeList', {
         type: 'card'
     },
 
-    activeItem: 0
+    activeItem: 0,
+
+    items: [{
+        xtype: 'fssList',
+        reference: 'leagueList',
+        cls: 'fssListUiBase',
+        selectFirstListItem: true
+    }, {
+        xtype: 'fssList',
+        reference: 'subLeagueList',
+        cls: 'fssListUiReverted'
+    }, {
+        xtype: 'fssList',
+        reference: 'teamList',
+        cls: 'fssListUiReverted fssListUiLast'
+    }]
 });

@@ -206,6 +206,7 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', {
                 // if data is already loaded then just select item
                 activeLeague = this.pullActiveLeague(leagueList);
                 this.onListItemSelect(activeLeague);
+                debugger;
                 leagueController.fireEvent('expandList', true, leagueList.reference);
             }
 

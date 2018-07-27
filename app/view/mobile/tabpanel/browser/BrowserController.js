@@ -7,18 +7,21 @@ Ext.define('FSS.view.mobile.tabpanel.browser.BrowserController', {
     },
 
     onActiveRoute: function (args) {
+        var leagues = [];
         if (args) {
-            var league = args[1];
-            var subLeague = args[2];
-            var team = args[3];
+            for (var arg in args) {
+                if (args.hasOwnProperty(arg)) {
+                    leagues.push(args[arg]);
+                }
+            }
 
             var menus = Ext.Viewport.getMenus();
             var left = menus.left;
 
             if (left) {
-                var leagueListView = left.items.getAt(0);
-                leagueListView.getController().setActiveLeagues([team, subLeague, league]);
-                leagueListView.getController().setOriginalLeagues([league, subLeague, team]);
+                var leagueListView = left.lookup('leagueTreeList');
+                leagueListView.getController().setOriginalLeagues(Ext.clone(leagues));
+                leagueListView.getController().setActiveLeagues(Ext.clone(leagues.reverse()));
             }
         }
     },
