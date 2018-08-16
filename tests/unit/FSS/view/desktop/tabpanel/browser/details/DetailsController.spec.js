@@ -13,7 +13,7 @@ describe('FSS.view.desktop.tabpanel.browser.details.DetailsController', function
         spyOn(FSS, 'getApplication').and.callFake(FSSMock.getApplication);
 
         response = Ext.create('FSS.type.ajax.Response', {
-            responseText: JSON.stringify(mockService.jsonMock)
+            responseText: JSON.stringify(MockService.jsonMock)
         });
     });
     

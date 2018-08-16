@@ -56,14 +56,19 @@ Ext.define('FSS.view.desktop.tabpanel.browser.details.stats.StatsController', {
 
     getItemConfig: function (label, value) {
         var isMobile = FSS.getApplication().getCurrentProfile().isMobile;
+
         return {
-            xtype: 'displayfield',
+            xtype: 'container',
             flex: 1,
-            labelAlign: !isMobile ? 'top' : 'left',
-            bind: {
-                label: '{locale#' + label + '}'
-            },
-            value: value
+            items: [{
+                xtype: 'displayfield',
+                flex: 1,
+                labelAlign: !isMobile ? 'top' : 'left',
+                bind: {
+                    label: '{locale#' + label + '}'
+                },
+                value: value
+            }]
         };
     },
 

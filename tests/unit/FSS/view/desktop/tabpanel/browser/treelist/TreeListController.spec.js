@@ -190,7 +190,7 @@ describe('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', functi
             spyOn(TreeListController, 'fireEvent');
 
             response = Ext.create('FSS.type.ajax.Response', {
-                responseText: JSON.stringify(mockService.jsonMock)
+                responseText: JSON.stringify(MockService.jsonMock)
             });
         });
         it('expect correct params to be passed', function () {
@@ -208,7 +208,7 @@ describe('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', functi
         });
 
         it('should not fail on loadLeagueList without subLeagues', function () {
-            var json = mockService.jsonMock['FSVOJVODINE']['SUB_LEAGUE'] = [];
+            var json = MockService.jsonMock['FSVOJVODINE']['SUB_LEAGUE'] = [];
             response.responseText = JSON.stringify(json);
             TreeListController.setActiveLeagues(['string']);
             TreeListController.setPreviousLeague('previous');

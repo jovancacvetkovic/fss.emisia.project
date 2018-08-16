@@ -11,6 +11,7 @@ Ext.define('FSS.Application', {
         'FSS.util.Localization',
         'FSS.util.Logger',
         'FSS.util.Util',
+        'Ext.util.History',
 
         'FSS.store.Localization'
     ],
@@ -38,10 +39,13 @@ Ext.define('FSS.Application', {
 
         var localeUrl = FSS.Locale.getLocaleUrl();
         FSS.Locale.loadLocales(localeUrl);
+
+        Ext.History.init();
     },
 
     onUnmatchedRoute: function (hash) {
-        Logger.error('Route ' + hash + ' not found');
+        debugger;
+        this.redirectTo('FSS');
     },
 
     /**

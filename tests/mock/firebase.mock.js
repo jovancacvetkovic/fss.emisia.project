@@ -11,7 +11,7 @@ FSS.firebase = firebase = {
                 return {
                     once: function () {
                         return {
-                            then: function (fn) {
+                            then: function () {
                                 return {
                                     val: function () {
                                         return [];

@@ -21,7 +21,7 @@
     "framework": "ext",
     "toolkit": "modern",
     "theme": "fssmaterial",
-    "locale": "en",
+    "locale": "sr",
     "indexHtmlPath": "index.html",
     "classpath": [
         "app"

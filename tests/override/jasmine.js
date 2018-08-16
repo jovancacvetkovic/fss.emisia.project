@@ -54,7 +54,7 @@ var matchers = {
                                         length++;
                                     }
                                 }
-                                throw 'no arguments passed but method expected `' + length + '` params: ``' + params.join(' & ') + '``';
+                                throw 'no arguments passed but method expected `' + length + '` param(s): ``' + params.join(' & ') + '``';
                             }
                         }
                     }
@@ -109,6 +109,8 @@ var matchers = {
                 var isArrayExpected = expected.indexOf('[]') !== -1;
                 if (isArrayExpected) {
                     var type = expected.substring(0, expected.length - 2);
+
+                    // noinspection JSCheckFunctionSignatures
                     expect(actual).toBeOfSameType(type); // if its array, test array items
                 }
                 else {
@@ -369,6 +371,7 @@ var isNull = function (value) {
 var isUndefined = function (value) {
     return typeof value === 'undefined';
 };
+
 var isBoolean = function (value) {
     return typeof value === 'boolean';
 };

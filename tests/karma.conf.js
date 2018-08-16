@@ -65,7 +65,8 @@ if (isCovered) {
 
 let files = [
     // add any file in jasmine folder eg. jasmine override or global mock
-    'tests/jasmine/**/*.js'
+    'tests/jasmine/mock/**/*.js',
+    'tests/jasmine/override/**/*.js'
 ];
 
 // Firebase JS to be served to application

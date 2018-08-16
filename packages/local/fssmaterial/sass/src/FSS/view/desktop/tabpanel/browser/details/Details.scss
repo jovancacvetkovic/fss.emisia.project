@@ -6,67 +6,77 @@
     &.fssDefaultLeague {
         margin-left: 150px;
     }
-    
+
     > .#{$prefix}body-el {
         background-color: $fss-page-lighter-background;
-        
+
         .fssDetailsHeader {
             height: 370px;
-            
+
             &.fssContainerImg {
                 background-size: 810px 305px;
                 background-repeat: no-repeat;
                 background-position: center top;
             }
-            
+
             .flexer {
                 height: 225px;
                 background: transparent;
             }
         }
-        
+
         .fssDetailsStats {
             width: 100%;
             padding: 10px 40px;
             background-color: transparent;
-            
+
+            > div > div > div {
+                &:last-child {
+                    border-right: none;
+                }
+
+                border-right: 1px solid;
+                border-right-color: map-get($material-foreground-colors, 'lighter-grey') !important;
+                padding-left: 20px;
+            }
+
             > .#{$prefix}panel-body-wrap-el {
                 > .#{$prefix}panel-body-el {
                     background-color: transparent;
                 }
             }
-            
+
             .#{$prefix}panelheader {
                 background-color: transparent;
-                
+
                 > .#{$prefix}body-el {
                     padding: 0;
                 }
-                
+
                 .#{$prefix}paneltitle {
                     color: map-get($material-foreground-colors, 'darker-red');
-                    font-family: $font-family-helvetica-roman;
+                    font-family: $font-family-opensans-regular !important;
                     font-size: 18px;
                 }
             }
-            
+
             .#{$prefix}displayfield {
                 .#{$prefix}label-el {
                     padding: 0;
-                    
+
                     .#{$prefix}label-text-el {
                         color: map-get($material-foreground-colors, 'light-grey');
-                        font-family: $font-family-helvetica-roman;
+                        font-family: $font-family-opensans-medium !important;
                         font-size: 13px;
                     }
                 }
-                
+
                 .#{$prefix}body-el {
                     display: block;
                     .#{$prefix}input-el {
                         padding: 6px 0;
                         color: map-get($material-foreground-colors, 'grey');
-                        font-family: $font-family-helvetica-roman;
+                        font-family: $font-family-opensans-regular !important;
                         font-size: 14px;
                     }
                 }

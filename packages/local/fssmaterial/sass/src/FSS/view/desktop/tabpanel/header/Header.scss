@@ -2,53 +2,53 @@
 
 .fssHeader {
     height: $header-height;
-    
-    .#{$prefix}tabbar-body-el .#{$prefix}tab {
-        font-family: $font-family-ubuntu-bold;
+    .#{$prefix}text-el {
         font-size: 15px;
+        font-family: $font-family-opensans-bold !important;
+    }
+
+    .#{$prefix}tabbar-body-el .#{$prefix}tab {
         color: map-get($material-foreground-colors, 'dark-red');
-        
+
         &.#{$prefix}active {
             color: map-get($material-foreground-colors, 'white-grey');
         }
-    
+
         .#{$prefix}active-indicator-el {
             display: none;
         }
     }
-    
+
     .fssLogo {
         position: absolute;
-        height: 100%;
-        width: 75px;
         clip: rect(0 100px 75px 0) !important;
-        
+
         &::before {
             content: '';
             background: url(get-resource-path('images/fssmodern/fss-srbije-logo.svg')) no-repeat;
-            background-size: 95px;
-            
+            background-size: 90px;
+
             position: absolute;
-            top: -11px;
+            top: -10px;
             left: -11px;
             width: 100px;
             height: 100px;
-            
+
             -webkit-transform: rotate(-15deg);
             transform: rotate(-15deg);
         }
     }
-    
+
     .fssHeaderActions {
         position: absolute;
         right: 0;
         height: $header-height;
         width: 250px;
-        
+
         .fssHeaderActionsBar {
             width: 100%;
             height: 100%;
-            
+
             .fssHeaderActionsBarItem {
                 .#{$prefix}icon-el {
                     width: 30px;
@@ -67,7 +67,7 @@
 
 .fssDesktopMain {
     .fssHeader {
-        >.#{$prefix}tabbar-body-el {
+        > .#{$prefix}tabbar-body-el {
             justify-content: left;
             padding-left: 165px;
             padding-right: 250px;

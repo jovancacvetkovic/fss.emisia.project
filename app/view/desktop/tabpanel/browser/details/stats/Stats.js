@@ -27,11 +27,6 @@ Ext.define('FSS.view.desktop.tabpanel.browser.details.stats.Stats', {
     bind: {
         locale: '{locale}'
     },
-    
-    itemTpl: [
-        '<div class="fssDetailsStatsItemLabel">{label}</div>',
-        '<div class="fssDetailsStatsItemText">{text}</div>'
-    ],
 
     layout: {
         type: 'hbox',

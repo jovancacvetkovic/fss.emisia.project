@@ -1,57 +1,49 @@
 $urlFonts: 'font/'; //app resources fonts folder
 
-@mixin fontFaceUbuntu {
-    @font-face {
-        font-family: 'Ubuntu-Regular';
-        src: url('#{$urlFonts}Ubuntu-R.ttf');
-        font-weight: normal;
-        font-style: normal;
-    }
-
-    @font-face {
-        font-family: 'Ubuntu-Light';
-        src: url('#{$urlFonts}Ubuntu-L.ttf');
-        font-weight: normal;
-        font-style: normal;
-    }
-
-    @font-face {
-        font-family: 'Ubuntu-Medium';
-        src: url('#{$urlFonts}Ubuntu-M.ttf');
-        font-weight: normal;
-        font-style: normal;
-    }
-
-    @font-face {
-        font-family: 'Ubuntu-Bold';
-        src: url('#{$urlFonts}Ubuntu-B.ttf');
-        font-weight: normal;
-        font-style: normal;
-    }
-}
-
 @mixin fontFaceHelvetica {
     @font-face {
         font-family: Helvetica-Bold;
-        src: url('#{$urlFonts}HelveticaNeueLTStd-Bd.ttf');
+        src: url('#{$urlFonts}HelveticaNeue/HelveticaNeueLTStd-Bd.otf');
     }
     @font-face {
         font-family: Helvetica-Medium;
-        src: url('#{$urlFonts}HelveticaNeueLTStd-Md.ttf');
+        src: url('#{$urlFonts}HelveticaNeue/HelveticaNeueLTStd-Md.otf');
     }
 
     @font-face {
-        font-family: Helvetica-Lite;
-        src: url('#{$urlFonts}HelveticaNeueLTStd-Lt.ttf');
+        font-family: Helvetica-Light;
+        src: url('#{$urlFonts}HelveticaNeue/HelveticaNeueLTStd-Lt.otf');
     }
 
     @font-face {
         font-family: Helvetica-Regular;
-        src: url('#{$urlFonts}HelveticaNeueLTStd-Regular.ttf');
+        src: url('#{$urlFonts}HelveticaNeue/HelveticaNeueLTStd-Regular.otf');
     }
 
     @font-face {
         font-family: Helvetica-Roman;
-        src: url('#{$urlFonts}HelveticaNeueLTStd-Roman.ttf');
+        src: url('#{$urlFonts}HelveticaNeue/HelveticaNeueLTStd-Roman.otf');
+    }
+}
+
+@mixin fontFaceOpenSans {
+    @font-face {
+        font-family: OpenSans-Regular;
+        src: url('#{$urlFonts}OpenSans/OpenSans-Regular.ttf');
+    }
+
+    @font-face {
+        font-family: OpenSans-Light;
+        src: url('#{$urlFonts}OpenSans/OpenSans-Light.ttf');
+    }
+
+    @font-face {
+        font-family: OpenSans-Medium;
+        src: url('#{$urlFonts}OpenSans/OpenSans-Semibold.ttf');
+    }
+
+    @font-face {
+        font-family: OpenSans-Bold;
+        src: url('#{$urlFonts}OpenSans/OpenSans-Bold.ttf');
     }
 }

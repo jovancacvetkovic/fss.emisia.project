@@ -101,7 +101,6 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', {
      */
     setActiveLeagues: function (leagues) {
         this.setViewportMasked(true);
-        //noinspection JSUnusedGlobalSymbols
 
         // set active leagues
         this._activeLeagues = leagues;
@@ -190,6 +189,7 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', {
 
         var leagueList = this.getActiveList();
         var leagueController = leagueList.getController();
+        var previousActiveLeague = this.getActiveList().getSelectedId();
 
         var activeLeague = this.pullActiveLeague(leagueList);
         this.setActiveLeague(activeLeague);
@@ -199,15 +199,21 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', {
 
             // load data if it is not already loaded
             var store = leagueList.getViewModel().getStore('list');
-            if (!store.getCount()) {
+            if (!store.getCount() || previousActiveLeague !== activeLeague) {
                 leagueController.loadListData(leagues);
+                this.expandSubLists(leagueList, leagueController);
             }
             else {
                 // if data is already loaded then just select item
                 activeLeague = this.pullActiveLeague(leagueList);
                 this.onListItemSelect(activeLeague);
-                debugger;
                 leagueController.fireEvent('expandList', true, leagueList.reference);
+
+                if (!store.findRecord('id', this.getActiveLeague())) {
+                    leagueList.getSelectable().deselectAll();
+
+                    this.expandSubLists(leagueList, leagueController);
+                }
             }
 
             activeLeague = this.getActiveLeague();
@@ -219,14 +225,7 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', {
         else {
             if (!this.getActiveLeagues().length) { // if there are no more lists to load collapse lists that should not be visible
                 leagueController.fireEvent('expandList', false, leagueList.reference);
-                var availableLists = this.getAvailableLists();
-                var leagueIndex = availableLists.indexOf(leagueList.reference);
-                if (leagueIndex !== -1) { // collapse sub lists also
-                    var nextLeagueReference = availableLists[leagueIndex + 1];
-                    if (nextLeagueReference) {
-                        leagueController.fireEvent('expandList', false, nextLeagueReference);
-                    }
-                }
+                this.expandSubLists(leagueList, leagueController);
             }
 
             if (activeLeague) { // if there is selected item then show its details
@@ -235,6 +234,22 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', {
         }
 
         this.setViewportMasked(false);
+    },
+
+    /**
+     * Expand/collapse all subLists
+     * @param {FSS.view.desktop.tabpanel.browser.treelist.list.List} leagueList
+     * @param {FSS.view.desktop.tabpanel.browser.treelist.list.ListController} leagueController
+     */
+    expandSubLists: function (leagueList, leagueController) {
+        var availableLists = this.getAvailableLists();
+        var leagueIndex = availableLists.indexOf(leagueList.reference);
+        if (leagueIndex !== -1) { // collapse sub lists also
+            var nextLeagueReference = availableLists[leagueIndex + 1];
+            if (nextLeagueReference) {
+                leagueController.fireEvent('expandList', false, nextLeagueReference);
+            }
+        }
     },
 
     /**
@@ -337,6 +352,9 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', {
             if (dbQueryUrl) {
                 this.loadLeague(dbQueryUrl);
             }
+        }
+        else {
+            this.setViewportMasked(false);
         }
     },
     /**

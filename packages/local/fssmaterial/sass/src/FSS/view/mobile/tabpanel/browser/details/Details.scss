@@ -52,13 +52,13 @@
                         line-height: 45px;
 
                         .bannerFullName {
-                            font-family: $font-family-ubuntu-regular;
+                            font-family: $font-family-opensans-regular;
                             font-size: 17px;
                             line-height: 25px;
                         }
 
                         .bannerName {
-                            font-family: $font-family-ubuntu-bold;
+                            font-family: $font-family-opensans-bold;
                             font-size: 25px;
                             text-transform: uppercase;
                             width: calc(100% - 30px);
@@ -96,7 +96,7 @@
 
                 .#{$prefix}paneltitle {
                     color: map-get($material-foreground-colors, 'darker-red');
-                    font-family: $font-family-helvetica-roman;
+                    font-family: $font-family-opensans-regular !important;
                     font-size: 18px;
                     width: 100%;
 
@@ -121,7 +121,7 @@
 
                     .#{$prefix}label-text-el {
                         color: map-get($material-foreground-colors, 'light-grey');
-                        font-family: $font-family-helvetica-light;
+                        font-family: $font-family-opensans-light !important;
                         font-size: 12px;
                         text-align: right;
                         width: 100%;
@@ -137,7 +137,7 @@
                     .#{$prefix}input-el {
                         padding: 6px 0;
                         color: map-get($material-foreground-colors, 'grey');
-                        font-family: $font-family-helvetica-light;
+                        font-family: $font-family-opensans-light !important;
                         font-size: 13px;
                         text-align: left;
                     }

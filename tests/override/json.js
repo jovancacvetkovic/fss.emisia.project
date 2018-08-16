@@ -20,7 +20,7 @@ jasmine.Spec.prototype.execute = function (...args) {
  * Mock Service helper
  * @type {{jsonMock: {}, loadJsonFile: function}}
  */
-var mockService = {
+var MockService = {
     jsonMock: {},
     loadJsonFile: function (fileName) {
         // make jsonMocks safe
@@ -47,8 +47,8 @@ var mockService = {
     }
 };
 
-// adds mockService.jsonMock to each `it` case
+// adds MockService.jsonMock to each `it` case
 beforeEach(function () {
     var fileName = self.currentSpec.fullName.split(' ')[0];
-    mockService.jsonMock = mockService.loadJsonFile(fileName);
+    MockService.jsonMock = MockService.loadJsonFile(fileName);
 });

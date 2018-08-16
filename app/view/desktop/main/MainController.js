@@ -7,7 +7,6 @@ Ext.define('FSS.view.desktop.main.MainController', {
 
     routes: {
         'FSS': 'onRouteNavigate',
-        'FSS/': 'onRouteNavigate',
         'FSS/:pageId': 'onRouteNavigate',
         'FSS/:pageId/:leagueId': 'onRouteNavigate',
         'FSS/:pageId/:leagueId/:subLeagueId': 'onRouteNavigate',
