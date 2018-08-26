@@ -52,7 +52,7 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.list.ListController', {
         selectable.deselectAll(true);
         this.fireEvent('expandList', true, list.reference);
 
-        if (item) {
+        if (item && list.getViewModel().getStore('list').getCount()) {
             selectable.select(item, false, true);
             var listId = item.get('id');
             this.fireEvent('itemSelect', listId);

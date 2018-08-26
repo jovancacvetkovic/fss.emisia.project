@@ -43,6 +43,15 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.list.List', {
     },
 
     itemTpl: '{name:htmlEncode}',
+    
+    getStore: function(){
+        // noinspection JSUnresolvedFunction
+        return this.getViewModel().getStore('list');
+    },
+    
+    setSelectedId: function(id){
+        this._selectedId = id;
+    },
 
     onItemDeselect: function (records, suppressEvent) {
         // noinspection JSAccessibilityCheck
@@ -71,6 +80,31 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.list.List', {
 
     getItemByRecord: function (item, record) {
         var itemRecord = item._record;
-        return itemRecord && itemRecord.get('id') === record.get('id');
+        return !!(itemRecord && itemRecord.get('id') === record.get('id'));
+    }
+}, function(Cls){
+    Cls.mocks = {
+        getStore: {
+            returns: 'Ext.data.Store'
+        },
+        onItemDeselect: {
+            args: {
+                0: 'Ext.data.Model[]',
+                1: 'boolean'
+            }
+        },
+        onItemSelect: {
+            args: {
+                0: 'Ext.data.Model[]',
+                1: 'boolean'
+            }
+        },
+        getItemByRecord: {
+            args: {
+                0: 'HTMLElement',
+                1: 'Ext.data.Model'
+            },
+            returns: 'boolean'
+        }
     }
 });

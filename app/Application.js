@@ -44,7 +44,6 @@ Ext.define('FSS.Application', {
     },
 
     onUnmatchedRoute: function (hash) {
-        debugger;
         this.redirectTo('FSS');
     },
 

@@ -14,10 +14,13 @@ Ext.define('FSS.view.mobile.tabpanel.browser.treelist.treelist.TreeList', {
     controller: 'fssMobileTreeListController',
 
     layout: {
-        type: 'card'
+        type: 'card',
+        defaults: {
+            height: '100%'
+        }
     },
 
-    activeItem: 0,
+    activeItem: -1,
 
     items: [{
         xtype: 'fssList',

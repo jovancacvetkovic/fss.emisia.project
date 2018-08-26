@@ -5,44 +5,51 @@
 Ext.define('FSS.view.mobile.tabpanel.browser.treelist.treelist.TreeListController', {
     extend: 'FSS.view.desktop.tabpanel.browser.treelist.TreeListController',
     alias: 'controller.fssMobileTreeListController',
-
-    requires: [
-        'Ext.util.History'
-    ],
-
+    
     listen: {
         controller: {
             fssTreeListController: {
                 expandList: 'onExpandList'
             },
-
+            
             fssBrowserListController: {
                 expandList: 'onExpandList'
             },
-
+            
             fssMobileMainMenuController: {
                 menuBackAction: 'onMenuBackAction'
             }
         }
     },
-
-    onMenuBackAction: function () {
-        Ext.History.back()
+    
+    onMenuBackAction: function(){
+        var available = this.getAvailableLists();
+        var view = this.getView();
+        var list = view.getActiveItem();
+        var index = available.indexOf(list.reference);
+        var previousIndex = --index;
+        var reference = available[previousIndex];
+        if(reference){
+            list = view.lookup(reference);
+            view.setActiveItem(list);
+        }
+        else {
+            // hide back button
+        }
     },
-
-    onExpandList: function (expand, reference) {
+    
+    onExpandList: function(expand, reference){
         var listView = this.findList(reference);
-        var storeCount = listView.getViewModel().getStore('list').getCount();
-        if (storeCount && expand && !this.getNextLeague(this.getActiveLeague())) {
+        if (expand) {
             this.setActiveItem(listView);
         }
-
+        
         var menus = Ext.Viewport.getMenus();
         var left = menus.left;
-        if (left && left.isVisible() && this.getActiveLeague() && !this.getNextLeague(this.getActiveLeague()) && !storeCount) {
-            left.hide();
+        if (left && left.isVisible() && this.getActiveLeague() && !this.getNextLeague(this.getActiveLeague())) {
+            //left.hide();
         }
-
+        
         if (!expand) {
             // remove selection for collapsed lists
             var selectable = listView.getSelectable();
@@ -51,9 +58,34 @@ Ext.define('FSS.view.mobile.tabpanel.browser.treelist.treelist.TreeListControlle
             }
         }
     },
-
-    setActiveItem: function (item) {
+    
+    expandSubLists: function(leagueList, leagueController){
+        var availableLists = this.getAvailableLists();
+        var leagueIndex = availableLists.indexOf(leagueList.reference);
+        if (leagueIndex !== -1) { // collapse sub lists also
+            var nextLeagueReference = availableLists[leagueIndex + 1];
+            if (nextLeagueReference) {
+                this.setActiveItem(leagueList);
+            }
+        }
+    },
+    
+    setActiveLeagues: function(leagues){
+        this.callParent(arguments);
+        
+        var menus = Ext.Viewport.getMenus();
+        var left = menus.left;
+        if (left && !left.isVisible()) {
+            left.show();
+        }
+    },
+    
+    setActiveItem: function(item){
         var view = this.getView();
-        view.setActiveItem(item);
+        
+        var active = view.getActiveItem();
+        if (active !== item) {
+            view.setActiveItem(item);
+        }
     }
 });

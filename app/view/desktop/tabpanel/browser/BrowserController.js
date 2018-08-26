@@ -1,19 +1,19 @@
 Ext.define('FSS.view.desktop.tabpanel.browser.BrowserController', {
     extend: 'FSS.view.desktop.tabpanel.tab.TabController',
     alias: 'controller.fssBrowserController',
-
+    
     mixins: {
         prepare: 'FSS.mixin.Prepare'
     },
-
+    
     /**
      * Called when the view is created
      */
-    init: function () {
+    init: function(){
         this.callParent(arguments);
     },
-
-    onActiveRoute: function (args) {
+    
+    onActiveRoute: function(args){
         var leagues = [];
         if (args) {
             for (var arg in args) {
@@ -21,17 +21,17 @@ Ext.define('FSS.view.desktop.tabpanel.browser.BrowserController', {
                     leagues.push(args[arg]);
                 }
             }
-
+            
             var leagueListView = this.lookup('leagueTreeList');
             leagueListView.getController().setOriginalLeagues(Ext.clone(leagues));
             leagueListView.getController().setActiveLeagues(Ext.clone(leagues.reverse()));
         }
     },
-
+    
     /**
      * Set scroller layout
      */
-    setScrollerLayout: function () {
+    setScrollerLayout: function(){
         var fssDetails = this.lookup('fssDetails');
 
         //noinspection JSUnresolvedFunction
@@ -40,11 +40,11 @@ Ext.define('FSS.view.desktop.tabpanel.browser.BrowserController', {
             syncList: [fssDetails]
         });
     }
-}, function (Cls) {
+}, function(Cls){
     Cls.mocks = {
         onActiveRoute: {
             args: {
-                0: 'FSS.type.RouteArguments'
+                0: 'FSS.type.RouteArguments|undefined'
             }
         },
         setScrollerLayout: {}

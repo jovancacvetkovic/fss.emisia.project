@@ -10,7 +10,7 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.list.collapsible.Collapsi
             fssTreeListController: {
                 expandList: 'onExpandList'
             },
-
+            
             fssBrowserListController: {
                 expandList: 'onExpandList'
             }
@@ -21,15 +21,15 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.list.collapsible.Collapsi
         var view = this.getView();
         var listView = view.items.getAt(0);
         if (view.rendered && listView.reference === reference || reference === null) {
-            if (expand && view.getCollapsed()){
+            if (expand && view.getCollapsed()) {
                 view.expand();
             }
-            if (!expand && !view.getCollapsed()){
+            if (!expand && !view.getCollapsed()) {
                 view.collapse();
-
+                
                 // remove selection for collapsed lists
                 var selectable = listView.getSelectable();
-                if(selectable){
+                if (selectable) {
                     selectable.deselectAll(true);
                 }
             }

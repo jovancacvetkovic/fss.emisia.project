@@ -9,8 +9,11 @@ Ext.define('FSS.view.desktop.main.MainController', {
         'FSS': 'onRouteNavigate',
         'FSS/:pageId': 'onRouteNavigate',
         'FSS/:pageId/:leagueId': 'onRouteNavigate',
+        'FSS/:pageId/:leagueId/': 'onRouteNavigate',
         'FSS/:pageId/:leagueId/:subLeagueId': 'onRouteNavigate',
-        'FSS/:pageId/:leagueId/:subLeagueId/:teamId': 'onRouteNavigate'
+        'FSS/:pageId/:leagueId/:subLeagueId/': 'onRouteNavigate',
+        'FSS/:pageId/:leagueId/:subLeagueId/:teamId': 'onRouteNavigate',
+        'FSS/:pageId/:leagueId/:subLeagueId/:teamId/': 'onRouteNavigate'
     },
 
     control: {
@@ -56,4 +59,14 @@ Ext.define('FSS.view.desktop.main.MainController', {
             pageItem.getViewModel().set('activeRoute', arguments);
         }
     }
+}, function(Cls){
+    Cls.mocks = {
+        onTabChange: {
+            args: {
+                0: 'FSS.view.desktop.main.Main',
+                1: 'FSS.view.desktop.tabpanel.tab.Tab'
+            }
+        },
+        onRouteNavigate: {}
+    };
 });

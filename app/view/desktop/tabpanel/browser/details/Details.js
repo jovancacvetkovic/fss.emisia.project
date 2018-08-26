@@ -25,38 +25,41 @@ Ext.define('FSS.view.desktop.tabpanel.browser.details.Details', {
     scrollable: 'y',
     
     items: [{
-        xtype: 'fssContainerImage',
-        cls: 'fssDetailsHeader',
-    
-        bind: {
-            src: '{leagueDetails.bannerUrl}'
-        },
-        
+        xtype: 'container',
         items: [{
-            cls: 'flexer'
-        }, {
-            xtype: 'fssDetailsBanner',
+            xtype: 'fssContainerImage',
+            cls: 'fssDetailsHeader',
+    
             bind: {
-                details: '{leagueDetails}'
-            }
+                src: '{leagueDetails.bannerUrl}'
+            },
+    
+            items: [{
+                cls: 'flexer'
+            }, {
+                xtype: 'fssDetailsBanner',
+                bind: {
+                    details: '{leagueDetails}'
+                }
+            }]
+        }, {
+            xtype: 'fssDetailsStats',
+            reference: 'fssGeneralStats',
+            refName: 'GENERAL'
+        }, {
+            xtype: 'fssDetailsStats',
+            reference: 'fssPersonnelStats',
+            header: true,
+            refName: 'PERSONNEL.GENERAL'
+        }, {
+            xtype: 'fssDetailsStats',
+            reference: 'fssPersonnelOtherStats',
+            refName: 'PERSONNEL.OTHER'
+        }, {
+            xtype: 'fssDetailsStats',
+            reference: 'fssActivityStats',
+            header: true,
+            refName: 'ACTIVITY'
         }]
-    }, {
-        xtype: 'fssDetailsStats',
-        reference: 'fssGeneralStats',
-        refName: 'GENERAL'
-    }, {
-        xtype: 'fssDetailsStats',
-        reference: 'fssPersonnelStats',
-        header: true,
-        refName: 'PERSONNEL.GENERAL'
-    }, {
-        xtype: 'fssDetailsStats',
-        reference: 'fssPersonnelOtherStats',
-        refName: 'PERSONNEL.OTHER'
-    }, {
-        xtype: 'fssDetailsStats',
-        reference: 'fssActivityStats',
-        header: true,
-        refName: 'ACTIVITY'
     }]
 });
