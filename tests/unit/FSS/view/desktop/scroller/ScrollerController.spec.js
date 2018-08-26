@@ -15,86 +15,60 @@ describe('FSS.view.desktop.scroller.ScrollerController', function(){
         Scroller.destroy();
     });
     
-    it('should not fail on init', function(){
-        expect(function(){
-            ScrollerController.init();
-        }).not.toThrow();
-    });
     it('should not fail on fixLayoutScroll', function(){
-        expect(function(){
-            ScrollerController.fixLayoutScroll();
-        }).not.toThrow();
+        expect('fixLayoutScroll').toPass(ScrollerController, []);
     });
     it('should not fail on isBodyMasked', function(){
-        expect(function(){
-            ScrollerController.isBodyMasked();
-        }).not.toThrow();
+        expect('isBodyMasked').toPass(ScrollerController, []);
     });
     it('should not fail on isScrollAllowed', function(){
-        expect(function(){
-            ScrollerController.isScrollAllowed();
-        }).not.toThrow();
+        expect('isScrollAllowed').toPass(ScrollerController, []);
     });
     
     it('should not fail on getScrollHeight', function(){
-        expect(function(){
-            ScrollerController.getScrollHeight();
-        }).not.toThrow();
+        expect('getScrollHeight').toPass(ScrollerController, [1]);
     });
     
     it('should not fail on registerScrollEvents', function(){
-        expect(function(){
-            ScrollerController.registerScrollEvents();
-        }).not.toThrow();
+        expect('registerScrollEvents').toPass(ScrollerController, []);
     });
     
     it('should not fail on scrollAllTo', function(){
-        expect(function(){
-            ScrollerController.scrollAllTo();
-        }).not.toThrow();
+        expect('scrollAllTo').toPass(ScrollerController, []);
     });
     
     it('should not fail on setLayout', function(){
-        expect(function(){
-            ScrollerController.setLayout();
-        }).not.toThrow();
+        expect('setLayout').toPass(ScrollerController, []);
     });
     
     it('should not fail on setScrollWidth', function(){
-        expect(function(){
-            ScrollerController.setScrollWidth();
-        }).not.toThrow();
+        expect('setScrollWidth').toPass(ScrollerController, [1]);
     });
     
     it('should not fail on syncLayouts', function(){
-        expect(function(){
-            ScrollerController.syncLayouts();
-        }).not.toThrow();
+        expect('syncLayouts').toPass(ScrollerController, []);
     });
     
     describe('should not fail on getDefaultDelta', function(){
         it('expect correct params to be passed', function(){
-            expect('getDefaultDelta').toMatchExpectedParams(ScrollerController);
-            ScrollerController.getDefaultDelta(1);
+            expect('getDefaultDelta').toPass(ScrollerController, [1]);
         });
         
         it('expect to return correct type', function(){
             var result = ScrollerController.getDefaultDelta(1);
-            expect(result).toMatchExpectedResult(ScrollerController, 'getDefaultDelta');
+            expect(result).toMatchResult(ScrollerController, 'getDefaultDelta');
         });
     });
     
     describe('should not fail on setScrollBottomMargin', function(){
         it('expect correct params to be passed', function(){
-            expect('setScrollBottomMargin').toMatchExpectedParams(ScrollerController);
-            ScrollerController.setScrollBottomMargin(1);
+            expect('setScrollBottomMargin').toPass(ScrollerController, [1]);
         });
     });
     
     describe('should not fail on setScrollTopMargin', function(){
         it('expect correct params to be passed', function(){
-            expect('setScrollTopMargin').toMatchExpectedParams(ScrollerController);
-            ScrollerController.setScrollTopMargin(1);
+            expect('setScrollTopMargin').toPass(ScrollerController, [1]);
         });
     });
 });

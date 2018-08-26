@@ -10,6 +10,10 @@
         padding: 0;
         margin: 0;
     }
+    
+    .#{$prefix}scroller {
+        overflow: hidden !important;
+    }
 }
 
 .#{$prefix}gecko {

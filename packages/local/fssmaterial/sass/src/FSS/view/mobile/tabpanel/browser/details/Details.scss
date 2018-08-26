@@ -26,7 +26,7 @@
                     top: 83px;
                     width: 60px;
                     height: 60px;
-                    background-position: center 5px;
+                    background-position: center 10px;
                 }
 
                 .bannerBody {
@@ -52,7 +52,7 @@
                         line-height: 45px;
 
                         .bannerFullName {
-                            font-family: $font-family-opensans-regular;
+                            font-family: $font-family-opensans-medium;
                             font-size: 17px;
                             line-height: 25px;
                         }
@@ -67,13 +67,7 @@
                 }
 
                 .bannerRightSide {
-                    position: absolute;
-                    height: 45px;
-                    width: calc(100% - 10px);
-                    transform: skew(0deg);
-                    background-color: $fss-blue-page-background;
-                    top: 110px;
-                    left: 0;
+                    display: none;
                 }
             }
         }

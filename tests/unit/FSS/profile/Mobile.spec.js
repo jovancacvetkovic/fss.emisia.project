@@ -20,7 +20,7 @@ describe('FSS.profile.Mobile', function () {
 
         xit('expect to return correct type', function () {
             var result = Mobile.isActive();
-            expect(result).toMatchExpectedResult(Mobile, 'isActive');
+            expect(result).toMatchResult(Mobile, 'isActive');
         });
     });
 

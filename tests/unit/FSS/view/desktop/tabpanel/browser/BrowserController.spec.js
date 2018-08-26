@@ -19,7 +19,7 @@ describe('FSS.view.desktop.tabpanel.browser.BrowserController', function(){
     });
     
     it('should inherit from Ext.Container', function(){
-        expect(Browser.isXType('container')).toEqual(true);
+        expect(Browser).toInheritFrom('container');
     });
 
     it('should not fail on setScrollerLayout', function () {
@@ -37,17 +37,16 @@ describe('FSS.view.desktop.tabpanel.browser.BrowserController', function(){
             });
         });
 
-        it('should not fail on toMatchExpectedParams', function () {
+        it('should not fail', function () {
             expect('onActiveRoute').toPass(BrowserController, [args]);
         });
 
-        it('should not fail on toMatchExpectedParams without args', function () {
-            expect('onActiveRoute').toPass(BrowserController, []);
+        it('should not fail on toPassWithParams without args', function () {
+            expect('onActiveRoute').toPass(BrowserController, [undefined]);
         });
 
         it('expect correct params to be passed', function () {
-            expect('onActiveRoute').toMatchExpectedParams(BrowserController);
-            BrowserController.onActiveRoute(args);
+            expect('onActiveRoute').toPass(BrowserController, [args]);
         });
     });
 });

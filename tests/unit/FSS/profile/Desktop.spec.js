@@ -20,7 +20,7 @@ describe('FSS.profile.Desktop', function () {
 
         it('expect to return correct type', function () {
             var result = Desktop.isActive();
-            expect(result).toMatchExpectedResult(Desktop, 'isActive');
+            expect(result).toMatchResult(Desktop, 'isActive');
         });
     });
 

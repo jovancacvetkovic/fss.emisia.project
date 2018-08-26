@@ -16,6 +16,10 @@ describe('FSS.view.desktop.main.MainController', function () {
     afterEach(function () {
         Main.destroy();
     });
+    
+    it('should inherit from Ext.Panel', function () {
+        expect(Main.isXType('tabpanel')).toEqual(true);
+    });
 
     it('should not fail on onTabChange', function () {
         expect(function () {

@@ -37,27 +37,13 @@ describe('FSS.Application', function () {
 
     describe('should not fail on onDenyPermissions', function () {
         it('expect correct params to be passed', function () {
-            expect('onDenyPermissions').toMatchExpectedParams(App);
-            App.onDenyPermissions({});
-        });
-
-        it('should not fail on onDenyPermissions', function () {
-            expect(function () {
-                App.onDenyPermissions();
-            }).not.toThrow();
+            expect('onDenyPermissions').toPass(App, [{}]);
         });
     });
 
     describe('should not fail on onFirebaseToken', function () {
         it('expect correct params to be passed', function () {
-            expect('onFirebaseToken').toMatchExpectedParams(App);
-            App.onFirebaseToken('token');
-        });
-
-        it('should not fail on onFirebaseToken', function () {
-            expect(function () {
-                App.onFirebaseToken();
-            }).not.toThrow();
+            expect('onFirebaseToken').toPass(App, ['token']);
         });
     });
 
@@ -74,14 +60,7 @@ describe('FSS.Application', function () {
             notification = Ext.create('FSS.type.PushMessage', notification);
         });
         it('expect correct params to be passed', function () {
-            expect('onMessageHandler').toMatchExpectedParams(App);
-            App.onMessageHandler(notification);
-        });
-
-        it('should not fail on onMessageHandler', function () {
-            expect(function () {
-                App.onMessageHandler(notification);
-            }).not.toThrow();
+            expect('onMessageHandler').toPass(App, [notification]);
         });
     });
 
@@ -98,7 +77,7 @@ describe('FSS.Application', function () {
         });
         it('expect to return correct type', function () {
             var result = App.onGrantPermissions();
-            expect(result).toMatchExpectedResult(App, 'onGrantPermissions');
+            expect(result).toMatchResult(App, 'onGrantPermissions');
         });
     });
 

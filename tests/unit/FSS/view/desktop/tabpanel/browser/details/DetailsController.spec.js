@@ -27,8 +27,7 @@ describe('FSS.view.desktop.tabpanel.browser.details.DetailsController', function
         });
 
         it('expect correct params to be passed', function () {
-            expect('onLoadDetails').toMatchExpectedParams(DetailsController);
-            DetailsController.onLoadDetails('string', true);
+            expect('onLoadDetails').toPass(DetailsController, ['string', true]);
         });
     });
     
@@ -37,8 +36,7 @@ describe('FSS.view.desktop.tabpanel.browser.details.DetailsController', function
             expect('loadDetailsSuccess').toPass(DetailsController, [response]);
         });
         it('expect correct params to be passed', function () {
-            expect('loadDetailsSuccess').toMatchExpectedParams(DetailsController);
-            DetailsController.loadDetailsSuccess(response);
+            expect('loadDetailsSuccess').toPass(DetailsController, [response]);
         });
     });
 });
