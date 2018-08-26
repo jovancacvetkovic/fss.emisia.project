@@ -342,7 +342,6 @@ Ext.define('FSS.view.desktop.scroller.ScrollerController', {
                 var scroller = hoverEl.up(scrollerCls);
                 if (scroller && !scroller.hasCls('fssScrollModifier')) {
                     dom = scroller.dom;
-                    
                     if (dom.nodeName !== 'BODY') { //element is scrollable if scrollHeight is not equal to clientHeight
                         isScrollable = dom && dom.scrollHeight !== dom.clientHeight && Ext.fly(dom).getStyle('overflow') !== 'hidden';
                     }
