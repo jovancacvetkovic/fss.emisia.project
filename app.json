@@ -54,9 +54,6 @@
     },
     "js": [
         {
-            "path": "resources/3rdparty/firebase/firebase.js"
-        },
-        {
             "path": "app.js",
             "bundle": true
         }

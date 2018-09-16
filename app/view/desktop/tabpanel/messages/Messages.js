@@ -5,8 +5,10 @@ Ext.define('FSS.view.desktop.tabpanel.messages.Messages', {
     extend: 'Ext.Panel',
 
     requires: [
+        'Ext.layout.HBox',
         'FSS.view.desktop.tabpanel.messages.MessagesController',
-        'FSS.view.desktop.tabpanel.messages.MessagesModel'
+        'FSS.view.desktop.tabpanel.messages.MessagesModel',
+        'FSS.view.desktop.tabpanel.messages.folder.Folder'
     ],
 
     xtype: 'fssMessages',
@@ -16,8 +18,12 @@ Ext.define('FSS.view.desktop.tabpanel.messages.Messages', {
     },
 
     controller: 'fssMessagesController',
+    
+    layout: {
+        type: 'hbox'
+    },
 
-    items: [
-        /* include child components here */
-    ]
+    items: [{
+        xtype: 'fssMessagesFolder'
+    }]
 });

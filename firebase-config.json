@@ -2,10 +2,10 @@
     "firebase": {
         "apiKey": "AIzaSyD_GzRKOA-HPHff4z0Sgj9WLGhbeRvmpZ4",
         "authDomain": "fssmodern.firebaseapp.com",
+        "databaseURL": "https://fssmodern.firebaseio.com",
         "projectId": "fssmodern",
+        "storageBucket": "fssmodern.appspot.com",
         "messagingSenderId": "939280745280",
-        "vapidKey": "BJx3maNMrM5NOJyJlmojvtJ_35mDgr6C1ZSOnwcSTeZgiOuJQDtFgnLGi_oJBAh0ipKjPOldhbFaYP6MMxz4lMc",
-        "databaseURL": "https://fssmodern.firebaseio.com/",
-        "storageBucket": "gs://fssmodern.appspot.com/"
+        "vapidKey": "BJx3maNMrM5NOJyJlmojvtJ_35mDgr6C1ZSOnwcSTeZgiOuJQDtFgnLGi_oJBAh0ipKjPOldhbFaYP6MMxz4lMc"
     }
 }

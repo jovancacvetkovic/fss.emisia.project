@@ -7,87 +7,163 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=10, user-scalable=yes">
     <link rel="shortcut icon"
           href="data:image/vnd.microsoft.icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAApa47/MXCR/xVbgP8pa43/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACZqjv+2ud3/EAa6////////////EAa6//////8qbo//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACxsjf8RBb3/EAa6/xAGuv///////////xAGuv8QBrr/EQXA/y9sk/8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD9/Pv/QkLC///8+P8QBrr///////////8QBrr////7/+7u9v/7+/j/AAAAAAAAAAAAAAAAAAAAAAAAAAAnaY3/EAa6/xMJvf+Ihtz/EAa6////////////EAa6/wUAtP8QBL7/EAa6/x5nkPcAAAAAAAAAAAAAAAAAAAAAKmuP/xAGuv9QUMr/EQa6/21uyf8maY3/TYWg/wUCsf8SBrr/PUHA/xAGuv8obJH/AAAAAAAAAAAAAAAAAAAAACprj/8YGLL/GBiy/xgYtP//////KmyP//z///8laIz/GBiy/xgYsv8YGLL/KGyR/wAAAAAAAAAAAAAAAAAAAAAqa4//////////////////8//+/xVbgv//////Wo2l/////////////////yhskf8AAAAAAAAAAAAAAAAAAAAAKmuP/7Kx6f+ysen/rarp/xxlif//////KWuO//j9+/+ysOn/srHp/7Kx6f8obJH/AAAAAAAAAAAAAAAAAAAAACprj/8QBrr/EAa6/xAGuv/8/ff//v3+/////f///vz/EAa6/xAGuv8QBrr/KGyR/wAAAAAAAAAAAAAAAAAAAAAqa4//EAa6/xAHuf+Kh9b/EAa6////////////EAa6/wYAsv8RB7r/EAa6/yhskf8AAAAAAAAAAAAAAAAAAAAAKmuP/xAGuv8QBrr/iITc/xAGuv///////////xAGuv8FAbT/Dwa6/xAGuv8pa5D/AAAAAAAAAAAAAAAAAAAAACprj/8QBrr/EAa6/xAGuv8QBrr///////////8QBrr/EAa6/xAGuv8QBrr/KWuQ/wAAAAAAAAAAAAAAAAAAAAAqa4//FhWw/xYVsP8WFbD/FhWw////////////FhWw/xYVsP8WFbD/FhWw/ylrkP8AAAAAAAAAAAAAAAAAAAAAKmuP/yBiiP+pwc7/KWyO/97p7P/7/v7/L2eM/9vj7/8eZIf/Fl2I//n7/f8pa5D/AAAAAAAAAAAAAAAAAAAAACprj//w9ff/+fv8/3Sesf//////5e3w/2aRqP//////jrDB/ylrjv8pa47/KWuQ/wAAAAAAAAAA/D8AAPAPAADgBwAA4AcAAMADAADAAwAAwAMAAMADAADAAwAAwAMAAMADAADAAwAAwAMAAMADAADAAwAAwAMAAA=="/>
-
+    
     <title>FSS</title>
-
+    
     <link rel="manifest" href="manifest.json"/>
-
+    
     <script>
-        var FSS = FSS || {};
-
+        var FSS = FSS || {}; // FSS namespace won't be defined yet...
+        var Ext = Ext || {}; // Ext namespace won't be defined yet...
+        
         //<debug>, @formatter:off
-            // detect if application is running in dev mode
-            // in production mode everything within <debug> tags is removed
-            FSS.isDev = true;
+        // detect if application is running in dev mode
+        // in production mode everything within <debug> tags is removed
+        FSS.isDev = true;
         //</debug>, @formatter:on
+        
+        // This function is called by the Microloader after it has performed basic
+        // device detection. The results are provided in the "tags" object. You can
+        // use these tags here or even add custom tags. These can be used by platform
+        // filters in your manifest or by platformConfig expressions in your app.
+        Ext.beforeLoad = function(tags){
+            var ua = navigator.userAgent;
+            var isMobile = /Mobile(\/|\s|;)/.test(ua);
+            var iphone = (tags.iphone || tags.ipod);
+            var isAndroid = !tags.silk && (tags.android && (tags.android < 3 || isMobile));
+            var isBlackbarry = (tags.blackberry && isMobile);
+            var isWindowsPhone = tags.windowsphone;
+            FSS.isPhone = !!(iphone || isAndroid || isBlackbarry || isWindowsPhone);
+        };
     </script>
-
+    
+    <!-- Firebase App is always required and must be first -->
+    <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase-app.js"></script>
+    
+    <!-- Add additional services that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase-messaging.js"></script>
+    
     <!-- The line below must be kept intact for Sencha Cmd to build your application -->
     <script id="microloader" data-app="e808b5ad-3dda-4ef0-b612-65086b013d16" type="text/javascript"
             src="bootstrap.js"></script>
-
+    
     <style type="text/css">
-        .pulse-logo, .pulse-circle {
+        :root {
+            --main-color: #bf2242;
+            --main-second-color: #d1d3d5;
+            --loading-size: calc(50% - 75px);
+            --loading-phone-size: calc(75% - 75px);
+            --loading-phone-vsize: calc(50% - 75px);
+        }
+        
+        .fss-loading {
             position: absolute;
-            margin: auto;
-            display: block;
-        }
-
-        .pulse-logo {
+            left: var(--loading-size);
+            top: var(--loading-size);
             z-index: 1;
-            width: 100%;
-            height: 100%;
-            cursor: pointer;
-            background-repeat: no-repeat;
-            background-size: 100px;
-            background-position: center;
-            background-color: rgba(255, 255, 255, 0.3);
+            width: 150px;
+            height: 150px;
+            margin: -75px 0 0 -75px;
+            width: 120px;
+            height: 120px;
         }
-
-        .pulse-circle {
-            z-index: 2;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            box-shadow: 0 0 0 rgba(204, 169, 44, 1);
-            animation: pulse-circle 1.5s infinite;
-            top: calc(50% - 15px);
-            left: calc(50% - 15px);
+        
+        .fss-phone .fss-loading {
+            left: var(--loading-phone-size);
+            top: var(--loading-phone-vsize);
         }
-
-        @-webkit-keyframes pulse-circle {
+        
+        .fss-loading-icon {
+            background: url(https://firebasestorage.googleapis.com/v0/b/fssmodern.appspot.com/o/fssmodern%2Ffss-srbije-logo.svg?alt=media&token=5c3abd3f-fd90-40bc-95c4-4c4a80b926ea) center 0 no-repeat;
+            background-size: contain;
+            width: 65px;
+            height: 65px;
+            top: -181px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .fss-loading-outer-circle {
+            background-color: transparent;
+            border: 8px solid var(--main-color);
+            opacity: .9;
+            border-right: 5px solid transparent;
+            border-left: 5px solid transparent;
+            border-radius: 100px;
+            width: 103px;
+            height: 103px;
+            margin: 0 auto;
+            -moz-animation: fss-loading-spin-pulse 1s infinite linear;
+            -webkit-animation: fss-loading-spin-pulse 1s infinite linear;
+        }
+        
+        .fss-loading-inner-circle {
+            background-color: transparent;
+            border: 5px solid var(--main-second-color);
+            opacity: .9;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-radius: 100px;
+            top: -105px;
+            width: 82px;
+            height: 82px;
+            margin: 0 auto;
+            position: relative;
+            -moz-animation: fss-loading-spin-off-pulse 1s infinite linear;
+            -webkit-animation: fss-loading-spin-off-pulse 1s infinite linear;
+            
+        }
+        
+        @-moz-keyframes fss-loading-spin-pulse {
             0% {
-                -webkit-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0.4);
-            }
-            70% {
-                -webkit-box-shadow: 0 0 0 100px rgba(204, 169, 44, 0);
+                -moz-transform: rotate(0deg);
             }
             100% {
-                -webkit-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
+                -moz-transform: rotate(-360deg);
             }
         }
-
-        @keyframes pulse-circle {
+        
+        @-webkit-keyframes fss-loading-spin-pulse {
             0% {
-                -moz-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0.4);
-                box-shadow: 0 0 0 0 rgba(204, 169, 44, 0.4);
-            }
-            70% {
-                -moz-box-shadow: 0 0 0 100px rgba(204, 169, 44, 0);
-                box-shadow: 0 0 0 100px rgba(204, 169, 44, 0);
+                -webkit-transform: rotate(0deg);
             }
             100% {
-                -moz-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
-                box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
+                -webkit-transform: rotate(-360deg);
             }
         }
+        
+        @-moz-keyframes fss-loading-spin-off-pulse {
+            0% {
+                -moz-transform: rotate(0deg);
+            }
+            100% {
+                -moz-transform: rotate(360deg);
+            }
+        }
+        
+        @-webkit-keyframes fss-loading-spin-off-pulse {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+    
     </style>
 </head>
-<body>
+<body id="fss-body">
 
-<div class="pulse-logo" id="pulse-logo">
-    <div class="pulse-circle"></div>
+<div id="fss-loader" class="fss-loading">
+    <div class="fss-loading-outer-circle"></div>
+    <div class="fss-loading-inner-circle"></div>
+    <div class="fss-loading-icon"></div>
 </div>
 
+<script type="text/javascript">
+    var bodyEl = document.getElementsByTagName('body')[0];
+    bodyEl.setAttribute('class', FSS.isPhone ? 'fss-phone' : 'fss-desktop');
+</script>
 </body>
 </html>

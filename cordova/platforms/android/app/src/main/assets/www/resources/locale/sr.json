@@ -1,0 +1,61 @@
+{
+    "name": "locale",
+    "version": "sr",
+    "translations": {
+        "FSS.view.desktop.tabpanel.header.actions.ActionsModel": {
+            "languages": "Jezici",
+            "en": "Engleski",
+            "sr": "Srpski"
+        },
+
+        "FSS.view.desktop.tabpanel.browser.BrowserModel": {
+            "title": "Pretraživač"
+        },
+
+        "FSS.view.desktop.tabpanel.messages.MessagesModel": {
+            "title": "Poruke"
+        },
+
+        "FSS.view.desktop.tabpanel.systematization.SystematizationModel": {
+            "title": "Sistematizacija"
+        },
+
+        "FSS.view.desktop.tabpanel.browser.details.stats.StatsModel": {
+            "ADDRESS": "Adresa:",
+            "FOUNDED": "Osnovan:",
+            "FAX": "Fax:",
+            "EMAIL": "e-mail:",
+            "PHONE": "Telefon:",
+            "SITE": "Web site:",
+            "DIRECTOR": "Sportski Direktor:",
+            "BOARD": "Komisije:",
+            "PARLAMENT": "Skupština:",
+            "EXECUTIVES": "Izvršni odbor:",
+            "PRESIDENT": "Predsednik:",
+            "SUPREVISORS": "Nadzorni odbor:",
+            "SECRETARY": "Gen. Sekretar:",
+            "GENSECRETARY": "Gen. sekretar:",
+            "VICEPRESIDENTS": "Podpredsednici:",
+
+            "CLUBS": "Klubova:",
+            "COACHES": "Trenera:",
+            "JUDGES": "Sudija:",
+            "LEAGUES": "Liga:",
+            "PLAYERS": "Igrača:",
+
+            "PERSONNELGENERAL": "Organi saveza (kadrovi):",
+            "ACTIVITY": "Aktivnost:"
+        },
+
+        "FSS.view.desktop.tabpanel.browser.treelist.list.header.HeaderModel": {
+            "header": {
+                "UNION": "Savezi",
+                "LEAGUE": "Lige"
+            }
+        },
+
+        "Ext.Component": {
+            "loading": "Učitava se..."
+        }
+    }
+}

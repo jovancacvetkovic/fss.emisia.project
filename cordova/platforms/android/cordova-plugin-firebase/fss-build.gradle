@@ -13,7 +13,7 @@ repositories {
     }
 }
 dependencies {
-    compile 'me.leolin:ShortcutBadger:1.1.4@aar'
-    compile 'com.google.firebase:firebase-crash:+'
-    compile 'com.google.firebase:firebase-auth:+'
+    implementation 'me.leolin:ShortcutBadger:1.1.4@aar'
+    implementation 'com.google.firebase:firebase-crash:+'
+    implementation 'com.google.firebase:firebase-auth:+'
 }

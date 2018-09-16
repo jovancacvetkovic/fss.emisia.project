@@ -67,7 +67,7 @@ Ext.define('FSS.view.desktop.tabpanel.browser.details.stats.StatsController', {
                 bind: {
                     label: '{locale#' + label + '}'
                 },
-                value: value
+                value: value ? value : '-'
             }]
         };
     },

@@ -1,0 +1,10 @@
+{
+    "firebase": {
+        "apiKey": "AIzaSyD_GzRKOA-HPHff4z0Sgj9WLGhbeRvmpZ4",
+        "authDomain": "fssmodern.firebaseapp.com",
+        "databaseURL": "https://fssmodern.firebaseio.com",
+        "projectId": "fssmodern",
+        "storageBucket": "fssmodern.appspot.com",
+        "messagingSenderId": "939280745280"
+    }
+}

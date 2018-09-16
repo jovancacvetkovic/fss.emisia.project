@@ -92,6 +92,7 @@ ext {
 
 // PLUGIN GRADLE EXTENSIONS START
 apply from: "../cordova-plugin-firebase/fss-build.gradle"
+apply from: "../cordova-android-support-gradle-release/fss-cordova-android-support-gradle-release.gradle"
 // PLUGIN GRADLE EXTENSIONS END
 
 def hasBuildExtras = file('build-extras.gradle').exists()
@@ -166,6 +167,11 @@ android {
         if (cdvMinSdkVersion != null) {
             minSdkVersion cdvMinSdkVersion
         }
+    }
+
+    configurations {
+        all*.exclude group: 'com.android.support', module: 'support-v4'
+        all*.exclude group: 'com.android.support', module: 'support-annotations'
     }
 
     lintOptions {
@@ -260,17 +266,17 @@ dependencies {
     implementation fileTree(dir: 'libs', include: '*.jar')
     // SUB-PROJECT DEPENDENCIES START
     implementation(project(path: ":CordovaLib"))
-    compile "com.google.gms:google-services:+"
-    compile "com.google.android.gms:play-services-tagmanager:+"
-    compile "com.google.firebase:firebase-core:+"
-    compile "com.google.firebase:firebase-messaging:+"
-    compile "com.google.firebase:firebase-crash:+"
-    compile "com.google.firebase:firebase-config:+"
-    compile "com.google.firebase:firebase-perf:+"
+    implementation "com.google.gms:google-services:+"
+    implementation "com.google.android.gms:play-services-tagmanager:+"
+    implementation "com.google.firebase:firebase-core:+"
+    implementation "com.google.firebase:firebase-messaging:+"
+    implementation "com.google.firebase:firebase-crash:+"
+    implementation "com.google.firebase:firebase-config:+"
+    implementation "com.google.firebase:firebase-perf:+"
     // SUB-PROJECT DEPENDENCIES END
 
 
-    compile "com.firebase:firebase-jobdispatcher:+"
+    implementation "com.firebase:firebase-jobdispatcher:+"
 }
 
 def promptForReleaseKeyPassword() {

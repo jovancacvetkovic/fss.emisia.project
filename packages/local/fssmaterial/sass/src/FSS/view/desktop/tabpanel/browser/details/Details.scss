@@ -57,6 +57,7 @@
                     color: map-get($material-foreground-colors, 'darker-red');
                     font-family: $font-family-opensans-regular !important;
                     font-size: 18px;
+                    font-weight: 500;
                 }
             }
 
@@ -78,6 +79,7 @@
                         color: map-get($material-foreground-colors, 'grey');
                         font-family: $font-family-opensans-regular !important;
                         font-size: 14px;
+                        font-weight: 500;
                     }
                 }
             }

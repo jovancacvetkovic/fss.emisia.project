@@ -86,7 +86,7 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', {
      * @param {String/Object} league
      */
     setActiveLeague: function(league){
-        if (league === null) {
+        if (!league) {
             league = {};
         }
         else
@@ -112,10 +112,11 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', {
         
         // set active leagues
         this._activeLeagues = leagues;
+        
         if (Ext.isArray(leagues)) { // if it is not initial config route then try to load leagues
             var leagueList = this.findList('leagueList');
             if (leagueList) {
-                var store = leagueList.getViewModel().getStore('list');
+                var store = leagueList.getStore();
                 var isLoaded = store.getCount();
                 if (!isLoaded) { // first list is not loaded
                     this.setActiveLeague(null); // there is no activeLeague before first list is loaded
@@ -199,6 +200,15 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', {
             var previousActiveLeague = this.getActiveList().getSelectedId();
             
             var activeLeague = this.pullActiveLeague(leagueList);
+            var store = leagueList.getStore();
+            
+            // If there is no selected item on root list
+            // then select first item
+            var isRootList = this.getAvailableLists().indexOf(leagueList.reference) === 0;
+            if (!activeLeague && store.getCount() && isRootList) {
+                activeLeague = store.getAt(0).get('id');
+            }
+            
             this.setActiveLeague({
                 league: activeLeague,
                 subLeagues: subLeagues
@@ -208,7 +218,6 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', {
                 leagueController.setActiveListItem(activeLeague);
                 
                 // load data if it is not already loaded
-                var store = leagueList.getViewModel().getStore('list');
                 if (!store.getCount() || previousActiveLeague !== activeLeague) {
                     leagueController.loadListData(leagues);
                     this.expandSubLists(leagueList, leagueController);
@@ -228,12 +237,12 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', {
                 
                 activeLeague = this.getActiveLeague().league;
                 var nextLeague = this.getNextLeague(activeLeague);
-                if (!nextLeague && activeLeague) { // if there is selected item and there id no more lists to load, then show selected item details
+                if (!nextLeague && activeLeague) { // if there is selected item and there is no more lists to load, then show selected item details
                     this.fireEvent('e_loadDetails', activeLeague, this.getAvailableLists().indexOf(leagueList.reference) === 0);
                 }
             }
             else {
-                if (!this.getActiveLeagues().length || !subLeagues) { // if there are no more lists to load collapse lists that should not be visible
+                if (!this.getActiveLeagues().length || !subLeagues) { // if there are no more lists to load, collapse lists that should not be visible
                     leagueController.fireEvent('expandList', false, leagueList.reference);
                     this.expandSubLists(leagueList, leagueController);
                 }
@@ -244,7 +253,6 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', {
             }
         }
         
-        this.setViewportMasked(false);
     },
     
     /**
@@ -258,6 +266,7 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', {
         if (leagueIndex !== -1) { // collapse sub lists also
             var nextLeagueReference = availableLists[leagueIndex + 1];
             if (nextLeagueReference) {
+                // noinspection JSUnresolvedFunction
                 leagueController.fireEvent('expandList', false, nextLeagueReference);
             }
         }
@@ -352,7 +361,7 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', {
      * @param {String} leagueId League identification string
      */
     onListItemSelect: function(leagueId){
-        var activeLeague = this.getActiveLeague().league;
+        var activeLeague = this.getActiveLeague();
         if (!activeLeague && leagueId) {
             this.setActiveLeague(leagueId);
             activeLeague = this.getActiveLeague().league;
@@ -366,10 +375,15 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', {
                 this.loadLeague(dbQueryUrl);
             }
         }
-        else {
+        
+        var originalLeagues = Ext.clone(this.getOriginalLeagues());
+        originalLeagues = originalLeagues.reverse();
+        var leagueIndex = originalLeagues.indexOf(leagueId);
+        if (!leagueIndex || leagueIndex === -1) {
             this.setViewportMasked(false);
         }
     },
+    
     /**
      * Main list select handler
      * @param {FSS.view.desktop.tabpanel.browser.treelist.list.List} list
@@ -377,31 +391,30 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.TreeListController', {
      */
     listSelectRouteHandler: function(list, listItem){
         if (listItem.record) {
-            var selectedId = '';
+            var url = 'FSS/browser/';
+            var listIndex = this.getAvailableLists().indexOf(list.reference);
             var listItemId = listItem.record.id;
-            
-            var leagueList = this.findList('leagueList');
-            var subId = this.getSelectedId(leagueList);
-            if (subId) {
-                if (listItemId === subId) {
-                    listItemId = '';
-                }
-                subId += '/';
-            }
-            
-            if (listItemId) {
-                var subLeagueList = this.findList('subLeagueList');
-                selectedId = this.getSelectedId(subLeagueList);
-                
-                if (selectedId) {
-                    if (listItemId === selectedId) {
-                        listItemId = '';
+            var subId;
+            var leagueList;
+            var listReference;
+            var pathIds = [listItemId];
+            while (listIndex > -1) {
+                listIndex--;
+                listReference = this.getAvailableLists()[listIndex];
+                if (listReference) {
+                    leagueList = this.findList(listReference);
+                    subId = this.getSelectedId(leagueList);
+                    if (subId) {
+                        pathIds.push(subId);
                     }
-                    selectedId += '/';
                 }
             }
             
-            this.redirectTo('FSS/browser/' + subId + selectedId + listItemId);
+            pathIds = pathIds.reverse();
+            url += pathIds.join('/');
+            
+            this.setViewportMasked(true);
+            Ext.defer(this.redirectTo, 100, this, [url]);
         }
     }
 }, function(Cls){

@@ -8,10 +8,10 @@ Ext.define('FSS.view.mobile.tabpanel.browser.treelist.treelist.TreeListControlle
     
     listen: {
         controller: {
-            fssTreeListController: {
-                expandList: 'onExpandList'
-            },
-            
+            // fssTreeListController: {
+            //     expandList: 'onExpandList'
+            // },
+            //
             fssBrowserListController: {
                 expandList: 'onExpandList'
             },
@@ -29,63 +29,51 @@ Ext.define('FSS.view.mobile.tabpanel.browser.treelist.treelist.TreeListControlle
         var index = available.indexOf(list.reference);
         var previousIndex = --index;
         var reference = available[previousIndex];
-        if(reference){
+        if (reference) {
             list = view.lookup(reference);
             view.setActiveItem(list);
+            this.setActiveLeague(this.getSelectedId(list));
         }
         else {
-            // hide back button
+            // TODO hide back button
         }
     },
     
     onExpandList: function(expand, reference){
         var listView = this.findList(reference);
-        if (expand) {
-            this.setActiveItem(listView);
-        }
-        
-        var menus = Ext.Viewport.getMenus();
-        var left = menus.left;
-        if (left && left.isVisible() && this.getActiveLeague() && !this.getNextLeague(this.getActiveLeague())) {
-            //left.hide();
-        }
-        
-        if (!expand) {
-            // remove selection for collapsed lists
-            var selectable = listView.getSelectable();
-            if (selectable) {
-                selectable.deselectAll(true);
+        if (listView) {
+            if (expand) {
+                this.setActiveItem(listView);
             }
-        }
-    },
-    
-    expandSubLists: function(leagueList, leagueController){
-        var availableLists = this.getAvailableLists();
-        var leagueIndex = availableLists.indexOf(leagueList.reference);
-        if (leagueIndex !== -1) { // collapse sub lists also
-            var nextLeagueReference = availableLists[leagueIndex + 1];
-            if (nextLeagueReference) {
-                this.setActiveItem(leagueList);
+            
+            var menus = Ext.Viewport.getMenus();
+            var left = menus.left;
+            if (left && left.isVisible() && this.getActiveLeague() && !this.getNextLeague(this.getActiveLeague())) {
+                //left.hide();
             }
-        }
-    },
-    
-    setActiveLeagues: function(leagues){
-        this.callParent(arguments);
-        
-        var menus = Ext.Viewport.getMenus();
-        var left = menus.left;
-        if (left && !left.isVisible()) {
-            left.show();
         }
     },
     
     setActiveItem: function(item){
         var view = this.getView();
-        
-        var active = view.getActiveItem();
-        if (active !== item) {
-            view.setActiveItem(item);
+        view.setActiveItem(item);
+    },
+    
+    expandSubLists: Ext.emptyFn,
+    
+    setMenuVisible: function(visible){
+        var menus = Ext.Viewport.getMenus();
+        var left = menus.left;
+        if (left) {
+            var isVisible = !left.isVisible();
+            // left.show();
+            if (visible && !isVisible) {
+                left.show();
+            }
+            
+            if (!visible && isVisible) {
+                left.hide();
+            }
         }
     }
 });

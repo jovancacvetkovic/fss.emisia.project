@@ -33,7 +33,7 @@ Ext.define('FSS.view.desktop.tabpanel.browser.BrowserController', {
      */
     setScrollerLayout: function(){
         var fssDetails = this.lookup('fssDetails');
-
+        
         //noinspection JSUnresolvedFunction
         this.lookup('scroller').getController().register({
             scrollEl: Ext.getBody(),

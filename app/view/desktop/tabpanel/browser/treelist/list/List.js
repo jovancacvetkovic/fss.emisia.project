@@ -3,60 +3,62 @@
  */
 Ext.define('FSS.view.desktop.tabpanel.browser.treelist.list.List', {
     extend: 'Ext.dataview.List',
-
+    
     requires: [
         'FSS.view.desktop.tabpanel.browser.treelist.list.ListController',
         'FSS.view.desktop.tabpanel.browser.treelist.list.ListModel',
         'FSS.view.desktop.tabpanel.browser.treelist.list.header.Header'
     ],
-
+    
     xtype: 'fssList',
-
+    
     viewModel: {
         type: 'fssBrowserListModel'
     },
-
+    
     config: {
         selectedId: '',
         selectFirstListItem: false
     },
-
+    
     controller: 'fssBrowserListController',
-
+    
     baseCls: 'fssList',
-
+    
     grouped: true,
-
+    
     groupHeader: {
         xtype: 'fssListHeader'
     },
-
+    
     selectable: {
         mode: 'single',
         deselectable: false,
         triggerEvent: 'prevent-childtap',
         triggerCtEvent: 'prevent-tap'
     },
-
-    bind: {
-        store: '{list}'
-    },
-
-    itemTpl: '{name:htmlEncode}',
     
-    getStore: function(){
-        // noinspection JSUnresolvedFunction
-        return this.getViewModel().getStore('list');
+    store: {
+        grouper: {
+            property: 'group',
+            direction: 'DESC'
+        },
+        sorters: {
+            property: 'name',
+            direction: 'ASC'
+        }
     },
+    
+    itemTpl: '{name:htmlEncode}',
     
     setSelectedId: function(id){
         this._selectedId = id;
     },
-
-    onItemDeselect: function (records, suppressEvent) {
+    
+    onItemDeselect: function(records, suppressEvent){
         // noinspection JSAccessibilityCheck
         this.callParent(arguments);
-
+        
         var record = records[0];
         var findBy = Ext.Function.bind(this.getItemByRecord, this, [record], 1);
         // noinspection JSUnresolvedVariable
@@ -65,11 +67,11 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.list.List', {
             item.removeCls(record.get('group'));
         }
     },
-
-    onItemSelect: function (record, suppressEvent) {
+    
+    onItemSelect: function(record, suppressEvent){
         // noinspection JSAccessibilityCheck
         this.callParent(arguments);
-
+        
         var findBy = Ext.Function.bind(this.getItemByRecord, this, [record], 1);
         // noinspection JSUnresolvedVariable
         var item = this.items.findBy(findBy);
@@ -77,8 +79,8 @@ Ext.define('FSS.view.desktop.tabpanel.browser.treelist.list.List', {
             item.addCls(record.get('group'));
         }
     },
-
-    getItemByRecord: function (item, record) {
+    
+    getItemByRecord: function(item, record){
         var itemRecord = item._record;
         return !!(itemRecord && itemRecord.get('id') === record.get('id'));
     }
