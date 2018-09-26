@@ -1,7 +1,75 @@
 @import "../../../../../../../etc/functions/color";
 @import "../../../../../../../var/FSS/Application.scss";
 
-.fssMessagesFolder {
+.fss-messages-folder {
+    padding-top: 55px;
     background-color: $fss-page-light-background;
+    
+    .#{$prefix}list-inner-ct, .#{$prefix}listitem {
+        background-color: $fss-page-light-background;
+        margin-bottom: 20px;
+        
+        &.#{$prefix}selected {
+            background-color: $background-color;
+            
+            span:first-child::before {
+                color: $base-color !important;
+            }
+        }
+    
+        .#{$prefix}listitem-inner-el {
+            font: 300 14px/16px;
+            font-family: $font-family-opensans-regular !important;
+            padding: 3px 12px 5px;
+            
+            .fss-messages-folder-item {
+                padding-left: 20px;
+                
+                span {
+                    vertical-align: -webkit-baseline-middle;
+                }
+                
+                span:first-child::before {
+                    vertical-align: bottom;
+                    font-family: 'Material Icons', serif;
+                    font-size: 22px;
+                    display: inline-block;
+                    width: 20px;
+                    margin-right: 20px;
+                    color: map-get($material-foreground-colors, 'light-grey');
+                }
+                
+                span:last-child {
+                    padding-left: 10px;
+                }
+            }
+    
+            .fss-messages-folder-INBOX {
+                span:first-child::before {
+                    content: 'email';
+                }
+            }
+            .fss-messages-folder-SENT {
+                span:first-child::before {
+                    content: 'send';
+                }
+            }
+            .fss-messages-folder-DRAFT {
+                span:first-child::before {
+                    content: 'drafts';
+                }
+            }
+            .fss-messages-folder-DELETED {
+                span:first-child::before {
+                    content: 'delete';
+                }
+            }
+        }
+    }
+    
+    .#{$prefix}listitem:hover {
+        background-color: $background-color;
+    }
+    
     width: 15%;
 }

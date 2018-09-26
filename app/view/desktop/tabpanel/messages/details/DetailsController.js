@@ -4,7 +4,7 @@
  */
 Ext.define('FSS.view.desktop.tabpanel.messages.details.DetailsController', {
     extend: 'Ext.app.ViewController',
-    alias: 'controller.details',
+    alias: 'controller.fssMessagesDetailsController',
 
     /**
      * Called when the view is created

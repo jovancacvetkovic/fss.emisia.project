@@ -4,22 +4,18 @@
  */
 Ext.define('FSS.view.desktop.tabpanel.messages.details.Details', {
     extend: 'Ext.Container',
+    xtype: 'fssMessagesDetails',
 
     requires: [
         'FSS.view.desktop.tabpanel.messages.details.DetailsModel',
 		'FSS.view.desktop.tabpanel.messages.details.DetailsController'
     ],
 
-    /*
-    Uncomment to give this component an xtype
-    xtype: 'details',
-    */
-
     viewModel: {
-        type: 'details'
+        type: 'fssMessagesDetailsModel'
     },
 
-    controller: 'details',
+    controller: 'fssMessagesDetailsController',
 
     items: [
         /* include child components here */

@@ -22,5 +22,7 @@ Ext.define('FSS.view.desktop.tabpanel.messages.folder.FolderController', {
         }, {
             name: 'DELETED'
         }];
+        
+        this.getViewModel().getStore('list').add(folderItems);
     }
 });

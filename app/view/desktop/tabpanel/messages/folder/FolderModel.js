@@ -5,10 +5,14 @@
 Ext.define('FSS.view.desktop.tabpanel.messages.folder.FolderModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.fssMessagesFolderModel',
-
+    
+    requires: [
+        'FSS.model.desktop.tabpanel.messages.folder.Item'
+    ],
+    
     stores: {
         list: {
-            model: ''
+            model: 'FSS.model.desktop.tabpanel.messages.folder.Item'
         }
     }
 });

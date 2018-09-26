@@ -4,16 +4,15 @@
  */
 Ext.define('FSS.view.desktop.tabpanel.messages.folder.Folder', {
     extend: 'Ext.dataview.List',
+    xtype: 'fssMessagesFolder',
     
     requires: [
         'FSS.view.desktop.tabpanel.messages.folder.FolderController',
         'FSS.view.desktop.tabpanel.messages.folder.FolderModel'
     ],
     
-    xtype: 'fssMessagesFolder',
-    
-    viewModel: {
-        type: 'fssMessagesFolderModel'
+    bind: {
+        store: '{list}'
     },
     
     config: {
@@ -23,7 +22,7 @@ Ext.define('FSS.view.desktop.tabpanel.messages.folder.Folder', {
     
     controller: 'fssMessagesFolderController',
     
-    baseCls: 'fssMessagesFolder',
+    baseCls: 'fss-messages-folder',
     
     grouped: true,
     
@@ -34,5 +33,16 @@ Ext.define('FSS.view.desktop.tabpanel.messages.folder.Folder', {
         triggerCtEvent: 'prevent-tap'
     },
     
-    itemTpl: '{name:htmlEncode}'
+    itemTpl: [
+        //@formatter:off
+        '<div class="fss-messages-folder-item fss-messages-folder-{name}">',
+            '<span>{folder}</span>',
+            '<span>{total}</span>',
+        '</div>'
+        //@formatter:on
+    ],
+    
+    viewModel: {
+        type: 'fssMessagesFolderModel'
+    }
 });

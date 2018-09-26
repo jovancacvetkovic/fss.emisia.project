@@ -4,7 +4,7 @@
  */
 Ext.define('FSS.view.desktop.tabpanel.messages.details.DetailsModel', {
     extend: 'Ext.app.ViewModel',
-    alias: 'viewmodel.details',
+    alias: 'viewmodel.fssMessagesDetailsModel',
 
     stores: {
         /*
